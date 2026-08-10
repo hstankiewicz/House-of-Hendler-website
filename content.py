@@ -141,7 +141,7 @@ def shop_body():
   <div class="container">
     <span class="eyebrow">Shop</span>
     <h1>The Palm Bunny Collection</h1>
-    <p>Enamel accessories with charm &mdash; three colorways, each finished by hand with gold detailing.</p>
+    <p>Enamel accessories with charm, designed in-house &mdash; three colorways, each with polished gold detailing.</p>
   </div>
 </section>
 
@@ -152,7 +152,7 @@ def shop_body():
   <div>
     <span class="eyebrow">Launch Collection</span>
     <h2 style="margin-top:10px;">Needle minders, made to be loved.</h2>
-    <p style="color:var(--hoh-ink-soft); font-size:16px;">Each Palm Bunny is a hand-finished enamel needle minder with a strong magnetic back &mdash; equally at home on your needlepoint canvas or clipped somewhere it can simply be admired. This is where House of Hendler begins; more collections are on the way.</p>
+    <p style="color:var(--hoh-ink-soft); font-size:16px;">Each Palm Bunny is an enamel needle minder designed by House of Hendler, with a strong magnetic back &mdash; equally at home on your needlepoint canvas or clipped somewhere it can simply be admired. This is where House of Hendler begins; more collections are on the way.</p>
     <a class="btn btn-navy" href="#" data-etsy-link target="_blank" rel="noopener">Shop on Etsy</a>
   </div>
 </section>
@@ -192,7 +192,7 @@ def our_story_body():
     <span class="eyebrow">Where We Started</span>
     <h2>A love of beautiful, well-made things.</h2>
     <p>House of Hendler began with a simple idea: that the objects we use every day should be as thoughtfully designed as the spaces we keep them in. Bright color, classic motifs and a little bit of whimsy &mdash; that&rsquo;s the House of Hendler point of view.</p>
-    <p>Our first collection, the Palm Bunnies, brought that idea to life as a set of enamel needle minders finished with gold detailing. They were made for the needlepoint table, but they&rsquo;ve found homes well beyond it.</p>
+    <p>Our first collection, the Palm Bunnies, brought that idea to life as a set of enamel needle minders designed in-house with gold detailing. They were made for the needlepoint table, but they&rsquo;ve found homes well beyond it.</p>
   </div>
 </section>
 
