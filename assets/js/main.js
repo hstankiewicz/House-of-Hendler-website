@@ -1,0 +1,95 @@
+/* =========================================================
+   HOUSE OF HENDLER — main.js
+   Applies SITE_CONFIG to the DOM + small UI interactions.
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ---------- Announcement bar ---------- */
+  const track = document.querySelector("[data-announcement-track]");
+  if (track && window.SITE_CONFIG) {
+    track.innerHTML = SITE_CONFIG.announcement
+      .map((msg) => `<span>${msg}</span>`)
+      .join('<span class="dot" aria-hidden="true">&#9670;</span>');
+  }
+
+  /* ---------- Shop links (hero CTA, footer, etc.) ---------- */
+  document.querySelectorAll("[data-etsy-link]").forEach((el) => {
+    if (window.SITE_CONFIG) el.href = SITE_CONFIG.etsyShopUrl;
+  });
+
+  /* ---------- Instagram links + handle text ---------- */
+  document.querySelectorAll("[data-instagram-link]").forEach((el) => {
+    if (window.SITE_CONFIG) el.href = SITE_CONFIG.instagramUrl;
+  });
+  document.querySelectorAll("[data-instagram-handle]").forEach((el) => {
+    if (window.SITE_CONFIG) el.textContent = SITE_CONFIG.instagramHandle;
+  });
+
+  /* ---------- Contact email (visible text + mailto href) ---------- */
+  document.querySelectorAll("[data-contact-email]").forEach((el) => {
+    if (!window.SITE_CONFIG) return;
+    el.textContent = SITE_CONFIG.contactEmail;
+    if (el.tagName === "A") el.href = `mailto:${SITE_CONFIG.contactEmail}`;
+  });
+
+  /* ---------- Mailto-only links (icon buttons — don't touch content) ---------- */
+  document.querySelectorAll("[data-contact-mailto]").forEach((el) => {
+    if (window.SITE_CONFIG) el.href = `mailto:${SITE_CONFIG.contactEmail}`;
+  });
+
+  /* ---------- Footer year ---------- */
+  document.querySelectorAll("[data-current-year]").forEach((el) => {
+    if (window.SITE_CONFIG) el.textContent = SITE_CONFIG.currentYear;
+  });
+
+  /* ---------- Product grid (rendered from config) ---------- */
+  document.querySelectorAll("[data-product-grid]").forEach((grid) => {
+    if (!window.SITE_CONFIG) return;
+    grid.innerHTML = SITE_CONFIG.products
+      .map(
+        (p) => `
+      <article class="product-card">
+        <div class="thumb">
+          <img src="${p.image}" alt="${p.alt}" loading="lazy" width="900" height="1125">
+        </div>
+        <div class="info">
+          <h3>${p.name}</h3>
+          <p class="price">${p.price}</p>
+          <a class="btn btn-pink" href="${p.etsyUrl}" target="_blank" rel="noopener">Shop Now</a>
+        </div>
+      </article>`
+      )
+      .join("");
+  });
+
+  /* ---------- Mobile nav toggle ---------- */
+  const navToggle = document.querySelector("[data-nav-toggle]");
+  const mobileNav = document.querySelector("[data-mobile-nav]");
+  if (navToggle && mobileNav) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = mobileNav.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        mobileNav.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      })
+    );
+  }
+
+  /* ---------- Simple front-end validation state for forms ---------- */
+  document.querySelectorAll("form[data-static-form]").forEach((form) => {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const note = form.querySelector("[data-form-success]");
+      if (note) {
+        note.hidden = false;
+        note.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      form.reset();
+    });
+  });
+});
