@@ -80,16 +80,49 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  /* ---------- Simple front-end validation state for forms ---------- */
+  /* ---------- Submit forms to Formspree (or show local success if no action set) ---------- */
   document.querySelectorAll("form[data-static-form]").forEach((form) => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const note = form.querySelector("[data-form-success]");
-      if (note) {
-        note.hidden = false;
-        note.scrollIntoView({ behavior: "smooth", block: "center" });
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const showSuccess = () => {
+        if (note) {
+          note.hidden = false;
+          note.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        form.reset();
+      };
+      const showError = () => {
+        alert("Sorry, something went wrong sending that. Please try again or email us directly.");
+      };
+
+      const action = form.getAttribute("action");
+
+      // No backend configured yet — just show the success note locally.
+      if (!action) {
+        showSuccess();
+        return;
       }
-      form.reset();
+
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      })
+        .then((response) => {
+          if (response.ok) {
+            showSuccess();
+          } else {
+            showError();
+          }
+        })
+        .catch(() => showError())
+        .finally(() => {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   });
 });

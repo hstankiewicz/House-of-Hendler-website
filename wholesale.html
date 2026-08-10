@@ -67,11 +67,9 @@
       <h2 style="text-align:center; font-size:24px; margin-bottom:6px;">Wholesale Inquiry</h2>
       <p style="text-align:center; color:var(--hoh-ink-soft); font-size:14.5px; margin-bottom:28px;">Tell us a bit about your shop and we&rsquo;ll be in touch.</p>
 
-      <div class="placeholder-note">
-        <strong>Note to self:</strong> this form isn&rsquo;t connected to anything yet. Wire it up to your email (a simple <code>mailto</code> works to start) or a form service like Formspree/Airtable before launch.
-      </div>
-
-      <form data-static-form>
+      <form data-static-form action="https://formspree.io/f/mjybyqpw" method="POST">
+        <input type="hidden" name="_subject" value="New Wholesale Inquiry — House of Hendler">
+        <input type="hidden" name="form_name" value="Wholesale Inquiry">
         <div class="field-row">
           <div class="field">
             <label for="ws-shop">Shop Name</label>

@@ -142,7 +142,9 @@
         <h2>Something new is always in the works.</h2>
         <p>Join our list to be the first to know about new drops and special offers.</p>
       </div>
-      <form class="newsletter-form" data-static-form aria-label="Newsletter signup">
+      <form class="newsletter-form" data-static-form aria-label="Newsletter signup" action="https://formspree.io/f/mjybyqpw" method="POST">
+        <input type="hidden" name="_subject" value="New Newsletter Signup — House of Hendler">
+        <input type="hidden" name="form_name" value="Newsletter">
         <label class="visually-hidden" for="newsletter-email">Email address</label>
         <input type="email" id="newsletter-email" name="email" placeholder="Email address" required>
         <button type="submit" class="btn btn-pink">Keep Me In The Loop</button>
