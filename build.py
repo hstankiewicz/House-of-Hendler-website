@@ -86,7 +86,7 @@ def footer():
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="assets/img/logo.png" alt="House of Hendler logo" width="120" height="140">
-        <p>Palm Beach color, chinoiserie motifs, needlepoint essentials.</p>
+        <p>Needlepoint accessories, starting with the Palm Bunny Collection.</p>
         <div class="footer-social">
           <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="Instagram">{ICON_INSTAGRAM}</a>
           <a href="#" data-contact-mailto aria-label="Email us">{ICON_MAIL}</a>
