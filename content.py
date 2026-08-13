@@ -43,8 +43,8 @@ def home_body():
   <div class="hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">House of Hendler</span>
-      <h1>Timeless style.<br>Beautifully made.</h1>
-      <p>Thoughtful details and playful charm for the pieces you love most.</p>
+      <h1>Needlepoint gets a point of view.</h1>
+      <p>Palm Beach color and chinoiserie pattern, starting with the Palm Bunny Collection.</p>
       <a class="btn btn-pink" href="#" data-etsy-link target="_blank" rel="noopener">Shop the Collection</a>
     </div>
     <div class="hero-media">
@@ -59,7 +59,7 @@ def home_body():
     <div class="motif-flanked">
       {motif_svg()}
       <div class="section-heading">
-        <span class="eyebrow">Enamel Accessories With Charm</span>
+        <span class="eyebrow">The Launch Collection</span>
         <h2>The Palm Bunny Collection</h2>
         <div class="rule"></div>
       </div>
@@ -72,12 +72,12 @@ def home_body():
 
 <section class="split">
   <div class="split-media">
-    <img src="assets/img/story-card.jpg" alt="A Palm Bunny Pink needle minder displayed on its House of Hendler backing card, styled with fresh peonies and blue-and-white porcelain" width="1000" height="1000">
+    <img src="assets/img/story-card.jpg" alt="A Palm Bunny Pink needle minder displayed on its House of Hendler backing card, styled with fresh blooms and blue-and-white porcelain" width="1000" height="1000">
   </div>
   <div class="split-copy">
-    <span class="eyebrow">Our Approach</span>
-    <h2>The details make it special.</h2>
-    <p>House of Hendler celebrates timeless design, beautiful craftsmanship and the little things that bring joy every day.</p>
+    <span class="eyebrow">How We Think</span>
+    <h2>Interiors first. Needlepoint second.</h2>
+    <p>House of Hendler brings the colors, patterns and pieces we love in interiors to the needlepoint table &mdash; Palm Beach lacquer, chinoiserie porcelain, a little bit of nerve.</p>
     <a class="btn btn-outline-navy" href="our-story.html">Our Story</a>
   </div>
 </section>
@@ -87,10 +87,12 @@ def home_body():
     <div class="newsletter-inner">
       <div class="newsletter-icon">{ICON_PALM}</div>
       <div class="newsletter-copy">
-        <h2>Something new is always in the works.</h2>
-        <p>Join our list to be the first to know about new drops and special offers.</p>
+        <h2>More than bunnies is coming.</h2>
+        <p>Join the list to hear about new drops first.</p>
       </div>
-      <form class="newsletter-form" data-static-form aria-label="Newsletter signup">
+      <form class="newsletter-form" data-static-form aria-label="Newsletter signup" action="https://formspree.io/f/mjybyqpw" method="POST">
+        <input type="hidden" name="_subject" value="New Newsletter Signup — House of Hendler">
+        <input type="hidden" name="form_name" value="Newsletter">
         <label class="visually-hidden" for="newsletter-email">Email address</label>
         <input type="email" id="newsletter-email" name="email" placeholder="Email address" required>
         <button type="submit" class="btn btn-pink">Keep Me In The Loop</button>
@@ -104,7 +106,7 @@ def home_body():
     <div class="wholesale-copy">
       <span class="eyebrow" style="color:var(--hoh-gold-soft);">Wholesale</span>
       <h2>For the shops we love.</h2>
-      <p>Interested in carrying House of Hendler? We&rsquo;d love to hear from you.</p>
+      <p>Interested in carrying House of Hendler? Let&rsquo;s talk.</p>
       <a class="btn btn-outline-light" href="wholesale.html">Wholesale Inquiries &rarr;</a>
     </div>
     <div class="wholesale-badge">
@@ -122,7 +124,7 @@ def home_body():
     <div class="insta-grid">
       <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/pink-canvas.jpg" alt="Palm Bunny Pink needle minder resting on needlepoint canvas" loading="lazy"></a>
       <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/story-card.jpg" alt="Palm Bunny Pink on its House of Hendler backing card" loading="lazy"></a>
-      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/hero-palm-bunnies.jpg" alt="The Palm Bunny trio with chinoiserie porcelain and peonies" loading="lazy"></a>
+      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/hero-palm-bunnies.jpg" alt="The Palm Bunny trio with chinoiserie porcelain" loading="lazy"></a>
       <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/trio-marble.jpg" alt="The Palm Bunny trio styled with embroidery thread and gold scissors" loading="lazy"></a>
       <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/green-solo.jpg" alt="Palm Bunny Green enamel needle minder detail" loading="lazy"></a>
       <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/blue-solo.jpg" alt="Palm Bunny Blue enamel needle minder detail" loading="lazy"></a>
@@ -141,7 +143,7 @@ def shop_body():
   <div class="container">
     <span class="eyebrow">Shop</span>
     <h1>The Palm Bunny Collection</h1>
-    <p>Enamel accessories with charm, designed in-house &mdash; three colorways, each with polished gold detailing.</p>
+    <p>Pink, green and navy enamel needle minders, designed in-house with gold detailing.</p>
   </div>
 </section>
 
@@ -151,8 +153,8 @@ def shop_body():
   </div>
   <div>
     <span class="eyebrow">Launch Collection</span>
-    <h2 style="margin-top:10px;">Needle minders, made to be loved.</h2>
-    <p style="color:var(--hoh-ink-soft); font-size:16px;">Each Palm Bunny is an enamel needle minder designed by House of Hendler, with a strong magnetic back &mdash; equally at home on your needlepoint canvas or clipped somewhere it can simply be admired. This is where House of Hendler begins; more collections are on the way.</p>
+    <h2 style="margin-top:10px;">Needlepoint accessories with a point of view.</h2>
+    <p style="color:var(--hoh-ink-soft); font-size:16px;">Each Palm Bunny is an enamel needle minder designed by House of Hendler, with a strong magnetic back &mdash; as at home on your needlepoint canvas as it is anywhere else. This is where House of Hendler starts; more is coming.</p>
     <a class="btn btn-navy" href="#" data-etsy-link target="_blank" rel="noopener">Shop on Etsy</a>
   </div>
 </section>
@@ -165,7 +167,7 @@ def shop_body():
       <div class="rule"></div>
     </div>
     <div class="product-grid" data-product-grid></div>
-    <p style="text-align:center; color:var(--hoh-ink-soft); font-size:14px; margin-top:36px;">More House of Hendler collections are coming soon. Join our list on the homepage to hear first.</p>
+    <p style="text-align:center; color:var(--hoh-ink-soft); font-size:14px; margin-top:36px;">More collections are coming. Get on the list on the homepage to hear first.</p>
   </div>
 </section>
 '''
@@ -179,8 +181,8 @@ def our_story_body():
 <section class="page-banner">
   <div class="container">
     <span class="eyebrow">Our Story</span>
-    <h1>Built on the little things.</h1>
-    <p>House of Hendler is a lifestyle brand rooted in timeless style, playful details and beautifully made everyday objects.</p>
+    <h1>Interiors first. Everything else follows.</h1>
+    <p>House of Hendler brings the colors, patterns and pieces we love in interiors to needlepoint &mdash; starting with the Palm Bunny Collection.</p>
   </div>
 </section>
 
@@ -190,21 +192,21 @@ def our_story_body():
   </div>
   <div class="split-copy">
     <span class="eyebrow">Where We Started</span>
-    <h2>A love of beautiful, well-made things.</h2>
-    <p>House of Hendler began with a simple idea: that the objects we use every day should be as thoughtfully designed as the spaces we keep them in. Bright color, classic motifs and a little bit of whimsy &mdash; that&rsquo;s the House of Hendler point of view.</p>
+    <h2>Good design shouldn&rsquo;t stop at the front door.</h2>
+    <p>House of Hendler started with a simple idea: the objects on your needlepoint table should look like they belong in the rooms around them. Palm Beach color, chinoiserie motifs, a bit of lacquer-cabinet nerve &mdash; that&rsquo;s the House of Hendler point of view.</p>
     <p>Our first collection, the Palm Bunnies, brought that idea to life as a set of enamel needle minders designed in-house with gold detailing. They were made for the needlepoint table, but they&rsquo;ve found homes well beyond it.</p>
   </div>
 </section>
 
 <section class="split split-reverse">
   <div class="split-media">
-    <img src="assets/img/story-card.jpg" alt="Palm Bunny Pink displayed on its House of Hendler backing card with peonies and blue-and-white porcelain" width="800" height="800">
+    <img src="assets/img/story-card.jpg" alt="Palm Bunny Pink displayed on its House of Hendler backing card with fresh blooms and blue-and-white porcelain" width="800" height="800">
   </div>
   <div class="split-copy">
     <span class="eyebrow">Where We&rsquo;re Headed</span>
     <h2>More than a needlepoint brand.</h2>
-    <p>The Palm Bunny Collection is our launch &mdash; not our identity. House of Hendler will grow to include accessories, gifts, home and lifestyle pieces, all sharing the same DNA: Palm Beach polish, chinoiserie influence and classic American preppy style, made with care.</p>
-    <p>Every future piece will carry the same standard: timeless over trendy, detail over decoration, and quality you can feel.</p>
+    <p>The Palm Bunny Collection is our launch, not our identity. House of Hendler will grow into accessories, gifts and home pieces that share the same DNA: Palm Beach polish, chinoiserie influence and classic American style.</p>
+    <p>Every piece will hold the same standard: strong color, specific detail, nothing generic.</p>
   </div>
 </section>
 
@@ -218,20 +220,20 @@ def our_story_body():
     <div class="product-grid" style="grid-template-columns:repeat(3,1fr); max-width:980px;">
       <div class="product-card" style="text-align:left;">
         <div class="info" style="padding:30px 26px;">
-          <h3 style="font-size:19px;">Timeless Style</h3>
-          <p style="color:var(--hoh-ink-soft); font-size:14.5px; margin:0;">Classic motifs and colors chosen to last well beyond a single season or trend.</p>
+          <h3 style="font-size:19px;">Strong Color</h3>
+          <p style="color:var(--hoh-ink-soft); font-size:14.5px; margin:0;">Bold, specific color pulled straight from the rooms we love &mdash; never an afterthought.</p>
         </div>
       </div>
       <div class="product-card" style="text-align:left;">
         <div class="info" style="padding:30px 26px;">
-          <h3 style="font-size:19px;">Playful Details</h3>
-          <p style="color:var(--hoh-ink-soft); font-size:14.5px; margin:0;">A little charm and a little whimsy in every piece, without losing polish.</p>
+          <h3 style="font-size:19px;">Classic Motifs</h3>
+          <p style="color:var(--hoh-ink-soft); font-size:14.5px; margin:0;">Chinoiserie, trellis, palm &mdash; patterns with history, used with intention.</p>
         </div>
       </div>
       <div class="product-card" style="text-align:left;">
         <div class="info" style="padding:30px 26px;">
-          <h3 style="font-size:19px;">Thoughtful Design</h3>
-          <p style="color:var(--hoh-ink-soft); font-size:14.5px; margin:0;">Beautiful, well-made objects for the moments and rituals of everyday life.</p>
+          <h3 style="font-size:19px;">Real Design</h3>
+          <p style="color:var(--hoh-ink-soft); font-size:14.5px; margin:0;">Every piece is designed in-house, not pulled from a catalog.</p>
         </div>
       </div>
     </div>
@@ -256,7 +258,7 @@ def wholesale_body():
   <div class="container">
     <span class="eyebrow" style="color:var(--hoh-gold-soft);">Wholesale</span>
     <h1 style="color:#fff;">For the shops we love.</h1>
-    <p style="color:rgba(255,255,255,0.82);">House of Hendler is pursuing wholesale relationships with boutiques and needlepoint shops. We&rsquo;d love to talk with you about carrying the Palm Bunny Collection.</p>
+    <p style="color:rgba(255,255,255,0.82);">House of Hendler is building wholesale relationships with boutiques and needlepoint shops. If the Palm Bunny Collection fits your shelves, let&rsquo;s talk.</p>
   </div>
 </section>
 
@@ -264,13 +266,11 @@ def wholesale_body():
   <div class="container">
     <div class="form-card">
       <h2 style="text-align:center; font-size:24px; margin-bottom:6px;">Wholesale Inquiry</h2>
-      <p style="text-align:center; color:var(--hoh-ink-soft); font-size:14.5px; margin-bottom:28px;">Tell us a bit about your shop and we&rsquo;ll be in touch.</p>
+      <p style="text-align:center; color:var(--hoh-ink-soft); font-size:14.5px; margin-bottom:28px;">Tell us about your shop and we&rsquo;ll be in touch.</p>
 
-      <div class="placeholder-note">
-        <strong>Note to self:</strong> this form isn&rsquo;t connected to anything yet. Wire it up to your email (a simple <code>mailto</code> works to start) or a form service like Formspree/Airtable before launch.
-      </div>
-
-      <form data-static-form>
+      <form data-static-form action="https://formspree.io/f/mjybyqpw" method="POST">
+        <input type="hidden" name="_subject" value="New Wholesale Inquiry — House of Hendler">
+        <input type="hidden" name="form_name" value="Wholesale Inquiry">
         <div class="field-row">
           <div class="field">
             <label for="ws-shop">Shop Name</label>
@@ -305,7 +305,7 @@ def wholesale_body():
 <section class="section-tight bg-green-soft" id="stockists">
   <div class="container" style="text-align:center; max-width:600px;">
     <h2 style="font-size:24px;">Stockists</h2>
-    <p style="color:var(--hoh-ink-soft);">We&rsquo;re just getting started! Check back here soon for a list of the boutiques and needlepoint shops carrying House of Hendler.</p>
+    <p style="color:var(--hoh-ink-soft);">We&rsquo;re just getting started. Check back soon for the shops carrying House of Hendler.</p>
   </div>
 </section>
 '''
@@ -319,8 +319,8 @@ def contact_body():
 <section class="page-banner">
   <div class="container">
     <span class="eyebrow">Contact</span>
-    <h1>We&rsquo;d love to hear from you.</h1>
-    <p>Questions about an order, a wholesale idea, or just want to say hello &mdash; reach out below.</p>
+    <h1>Get in touch.</h1>
+    <p>Order questions, wholesale ideas, or just want to say hi &mdash; reach out below.</p>
   </div>
 </section>
 
@@ -332,7 +332,9 @@ def contact_body():
         <a href="#" data-contact-email style="font-weight:600; color:var(--hoh-navy);"></a>
       </div>
 
-      <form data-static-form>
+      <form data-static-form action="https://formspree.io/f/mjybyqpw" method="POST">
+        <input type="hidden" name="_subject" value="New Contact Message — House of Hendler">
+        <input type="hidden" name="form_name" value="Contact">
         <div class="field-row">
           <div class="field">
             <label for="c-name">Name</label>
@@ -491,20 +493,20 @@ def terms_body():
 # =================================================================
 PAGES = {
     "index.html": (
-        "House of Hendler | Timeless Style, Beautifully Made",
-        "House of Hendler creates colorful, thoughtfully designed accessories and objects inspired by timeless style, playful details and Palm Beach charm.",
+        "House of Hendler | Needlepoint With A Point Of View",
+        "House of Hendler brings Palm Beach color and chinoiserie style to needlepoint accessories, starting with the Palm Bunny Collection.",
         None,
         home_body,
     ),
     "shop.html": (
         "Shop The Palm Bunny Collection | House of Hendler",
-        "Shop the Palm Bunny Collection: enamel needle minders in pink, green and blue, finished with gold detailing. $24 each.",
+        "Shop the Palm Bunny Collection: enamel needle minders in pink, green and blue, designed in-house with gold detailing. $24 each.",
         "shop.html",
         shop_body,
     ),
     "our-story.html": (
         "Our Story | House of Hendler",
-        "House of Hendler is a lifestyle brand built on timeless style, playful details and thoughtful design, launching with the Palm Bunny Collection.",
+        "House of Hendler brings Palm Beach color and chinoiserie style to needlepoint, launching with the Palm Bunny Collection.",
         "our-story.html",
         our_story_body,
     ),
