@@ -43,12 +43,12 @@ def home_body():
   <div class="hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">House of Hendler</span>
-      <h1>Needlepoint gets a point of view.</h1>
-      <p>Palm Beach color and chinoiserie pattern, starting with the Palm Bunny Collection.</p>
+      <h1>For your needlepoint, and everything around it.</h1>
+      <p>A collected approach to the things we love.</p>
       <a class="btn btn-pink" href="#" data-etsy-link target="_blank" rel="noopener">Shop the Collection</a>
     </div>
     <div class="hero-media">
-      <img src="assets/img/hero-palm-bunnies.jpg" alt="The Palm Bunny Collection: pink, green and navy enamel needle minders arranged in front of blue-and-white chinoiserie porcelain">
+      <img src="assets/img/hero-trio-porcelain.png" alt="The Palm Bunny Collection: pink, green and navy enamel needle minders arranged in front of blue-and-white porcelain">
       <span class="hero-badge">The Palm Bunny Collection</span>
     </div>
   </div>
@@ -66,19 +66,34 @@ def home_body():
       {motif_svg(flip=True)}
     </div>
 
+    <div class="shop-hero-media" style="max-width:640px; margin:36px auto 0;">
+      <img src="assets/img/collection-marble.png" alt="The Palm Bunny trio in pink, green and blue, styled with embroidery thread and gold scissors">
+    </div>
+
     <div class="product-grid" data-product-grid style="margin-top:44px;"></div>
+
+    <div style="text-align:center; margin-top:8px;">
+      <a class="btn btn-pink" href="#" data-etsy-link target="_blank" rel="noopener">Shop the Collection</a>
+    </div>
   </div>
 </section>
 
 <section class="split">
-  <div class="split-media">
-    <img src="assets/img/story-card.png" alt="A Palm Bunny Pink needle minder displayed on its House of Hendler backing card, styled with fresh blooms and blue-and-white porcelain" width="1000" height="1000">
+  <div class="split-media split-media-square">
+    <img src="assets/img/brand-packaged.png" alt="A Palm Bunny Pink needle minder packaged in its House of Hendler gift box" width="1000" height="1000">
   </div>
   <div class="split-copy">
-    <span class="eyebrow">How We Think</span>
-    <h2>Interiors first. Needlepoint second.</h2>
-    <p>House of Hendler brings the colors, patterns and pieces we love in interiors to the needlepoint table &mdash; Palm Beach lacquer, chinoiserie porcelain, a little bit of nerve.</p>
+    <span class="eyebrow">House of Hendler</span>
+    <h2>Timeless, never trendy.</h2>
+    <p>House of Hendler is a collected mix of needlepoint accessories and the things we like to keep around. Traditional, intentional, and always a little chic.</p>
+    <p>Made for people who know what they like.</p>
     <a class="btn btn-outline-navy" href="our-story.html">Our Story</a>
+  </div>
+</section>
+
+<section class="section-tight bg-white">
+  <div class="container editorial-wide">
+    <img src="assets/img/editorial-tray.png" alt="The Palm Bunny trio on a white scalloped dish with flowers, a candle and needlepoint">
   </div>
 </section>
 
@@ -87,8 +102,8 @@ def home_body():
     <div class="newsletter-inner">
       <div class="newsletter-icon">{ICON_PALM}</div>
       <div class="newsletter-copy">
-        <h2>More than bunnies is coming.</h2>
-        <p>Join the list to hear about new drops first.</p>
+        <h2>More to come.</h2>
+        <p>New pieces, new collections, and what we&rsquo;re working on next.</p>
       </div>
       <form class="newsletter-form" data-static-form aria-label="Newsletter signup" action="https://formspree.io/f/mjybyqpw" method="POST">
         <input type="hidden" name="_subject" value="New Newsletter Signup — House of Hendler">
@@ -105,8 +120,8 @@ def home_body():
   <div class="container wholesale-inner">
     <div class="wholesale-copy">
       <span class="eyebrow" style="color:var(--hoh-gold-soft);">Wholesale</span>
-      <h2>For the shops we love.</h2>
-      <p>Interested in carrying House of Hendler? Let&rsquo;s talk.</p>
+      <h2>For shops that get it.</h2>
+      <p>Interested in carrying House of Hendler? We&rsquo;d love to hear from you.</p>
       <a class="btn btn-outline-light" href="wholesale.html">Wholesale Inquiries &rarr;</a>
     </div>
     <div class="wholesale-badge">
@@ -122,12 +137,12 @@ def home_body():
       <p style="color:var(--hoh-pink); font-weight:600; letter-spacing:0.04em;" data-instagram-handle></p>
     </div>
     <div class="insta-grid">
-      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/pink-canvas.jpg" alt="Palm Bunny Pink needle minder resting on needlepoint canvas" loading="lazy"></a>
-      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/story-card.png" alt="Palm Bunny Pink on its House of Hendler backing card" loading="lazy"></a>
-      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/hero-palm-bunnies.jpg" alt="The Palm Bunny trio with chinoiserie porcelain" loading="lazy"></a>
-      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/trio-marble.jpg" alt="The Palm Bunny trio styled with embroidery thread and gold scissors" loading="lazy"></a>
-      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/green-solo.jpg" alt="Palm Bunny Green enamel needle minder detail" loading="lazy"></a>
-      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/blue-solo.jpg" alt="Palm Bunny Blue enamel needle minder detail" loading="lazy"></a>
+      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/gallery-canvas.png" alt="Palm Bunny Pink needle minder resting on needlepoint canvas" loading="lazy"></a>
+      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/gallery-card.png" alt="Palm Bunny Pink on its House of Hendler backing card" loading="lazy"></a>
+      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/hero-trio-porcelain.png" alt="The Palm Bunny trio with blue-and-white porcelain" loading="lazy"></a>
+      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/collection-marble.png" alt="The Palm Bunny trio styled with embroidery thread and gold scissors" loading="lazy"></a>
+      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img src="assets/img/brand-packaged.png" alt="Palm Bunny Pink packaged in its House of Hendler gift box" loading="lazy"></a>
+      <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="View on Instagram"><img class="img-contain" src="assets/img/gallery-colorways.png" alt="The Palm Bunny trio on a scalloped marble dish" loading="lazy"></a>
     </div>
   </div>
 </section>
@@ -149,12 +164,12 @@ def shop_body():
 
 <section class="shop-hero">
   <div class="shop-hero-media">
-    <img src="assets/img/trio-marble.jpg" alt="The Palm Bunny trio in pink, green and blue, styled with embroidery thread and gold scissors">
+    <img src="assets/img/collection-marble.png" alt="The Palm Bunny trio in pink, green and blue, styled with embroidery thread and gold scissors">
   </div>
   <div>
     <span class="eyebrow">Launch Collection</span>
-    <h2 style="margin-top:10px;">Needlepoint accessories with a point of view.</h2>
-    <p style="color:var(--hoh-ink-soft); font-size:16px;">Each Palm Bunny is an enamel needle minder designed by House of Hendler, with a strong magnetic back &mdash; as at home on your needlepoint canvas as it is anywhere else. This is where House of Hendler starts; more is coming.</p>
+    <h2 style="margin-top:10px;">Needlepoint accessories, designed in-house.</h2>
+    <p style="color:var(--hoh-ink-soft); font-size:16px;">Each Palm Bunny is an enamel needle minder with a strong magnetic back &mdash; as at home on your needlepoint canvas as it is anywhere else. This is where House of Hendler starts; more is coming.</p>
     <a class="btn btn-navy" href="#" data-etsy-link target="_blank" rel="noopener">Shop on Etsy</a>
   </div>
 </section>
@@ -188,7 +203,7 @@ def our_story_body():
 
 <section class="split">
   <div class="split-media">
-    <img src="assets/img/pink-canvas.jpg" alt="Palm Bunny Pink needle minder resting on cross-stitch canvas mid-project" width="800" height="800">
+    <img src="assets/img/gallery-canvas.png" alt="Palm Bunny Pink needle minder resting on cross-stitch canvas mid-project" width="800" height="800">
   </div>
   <div class="split-copy">
     <span class="eyebrow">Where We Started</span>
@@ -200,7 +215,7 @@ def our_story_body():
 
 <section class="split split-reverse">
   <div class="split-media">
-    <img src="assets/img/story-card.png" alt="Palm Bunny Pink displayed on its House of Hendler backing card with fresh blooms and blue-and-white porcelain" width="800" height="800">
+    <img src="assets/img/gallery-card.png" alt="Palm Bunny Pink displayed on its House of Hendler backing card with fresh blooms and blue-and-white porcelain" width="800" height="800">
   </div>
   <div class="split-copy">
     <span class="eyebrow">Where We&rsquo;re Headed</span>
@@ -493,8 +508,8 @@ def terms_body():
 # =================================================================
 PAGES = {
     "index.html": (
-        "House of Hendler | Needlepoint With A Point Of View",
-        "House of Hendler brings Palm Beach color and chinoiserie style to needlepoint accessories, starting with the Palm Bunny Collection.",
+        "House of Hendler | Needlepoint Accessories",
+        "House of Hendler makes needlepoint accessories and the things we like to keep around, starting with the Palm Bunny Collection.",
         None,
         home_body,
     ),

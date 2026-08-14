@@ -34,7 +34,7 @@ def head(title, description, canonical_path):
 <meta property="og:description" content="{description}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://houseofhendler.com{canonical_path}">
-<meta property="og:image" content="https://houseofhendler.com/assets/img/hero-palm-bunnies.jpg">
+<meta property="og:image" content="https://houseofhendler.com/assets/img/hero-trio-porcelain.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/img/logo.png">
@@ -86,7 +86,7 @@ def footer():
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="assets/img/logo.png" alt="House of Hendler logo" width="120" height="140">
-        <p>Palm Beach color, chinoiserie motifs, needlepoint essentials.</p>
+        <p>For your needlepoint, and everything around it.</p>
         <div class="footer-social">
           <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="Instagram">{ICON_INSTAGRAM}</a>
           <a href="#" data-contact-mailto aria-label="Email us">{ICON_MAIL}</a>
