@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  /* ---------- Submit forms to Formspree (or show local success if no action set) ---------- */
+  /* ---------- Submit static forms through the configured form backend ---------- */
   document.querySelectorAll("form[data-static-form]").forEach((form) => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
