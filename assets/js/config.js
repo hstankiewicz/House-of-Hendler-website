@@ -21,7 +21,7 @@ window.SITE_CONFIG = {
   // Social + contact
   instagramHandle: "@houseofhendler",
   instagramUrl: "https://www.instagram.com/houseofhendler",
-  contactEmail: "hello@houseofhendler.com",
+  contactEmail: "heather.houseofhendler@gmail.com",
 
   // Palm Bunny Collection — the three launch products.
   // Update "etsyUrl" for each with the direct Etsy listing link.
