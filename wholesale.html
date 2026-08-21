@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wholesale | House of Hendler</title>
-<meta name="description" content="Interested in carrying House of Hendler in your shop? Learn about wholesale opportunities and send an inquiry.">
+<meta name="description" content="Place a House of Hendler wholesale order request for your needlepoint shop or specialty boutique.">
 <link rel="canonical" href="https://houseofhendler.com/wholesale.html">
 
 <meta property="og:title" content="Wholesale | House of Hendler">
-<meta property="og:description" content="Interested in carrying House of Hendler in your shop? Learn about wholesale opportunities and send an inquiry.">
+<meta property="og:description" content="House of Hendler wholesale ordering for needlepoint shops and specialty retailers.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://houseofhendler.com/wholesale.html">
 <meta property="og:image" content="https://houseofhendler.com/assets/img/hero-trio-porcelain.png">
@@ -16,6 +16,145 @@
 
 <link rel="icon" href="assets/img/logo.png">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .ws-shell { max-width: 860px; margin: 0 auto; }
+  .ws-terms {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--hoh-line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--hoh-line);
+    gap: 1px;
+    margin: 0 auto 34px;
+  }
+  .ws-term { background: #fff; padding: 20px 14px; text-align: center; }
+  .ws-term strong {
+    display: block;
+    color: var(--hoh-navy);
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  .ws-term span {
+    color: var(--hoh-ink-soft);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .ws-form-card {
+    background: #fff;
+    border: 1px solid var(--hoh-line);
+    border-radius: var(--radius-md);
+    padding: 38px;
+    box-shadow: var(--shadow-card);
+  }
+  .ws-fieldset { border: 0; padding: 0; margin: 0 0 36px; }
+  .ws-fieldset:last-of-type { margin-bottom: 28px; }
+  .ws-legend {
+    width: 100%;
+    font-family: var(--font-display);
+    color: var(--hoh-navy);
+    font-size: 23px;
+    font-weight: 500;
+    padding: 0 0 10px;
+    margin: 0 0 20px;
+    border-bottom: 1px solid var(--hoh-line);
+  }
+  .ws-help { color: var(--hoh-ink-soft); font-size: 12.5px; margin-top: 7px; }
+  .ws-required { color: var(--hoh-pink-dark); }
+  .ws-choice-row { display: flex; flex-wrap: wrap; gap: 18px 28px; }
+  .ws-choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    color: var(--hoh-ink);
+    font-size: 14px;
+  }
+  .ws-choice input { width: auto; margin: 3px 0 0; accent-color: var(--hoh-pink); }
+  .ws-products { border: 1px solid var(--hoh-line); border-radius: var(--radius-sm); overflow: hidden; }
+  .ws-product-head, .ws-product-row {
+    display: grid;
+    grid-template-columns: 1.5fr .55fr .42fr;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 16px;
+  }
+  .ws-product-head {
+    background: var(--hoh-green-soft);
+    color: var(--hoh-navy);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .ws-product-row + .ws-product-row { border-top: 1px solid var(--hoh-line); }
+  .ws-product-name strong {
+    display: block;
+    font-family: var(--font-display);
+    color: var(--hoh-navy);
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .ws-product-name span { display: block; color: var(--hoh-ink-soft); font-size: 12px; margin-top: 2px; }
+  .ws-qty input {
+    width: 100%;
+    min-width: 62px;
+    padding: 10px 8px;
+    text-align: center;
+    border: 1px solid var(--hoh-line);
+    border-radius: var(--radius-sm);
+    background: var(--hoh-cream);
+    font-family: var(--font-body);
+  }
+  .ws-summary {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 20px;
+    margin-top: 16px;
+    padding: 18px;
+    background: var(--hoh-pink-pale);
+    border: 1px solid #f0d9e0;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+  }
+  .ws-summary .total {
+    padding-top: 9px;
+    margin-top: 2px;
+    border-top: 1px solid #e7c8d1;
+    color: var(--hoh-navy);
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .ws-warning {
+    display: none;
+    margin-top: 12px;
+    padding: 11px 13px;
+    border: 1px solid #e4b9b9;
+    background: #fff4f4;
+    color: #8d3434;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+  }
+  .ws-note {
+    background: var(--hoh-green-soft);
+    border-left: 3px solid var(--hoh-green);
+    padding: 13px 15px;
+    color: var(--hoh-ink-soft);
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+  .ws-honey { display:none !important; }
+  @media (max-width: 720px) {
+    .ws-terms { grid-template-columns: 1fr 1fr; }
+    .ws-form-card { padding: 26px 20px; }
+    .ws-product-head { display: none; }
+    .ws-product-row { grid-template-columns: 1fr .7fr; }
+    .ws-product-name { grid-column: 1 / -1; }
+  }
+</style>
 </head>
 <body>
 <header>
@@ -52,63 +191,179 @@
 </header>
 
 <main>
-
 <section class="page-banner" style="background:var(--hoh-green-deep); border-bottom:none;">
   <div class="container">
     <span class="eyebrow" style="color:var(--hoh-gold-soft);">Wholesale</span>
     <h1 style="color:#fff;">For the shops we love.</h1>
-    <p style="color:rgba(255,255,255,0.82);">House of Hendler is building wholesale relationships with boutiques and needlepoint shops. If the Palm Bunny Collection fits your shelves, let&rsquo;s talk.</p>
+    <p style="color:rgba(255,255,255,0.82);">Ready to carry House of Hendler? Build your order below and we&rsquo;ll take care of the shipping calculation and final invoice.</p>
   </div>
 </section>
 
 <section class="section bg-white">
   <div class="container">
-    <div class="form-card">
-      <h2 style="text-align:center; font-size:24px; margin-bottom:6px;">Wholesale Inquiry</h2>
-      <p style="text-align:center; color:var(--hoh-ink-soft); font-size:14.5px; margin-bottom:28px;">Tell us about your shop and we&rsquo;ll be in touch.</p>
+    <div class="ws-shell">
+      <div class="ws-terms" aria-label="Wholesale terms">
+        <div class="ws-term"><strong>$12</strong><span>Wholesale / piece</span></div>
+        <div class="ws-term"><strong>$24</strong><span>Suggested retail</span></div>
+        <div class="ws-term"><strong>18 pieces</strong><span>Opening minimum</span></div>
+        <div class="ws-term"><strong>12 pieces</strong><span>Reorder minimum</span></div>
+      </div>
 
-      <form data-static-form action="https://formsubmit.co/heather@hendlers.com" method="POST">
-        <input type="hidden" name="_subject" value="New Wholesale Inquiry — House of Hendler">
-        <input type="hidden" name="form_name" value="Wholesale Inquiry">
-        <div class="field-row">
-          <div class="field">
-            <label for="ws-shop">Shop Name</label>
-            <input type="text" id="ws-shop" name="shopName" required>
-          </div>
-          <div class="field">
-            <label for="ws-contact">Your Name</label>
-            <input type="text" id="ws-contact" name="contactName" required>
-          </div>
+      <div class="ws-form-card">
+        <div style="text-align:center; margin-bottom:30px;">
+          <span class="eyebrow">Wholesale Order Request</span>
+          <h2 style="font-size:30px; margin:8px 0 8px;">Build your order.</h2>
+          <p style="color:var(--hoh-ink-soft); max-width:610px; margin:0 auto; font-size:14.5px;">Enter your shop information and quantities. Orders are not charged at submission; we&rsquo;ll review your request, calculate shipping, and email your final invoice.</p>
         </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="ws-email">Email</label>
-            <input type="email" id="ws-email" name="email" required>
-          </div>
-          <div class="field">
-            <label for="ws-website">Website / Instagram</label>
-            <input type="text" id="ws-website" name="website">
-          </div>
-        </div>
-        <div class="field">
-          <label for="ws-message">Tell Us About Your Shop</label>
-          <textarea id="ws-message" name="message" placeholder="Location, the kinds of brands you carry, order size you'd like to start with, etc."></textarea>
-        </div>
-        <button type="submit" class="btn btn-pink btn-block">Send Inquiry</button>
-        <p class="form-note" data-form-success hidden>Thank you! Your inquiry has been noted &mdash; we&rsquo;ll be in touch soon.</p>
-      </form>
+
+        <form id="wholesale-order-form" action="https://formsubmit.co/heather@hendlers.com" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_subject" value="New House of Hendler Wholesale Order Request">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://houseofhendler.com/wholesale-thank-you.html">
+          <input type="hidden" name="_url" value="https://houseofhendler.com/wholesale.html">
+          <input class="ws-honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          <input type="hidden" id="ws-total-pieces" name="Total Pieces Requested" value="0">
+          <input type="hidden" id="ws-merch-subtotal" name="Merchandise Subtotal" value="$0.00">
+          <input type="hidden" name="Wholesale Price" value="$12 per piece">
+          <input type="hidden" name="Suggested Retail" value="$24 per piece">
+
+          <fieldset class="ws-fieldset">
+            <legend class="ws-legend">Shop Information</legend>
+            <div class="field-row">
+              <div class="field">
+                <label for="ws-shop">Shop / Business Name <span class="ws-required">*</span></label>
+                <input type="text" id="ws-shop" name="Shop / Business Name" autocomplete="organization" required>
+              </div>
+              <div class="field">
+                <label for="ws-contact">Contact Name <span class="ws-required">*</span></label>
+                <input type="text" id="ws-contact" name="Contact Name" autocomplete="name" required>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="ws-email">Email <span class="ws-required">*</span></label>
+                <input type="email" id="ws-email" name="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label for="ws-phone">Phone <span class="ws-required">*</span></label>
+                <input type="tel" id="ws-phone" name="Phone" autocomplete="tel" required>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="ws-website">Website</label>
+                <input type="text" id="ws-website" name="Website">
+              </div>
+              <div class="field">
+                <label for="ws-instagram">Instagram</label>
+                <input type="text" id="ws-instagram" name="Instagram" placeholder="@shophandle">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="ws-fieldset">
+            <legend class="ws-legend">Order Type</legend>
+            <div class="ws-choice-row">
+              <label class="ws-choice"><input type="radio" name="Order Type" value="Opening Order" checked> <span><strong>Opening order</strong> &mdash; 18 piece minimum</span></label>
+              <label class="ws-choice"><input type="radio" name="Order Type" value="Reorder"> <span><strong>Reorder</strong> &mdash; 12 piece minimum</span></label>
+            </div>
+            <p class="ws-help">Mix and match across all available colorways.</p>
+          </fieldset>
+
+          <fieldset class="ws-fieldset">
+            <legend class="ws-legend">Shipping + Resale Information</legend>
+            <div class="field">
+              <label for="ws-address">Shipping / Shop Address <span class="ws-required">*</span></label>
+              <input type="text" id="ws-address" name="Shipping / Shop Address" autocomplete="street-address" required>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="ws-city">City <span class="ws-required">*</span></label>
+                <input type="text" id="ws-city" name="City" autocomplete="address-level2" required>
+              </div>
+              <div class="field">
+                <label for="ws-state">State <span class="ws-required">*</span></label>
+                <input type="text" id="ws-state" name="State" autocomplete="address-level1" required>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="ws-zip">ZIP Code <span class="ws-required">*</span></label>
+                <input type="text" id="ws-zip" name="ZIP Code" autocomplete="postal-code" required>
+              </div>
+              <div class="field">
+                <label for="ws-resale">Resale / Sales Tax ID <span class="ws-required">*</span></label>
+                <input type="text" id="ws-resale" name="Resale / Sales Tax ID" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="ws-certificate">Resale Certificate <span class="ws-required">*</span></label>
+              <input type="file" id="ws-certificate" name="attachment" accept=".pdf,.jpg,.jpeg,.png" required>
+              <p class="ws-help">Upload a PDF, JPG, or PNG. Total upload size must be under 10 MB.</p>
+            </div>
+          </fieldset>
+
+          <fieldset class="ws-fieldset">
+            <legend class="ws-legend">Order Request</legend>
+            <div class="ws-note">Enter the quantity you would like in each color. Shipping is calculated separately and added to your final invoice.</div>
+
+            <div class="ws-products">
+              <div class="ws-product-head"><div>Design / Color</div><div>Wholesale</div><div>Qty</div></div>
+              <div class="ws-product-row">
+                <div class="ws-product-name"><strong>Bunny Needle Minder &mdash; Palm Green</strong><span>Individually carded and retail ready</span></div>
+                <div>$12 each</div>
+                <div class="ws-qty"><input class="ws-qty-input" type="number" min="0" step="1" value="0" name="Palm Green Qty" aria-label="Palm Green quantity"></div>
+              </div>
+              <div class="ws-product-row">
+                <div class="ws-product-name"><strong>Bunny Needle Minder &mdash; Petal Pink</strong><span>Individually carded and retail ready</span></div>
+                <div>$12 each</div>
+                <div class="ws-qty"><input class="ws-qty-input" type="number" min="0" step="1" value="0" name="Petal Pink Qty" aria-label="Petal Pink quantity"></div>
+              </div>
+              <div class="ws-product-row">
+                <div class="ws-product-name"><strong>Bunny Needle Minder &mdash; Royal Blue</strong><span>Individually carded and retail ready</span></div>
+                <div>$12 each</div>
+                <div class="ws-qty"><input class="ws-qty-input" type="number" min="0" step="1" value="0" name="Royal Blue Qty" aria-label="Royal Blue quantity"></div>
+              </div>
+            </div>
+
+            <div class="ws-summary">
+              <div>Total pieces</div><div id="ws-piece-count">0</div>
+              <div class="total">Merchandise subtotal</div><div class="total" id="ws-subtotal">$0.00</div>
+            </div>
+            <div id="ws-minimum-warning" class="ws-warning" role="alert"></div>
+
+            <div class="field" style="margin-top:20px; margin-bottom:0;">
+              <label for="ws-notes">Order Notes</label>
+              <textarea id="ws-notes" name="Order Notes" placeholder="Anything we should know about this order?"></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset class="ws-fieldset">
+            <legend class="ws-legend">Confirm + Submit</legend>
+            <div style="display:grid; gap:13px;">
+              <label class="ws-choice"><input type="checkbox" name="Shipping Terms Acknowledged" value="Yes" required> <span>I understand that shipping is calculated separately and added to the final invoice. <span class="ws-required">*</span></span></label>
+              <label class="ws-choice"><input type="checkbox" name="Email List Opt-In" value="Yes"> <span>Add me to the House of Hendler email list for new releases, restocks, and wholesale updates.</span></label>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn btn-pink btn-block">Submit Wholesale Order Request</button>
+          <p class="form-note">No payment is due until you receive your final invoice.</p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="section-tight bg-green-soft" id="stockists">
-  <div class="container" style="text-align:center; max-width:600px;">
-    <h2 style="font-size:24px;">Stockists</h2>
-    <p style="color:var(--hoh-ink-soft);">We&rsquo;re just getting started. Check back soon for the shops carrying House of Hendler.</p>
+  <div class="container" style="text-align:center; max-width:620px;">
+    <span class="eyebrow">Retail Partners</span>
+    <h2 style="font-size:24px; margin-top:8px;">Interested in carrying House of Hendler?</h2>
+    <p style="color:var(--hoh-ink-soft);">Use the order form above and we&rsquo;ll be in touch with your shipping total and final invoice.</p>
   </div>
 </section>
-
 </main>
+
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
@@ -122,50 +377,69 @@
         <a href="#" data-contact-email class="footer-email"></a>
       </div>
 
-      <div class="footer-col">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="shop.html">Palm Bunny Collection</a></li>
-          <li><a href="shop.html">All Products</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Our Story</h4>
-        <ul>
-          <li><a href="our-story.html">Our Story</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Wholesale</h4>
-        <ul>
-          <li><a href="wholesale.html">Wholesale Inquiries</a></li>
-          <li><a href="wholesale.html#stockists">Stockists</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Customer Care</h4>
-        <ul>
-          <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Shop</h4><ul><li><a href="shop.html">Palm Bunny Collection</a></li><li><a href="shop.html">All Products</a></li></ul></div>
+      <div class="footer-col"><h4>Our Story</h4><ul><li><a href="our-story.html">Our Story</a></li></ul></div>
+      <div class="footer-col"><h4>Wholesale</h4><ul><li><a href="wholesale.html">Wholesale Orders</a></li><li><a href="wholesale.html#stockists">Retail Partners</a></li></ul></div>
+      <div class="footer-col"><h4>Customer Care</h4><ul><li><a href="shipping-returns.html">Shipping &amp; Returns</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
     </div>
 
     <div class="footer-bottom">
       <span>&copy; <span data-current-year></span> House of Hendler. All rights reserved.</span>
-      <div class="legal-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="contact.html">Contact Us</a>
-      </div>
+      <div class="legal-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="contact.html">Contact Us</a></div>
     </div>
   </div>
 </footer>
 
 <script src="assets/js/config.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+(function(){
+  const price = 12;
+  const form = document.getElementById('wholesale-order-form');
+  const qtyInputs = Array.from(document.querySelectorAll('.ws-qty-input'));
+  const countEl = document.getElementById('ws-piece-count');
+  const subtotalEl = document.getElementById('ws-subtotal');
+  const countHidden = document.getElementById('ws-total-pieces');
+  const subtotalHidden = document.getElementById('ws-merch-subtotal');
+  const warning = document.getElementById('ws-minimum-warning');
+
+  function type(){ return document.querySelector('input[name="Order Type"]:checked').value; }
+  function minimum(){ return type() === 'Opening Order' ? 18 : 12; }
+  function pieces(){ return qtyInputs.reduce((sum,input) => sum + Math.max(0, parseInt(input.value || '0',10)), 0); }
+  function update(){
+    const totalPieces = pieces();
+    const dollars = totalPieces * price;
+    countEl.textContent = totalPieces;
+    subtotalEl.textContent = '$' + dollars.toFixed(2);
+    countHidden.value = totalPieces;
+    subtotalHidden.value = '$' + dollars.toFixed(2);
+    const min = minimum();
+    if(totalPieces > 0 && totalPieces < min){
+      warning.style.display = 'block';
+      warning.textContent = 'This ' + type().toLowerCase() + ' requires at least ' + min + ' pieces. Please add ' + (min-totalPieces) + ' more.';
+    } else {
+      warning.style.display = 'none';
+      warning.textContent = '';
+    }
+  }
+
+  qtyInputs.forEach(input => input.addEventListener('input', update));
+  document.querySelectorAll('input[name="Order Type"]').forEach(input => input.addEventListener('change', update));
+
+  form.addEventListener('submit', function(e){
+    const totalPieces = pieces();
+    const min = minimum();
+    if(totalPieces < min){
+      e.preventDefault();
+      warning.style.display = 'block';
+      warning.textContent = type() + 's require at least ' + min + ' pieces. Your current order has ' + totalPieces + '.';
+      warning.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    update();
+  });
+  update();
+})();
+</script>
 </body>
 </html>
