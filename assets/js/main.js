@@ -38,6 +38,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.SITE_CONFIG) el.href = `mailto:${SITE_CONFIG.contactEmail}`;
   });
 
+  /* ---------- Wholesale resources ---------- */
+  const wholesaleTerms = document.querySelector(".ws-terms");
+  if (wholesaleTerms && !document.querySelector("[data-wholesale-resources]")) {
+    const resources = document.createElement("div");
+    resources.setAttribute("data-wholesale-resources", "");
+    resources.style.cssText = "text-align:center;margin:-10px auto 34px;padding:20px 18px;background:var(--hoh-cream);border:1px solid var(--hoh-line);border-radius:var(--radius-sm);";
+    resources.innerHTML = `
+      <span class="eyebrow">Wholesale Resources</span>
+      <p style="margin:7px auto 14px;color:var(--hoh-ink-soft);font-size:13.5px;max-width:560px;">Current 2026 pricing: $14 wholesale, $28 suggested retail, 18-piece opening minimum and 12-piece reorder minimum.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a class="btn btn-outline-navy" href="wholesale-line-sheet.pdf" target="_blank" rel="noopener">View Wholesale Line Sheet</a>
+        <a class="btn btn-pink" href="#wholesale-order-form">Place Wholesale Order</a>
+      </div>`;
+    wholesaleTerms.insertAdjacentElement("afterend", resources);
+  }
+
   /* ---------- Footer year ---------- */
   document.querySelectorAll("[data-current-year]").forEach((el) => {
     if (window.SITE_CONFIG) el.textContent = SITE_CONFIG.currentYear;
