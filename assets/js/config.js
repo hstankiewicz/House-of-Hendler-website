@@ -29,7 +29,7 @@ window.SITE_CONFIG = {
     {
       id: "pink",
       name: "Palm Bunny Pink",
-      price: "$24.00",
+      price: "$28.00",
       image: "assets/img/product-pink.png",
       alt: "Palm Bunny Pink enamel needle minder with pink fishnet pattern and gold trim, shown on marble",
       etsyUrl: "https://www.etsy.com/shop/HouseOfHendler",
@@ -37,7 +37,7 @@ window.SITE_CONFIG = {
     {
       id: "green",
       name: "Palm Bunny Green",
-      price: "$24.00",
+      price: "$28.00",
       image: "assets/img/product-green.png",
       alt: "Palm Bunny Green enamel needle minder with green fishnet pattern and gold trim, shown on marble",
       etsyUrl: "https://www.etsy.com/shop/HouseOfHendler",
@@ -45,7 +45,7 @@ window.SITE_CONFIG = {
     {
       id: "blue",
       name: "Palm Bunny Blue",
-      price: "$24.00",
+      price: "$28.00",
       image: "assets/img/product-blue.png",
       alt: "Palm Bunny Blue enamel needle minder with navy fishnet pattern and gold trim, shown on marble",
       etsyUrl: "https://www.etsy.com/shop/HouseOfHendler",
