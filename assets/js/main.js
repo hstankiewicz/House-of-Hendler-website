@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (track && window.SITE_CONFIG) {
     track.innerHTML = SITE_CONFIG.announcement
       .map((msg) => `<span>${msg}</span>`)
-      .join('<span class="dot" aria-hidden="true">&#9670;</span>');
+      .join('<span class="announcement-sep" aria-hidden="true"></span>');
   }
 
   /* ---------- Shop links (hero CTA, footer, etc.) ---------- */
