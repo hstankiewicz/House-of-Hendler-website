@@ -49,22 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.SITE_CONFIG) el.href = `mailto:${SITE_CONFIG.contactEmail}`;
   });
 
-  /* ---------- Wholesale resources ---------- */
-  /* Trade pricing is intentionally kept off public website surfaces. */
-  const wholesaleTerms = document.querySelector(".ws-terms");
-  if (wholesaleTerms && !document.querySelector("[data-wholesale-resources]")) {
-    const resources = document.createElement("div");
-    resources.setAttribute("data-wholesale-resources", "");
-    resources.style.cssText = "text-align:center;margin:-10px auto 34px;padding:20px 18px;background:var(--hoh-cream);border:1px solid var(--hoh-line);border-radius:var(--radius-sm);";
-    resources.innerHTML = `
-      <span class="eyebrow">Wholesale Resources</span>
-      <p style="margin:7px auto 14px;color:var(--hoh-ink-soft);font-size:13.5px;max-width:560px;">Approved retail partners receive current trade pricing and ordering details directly.</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-        <a class="btn btn-outline-navy" href="wholesale-line-sheet.pdf" target="_blank" rel="noopener">View Wholesale Line Sheet</a>
-        <a class="btn btn-pink" href="#wholesale-order-form">Place Wholesale Order</a>
-      </div>`;
-    wholesaleTerms.insertAdjacentElement("afterend", resources);
-  }
+  /* ---------- Wholesale page cleanup ---------- */
+  document.querySelectorAll("h2").forEach((heading) => {
+    if (heading.textContent.trim() === "Trade pricing is kept private.") {
+      heading.remove();
+    }
+  });
 
   /* ---------- Footer year ---------- */
   document.querySelectorAll("[data-current-year]").forEach((el) => {
@@ -99,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const isOpen = mobileNav.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
+    // Close mobile nav on link click
     mobileNav.querySelectorAll("a").forEach((a) =>
       a.addEventListener("click", () => {
         mobileNav.classList.remove("is-open");
@@ -126,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const action = form.getAttribute("action");
 
+      // No backend configured yet — just show the success note locally.
       if (!action) {
         showSuccess();
         return;
