@@ -21,7 +21,8 @@ window.SITE_CONFIG = {
   // Social + contact
   instagramHandle: "@houseofhendler",
   instagramUrl: "https://www.instagram.com/houseofhendler",
-  contactEmail: "heather.houseofhendler@gmail.com",
+  contactEmail: "heather@houseofhendler.com",
+  wholesaleNotificationEmail: "heather@houseofhendler.com",
 
   // Palm Bunny Collection — the three launch products.
   // Update "etsyUrl" for each with the direct Etsy listing link.
@@ -54,3 +55,21 @@ window.SITE_CONFIG = {
 
   currentYear: new Date().getFullYear(),
 };
+
+// Wholesale application redundancy:
+// Keep the existing, already-activated FormSubmit destination as the primary
+// recipient, and also send a copy of each application to the working business
+// inbox so one mailbox is never the only notification path.
+document.addEventListener("DOMContentLoaded", function () {
+  var form = document.getElementById("wholesale-application-form");
+  if (!form || !window.SITE_CONFIG.wholesaleNotificationEmail) return;
+
+  var cc = form.querySelector('input[name="_cc"]');
+  if (!cc) {
+    cc = document.createElement("input");
+    cc.type = "hidden";
+    cc.name = "_cc";
+    form.appendChild(cc);
+  }
+  cc.value = window.SITE_CONFIG.wholesaleNotificationEmail;
+});
