@@ -1,0 +1,319 @@
+/* =========================================================
+   HOUSE OF HENDLER — sitewide brand refresh
+   Navy + petal pink + gold, with hunter green as a minor accent.
+   This file intentionally overrides the original core stylesheet.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+:root {
+  --hoh-navy:       #0D2F55;
+  --hoh-pink:       #F4A1B4;
+  --hoh-pink-dark:  #D97891;
+  --hoh-pink-pale:  #FDF1F4;
+  --hoh-gold:       #C8A24B;
+  --hoh-gold-soft:  #E9D9AD;
+  --hoh-green-deep: #294D42;
+  --hoh-green:      #3F6A5A;
+  --hoh-green-soft: #EEF3EF;
+  --hoh-cream:      #FBF8F2;
+  --hoh-white:      #FFFFFF;
+  --hoh-ink:        #24344A;
+  --hoh-ink-soft:   #687181;
+  --hoh-line:       #E8DDC9;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--hoh-cream);
+  color: var(--hoh-ink);
+}
+
+h1, h2, h3, h4,
+.section-heading h2,
+.page-banner h1,
+.hero-copy h1,
+.split-copy h2,
+.wholesale-copy h2,
+.newsletter-copy h2,
+.product-card h3,
+.faq-item summary,
+.ws-legend,
+.ws-form-title h2,
+.ws-intro-item strong {
+  font-family: var(--font-display) !important;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+}
+
+/* Make navigational/clickable typography feel like the stationery. */
+.main-nav a,
+.mobile-nav a,
+.btn,
+.hero-badge,
+.footer-col h4,
+.product-card .btn,
+.wholesale-copy .btn {
+  font-family: var(--font-display) !important;
+  font-weight: 600;
+  letter-spacing: 0.055em;
+}
+
+.main-nav a,
+.mobile-nav a,
+.btn,
+.footer-col h4 {
+  text-transform: none;
+}
+
+/* Small labels stay clean, but use pink/gold instead of green as the main accent. */
+.eyebrow {
+  color: var(--hoh-pink) !important;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.section-heading .rule {
+  background: var(--hoh-gold);
+  height: 1px;
+  width: 62px;
+}
+
+/* ---------------------------------------------------------
+   Header / navigation
+   --------------------------------------------------------- */
+.announcement-bar {
+  background: var(--hoh-navy) !important;
+  color: var(--hoh-cream);
+  border-bottom: 1px solid rgba(200,162,75,.55);
+}
+.announcement-track .dot { color: var(--hoh-gold); opacity: .9; }
+
+.site-header {
+  background: rgba(251,248,242,.98) !important;
+  border-bottom: 1px solid var(--hoh-gold-soft) !important;
+  box-shadow: 0 3px 16px rgba(13,47,85,.05);
+}
+.main-nav a,
+.header-icons a,
+.header-icons button,
+.nav-toggle,
+.mobile-nav a { color: var(--hoh-navy) !important; }
+.main-nav a::after { background: var(--hoh-pink) !important; }
+.mobile-nav {
+  background: var(--hoh-cream) !important;
+  border-top-color: var(--hoh-gold-soft) !important;
+}
+
+/* ---------------------------------------------------------
+   Hero / page banners
+   --------------------------------------------------------- */
+.hero { background: var(--hoh-cream) !important; }
+.hero-copy h1 { color: var(--hoh-navy); }
+.hero-copy p { color: var(--hoh-ink-soft); }
+.hero-media,
+.shop-hero-media,
+.editorial-wide { border: 1px solid var(--hoh-gold-soft); }
+.hero-badge {
+  background: rgba(251,248,242,.96) !important;
+  color: var(--hoh-navy) !important;
+  border: 1px solid var(--hoh-gold-soft);
+}
+
+.page-banner,
+.page-banner.ws-banner {
+  background: var(--hoh-navy) !important;
+  border-bottom: 1px solid var(--hoh-gold) !important;
+}
+.page-banner h1,
+.page-banner.ws-banner h1 { color: var(--hoh-white) !important; }
+.page-banner p,
+.page-banner.ws-banner p {
+  color: rgba(255,255,255,.86) !important;
+  font-family: var(--font-display) !important;
+  font-size: 17px !important;
+  line-height: 1.6;
+  font-weight: 400;
+}
+.page-banner .eyebrow,
+.page-banner.ws-banner .eyebrow { color: var(--hoh-gold-soft) !important; }
+
+/* ---------------------------------------------------------
+   Buttons / calls to action
+   --------------------------------------------------------- */
+.btn {
+  border-radius: 3px;
+  font-size: 14px;
+  padding: 14px 28px;
+}
+.btn-pink,
+.ws-submit {
+  background: var(--hoh-pink) !important;
+  border-color: var(--hoh-pink) !important;
+  color: var(--hoh-navy) !important;
+}
+.btn-pink:hover,
+.ws-submit:hover {
+  background: var(--hoh-pink-dark) !important;
+  border-color: var(--hoh-pink-dark) !important;
+  color: var(--hoh-white) !important;
+}
+.btn-navy {
+  background: var(--hoh-navy) !important;
+  color: var(--hoh-white) !important;
+  border-color: var(--hoh-navy) !important;
+}
+.btn-outline-navy {
+  color: var(--hoh-navy) !important;
+  border-color: var(--hoh-gold) !important;
+  background: transparent !important;
+}
+.btn-outline-navy:hover {
+  background: var(--hoh-navy) !important;
+  border-color: var(--hoh-navy) !important;
+  color: var(--hoh-white) !important;
+}
+.btn-outline-light {
+  border-color: var(--hoh-gold-soft) !important;
+  color: var(--hoh-white) !important;
+}
+
+/* ---------------------------------------------------------
+   Collection / product cards
+   --------------------------------------------------------- */
+.bg-green-soft { background: var(--hoh-green-soft) !important; }
+.bg-pink-pale { background: var(--hoh-pink-pale) !important; }
+.bg-cream { background: var(--hoh-cream) !important; }
+.bg-white { background: var(--hoh-white) !important; }
+
+/* Remove the odd palm/bunny line-art motif flanking the Palm Bunny title. */
+.motif { display: none !important; }
+.motif-flanked {
+  display: block !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
+}
+
+.product-card {
+  border-color: var(--hoh-gold-soft) !important;
+  background: var(--hoh-white);
+  box-shadow: 0 5px 18px rgba(13,47,85,.055);
+}
+.product-card:hover {
+  box-shadow: 0 14px 32px rgba(13,47,85,.13);
+}
+.product-card h3 {
+  color: var(--hoh-navy);
+  font-size: 21px;
+}
+.product-card .price { color: var(--hoh-ink-soft); }
+.product-card .btn {
+  font-size: 14px;
+  letter-spacing: .04em;
+}
+
+/* ---------------------------------------------------------
+   Newsletter / hunter-green minor accent
+   --------------------------------------------------------- */
+.newsletter-frame {
+  background-image: repeating-linear-gradient(90deg, var(--hoh-gold) 0 10px, transparent 10px 20px),
+                    repeating-linear-gradient(90deg, var(--hoh-gold) 0 10px, transparent 10px 20px),
+                    repeating-linear-gradient(0deg, var(--hoh-gold) 0 10px, transparent 10px 20px),
+                    repeating-linear-gradient(0deg, var(--hoh-gold) 0 10px, transparent 10px 20px) !important;
+}
+.newsletter-icon { color: var(--hoh-green) !important; }
+
+/* ---------------------------------------------------------
+   Wholesale band
+   --------------------------------------------------------- */
+.wholesale-band {
+  background: var(--hoh-navy) !important;
+  border-top: 1px solid var(--hoh-gold);
+  border-bottom: 1px solid var(--hoh-gold);
+}
+.wholesale-copy .eyebrow { color: var(--hoh-gold-soft) !important; }
+.wholesale-badge {
+  border-color: var(--hoh-gold) !important;
+  background: var(--hoh-cream) !important;
+}
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+.site-footer {
+  background: var(--hoh-navy) !important;
+  border-top: 1px solid var(--hoh-gold) !important;
+  color: var(--hoh-cream);
+}
+.footer-brand p,
+.footer-email,
+.footer-col a,
+.footer-bottom { color: rgba(255,255,255,.76) !important; }
+.footer-col h4 {
+  color: var(--hoh-gold-soft) !important;
+  font-size: 15px;
+  letter-spacing: .04em;
+}
+.footer-col a:hover,
+.footer-email:hover,
+.footer-bottom a:hover { color: var(--hoh-pink) !important; }
+.footer-social a {
+  color: var(--hoh-cream) !important;
+  border-color: rgba(233,217,173,.5) !important;
+}
+.footer-social a:hover {
+  background: var(--hoh-pink) !important;
+  color: var(--hoh-navy) !important;
+}
+.footer-bottom { border-top-color: rgba(233,217,173,.28) !important; }
+.footer-brand img {
+  background: var(--hoh-cream);
+  border-radius: 50%;
+  padding: 6px;
+}
+
+/* ---------------------------------------------------------
+   Forms / wholesale page refinement
+   --------------------------------------------------------- */
+.form-card,
+.ws-form-card {
+  border-color: var(--hoh-gold-soft) !important;
+  box-shadow: 0 9px 26px rgba(13,47,85,.08) !important;
+}
+.field label { color: var(--hoh-navy) !important; }
+.field input,
+.field textarea,
+.field select {
+  background: var(--hoh-cream) !important;
+  border-color: var(--hoh-line) !important;
+}
+.ws-legend { border-bottom-color: var(--hoh-gold) !important; }
+.ws-note {
+  background: var(--hoh-pink-pale) !important;
+  border-left-color: var(--hoh-pink) !important;
+}
+.ws-order-table th { background: var(--hoh-navy) !important; }
+.ws-form-title p {
+  font-family: var(--font-display) !important;
+  font-size: 16px !important;
+  line-height: 1.6;
+}
+
+/* Hunter green remains a restrained supporting accent. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline-color: var(--hoh-green) !important;
+}
+
+@media (max-width:720px) {
+  .btn { font-size: 13px; padding: 13px 20px; }
+  .page-banner p,
+  .page-banner.ws-banner p { font-size: 16px !important; }
+}
