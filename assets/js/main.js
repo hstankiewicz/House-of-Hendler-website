@@ -3,6 +3,17 @@
    Applies SITE_CONFIG to the DOM + small UI interactions.
    ========================================================= */
 
+/* Load the sitewide navy / pink / gold brand refresh on every page. */
+(() => {
+  const existing = document.querySelector('link[data-brand-refresh]');
+  if (existing) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'assets/css/brand-refresh.css?v=20260825';
+  link.setAttribute('data-brand-refresh', '');
+  document.head.appendChild(link);
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ---------- Announcement bar ---------- */
@@ -39,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---------- Wholesale resources ---------- */
+  /* Trade pricing is intentionally kept off public website surfaces. */
   const wholesaleTerms = document.querySelector(".ws-terms");
   if (wholesaleTerms && !document.querySelector("[data-wholesale-resources]")) {
     const resources = document.createElement("div");
@@ -46,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resources.style.cssText = "text-align:center;margin:-10px auto 34px;padding:20px 18px;background:var(--hoh-cream);border:1px solid var(--hoh-line);border-radius:var(--radius-sm);";
     resources.innerHTML = `
       <span class="eyebrow">Wholesale Resources</span>
-      <p style="margin:7px auto 14px;color:var(--hoh-ink-soft);font-size:13.5px;max-width:560px;">Current 2026 pricing: $14 wholesale, $28 suggested retail, 18-piece opening minimum and 12-piece reorder minimum.</p>
+      <p style="margin:7px auto 14px;color:var(--hoh-ink-soft);font-size:13.5px;max-width:560px;">Approved retail partners receive current trade pricing and ordering details directly.</p>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
         <a class="btn btn-outline-navy" href="wholesale-line-sheet.pdf" target="_blank" rel="noopener">View Wholesale Line Sheet</a>
         <a class="btn btn-pink" href="#wholesale-order-form">Place Wholesale Order</a>
@@ -87,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const isOpen = mobileNav.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
-    // Close mobile nav on link click
     mobileNav.querySelectorAll("a").forEach((a) =>
       a.addEventListener("click", () => {
         mobileNav.classList.remove("is-open");
@@ -115,7 +126,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const action = form.getAttribute("action");
 
-      // No backend configured yet — just show the success note locally.
       if (!action) {
         showSuccess();
         return;
