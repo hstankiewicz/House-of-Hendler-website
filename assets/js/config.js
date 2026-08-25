@@ -12,7 +12,7 @@ window.SITE_CONFIG = {
   announcement: [
     "The Palm Bunny Collection Is Here",
     "Free Shipping On Orders $75+",
-    "Designed In South Philadelphia",
+    "Designed In Philadelphia",
   ],
 
   // Main shop link (Etsy storefront) — used for the hero CTA
@@ -56,12 +56,11 @@ window.SITE_CONFIG = {
   currentYear: new Date().getFullYear(),
 };
 
-// Wholesale application redundancy:
-// Keep the existing, already-activated FormSubmit destination as the primary
-// recipient, and also send a copy of each application to the working business
-// inbox so one mailbox is never the only notification path.
+// Wholesale order notification redundancy:
+// Send a copy of each wholesale order request to the business inbox
+// so submissions are easy to track even if the form backend changes.
 document.addEventListener("DOMContentLoaded", function () {
-  var form = document.getElementById("wholesale-application-form");
+  var form = document.getElementById("wholesale-order-form");
   if (!form || !window.SITE_CONFIG.wholesaleNotificationEmail) return;
 
   var cc = form.querySelector('input[name="_cc"]');
