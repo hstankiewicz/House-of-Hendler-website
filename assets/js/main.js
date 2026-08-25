@@ -14,6 +14,27 @@
   document.head.appendChild(link);
 })();
 
+/* Refined announcement-bar separators. */
+(() => {
+  if (document.querySelector('style[data-announcement-separators]')) return;
+  const style = document.createElement('style');
+  style.setAttribute('data-announcement-separators', '');
+  style.textContent = `
+    .announcement-sep {
+      display: inline-block;
+      width: 1px;
+      height: 13px;
+      background: rgba(255,255,255,0.42);
+      flex: 0 0 1px;
+      align-self: center;
+    }
+    @media (max-width: 720px) {
+      .announcement-sep { display: none; }
+    }
+  `;
+  document.head.appendChild(style);
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ---------- Announcement bar ---------- */
