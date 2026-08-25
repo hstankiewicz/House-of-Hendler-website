@@ -6,14 +6,12 @@
 <title>Wholesale Order Request | House of Hendler</title>
 <meta name="description" content="Submit a House of Hendler wholesale order request. Enter your shop information, resale details and quantities; shipping is calculated separately and added to the final invoice.">
 <link rel="canonical" href="https://houseofhendler.com/wholesale.html">
-
 <meta property="og:title" content="Wholesale Order Request | House of Hendler">
-<meta property="og:description" content="Wholesale ordering for retail shops. $14 wholesale, $28 suggested retail, 18-piece opening minimum and 12-piece reorder minimum.">
+<meta property="og:description" content="Wholesale ordering for retail shops. Submit shop details, resale information and quantities for a final invoice.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://houseofhendler.com/wholesale.html">
 <meta property="og:image" content="https://houseofhendler.com/assets/img/hero-trio-porcelain.png">
 <meta name="twitter:card" content="summary_large_image">
-
 <link rel="icon" href="assets/img/logo.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <style>
@@ -46,7 +44,7 @@
     display:block;
     color:var(--ws-navy);
     font-family:var(--font-display);
-    font-size:25px;
+    font-size:20px;
     font-weight:500;
     line-height:1.1;
     margin-bottom:6px;
@@ -91,27 +89,13 @@
     font-size:13.5px;
     margin-bottom:26px;
   }
-  .ws-choice {
-    display:flex;
-    align-items:flex-start;
-    gap:9px;
-    color:var(--hoh-ink);
-    font-size:14px;
-  }
+  .ws-choice { display:flex; align-items:flex-start; gap:9px; color:var(--hoh-ink); font-size:14px; }
   .ws-choice input { width:auto; margin:3px 0 0; accent-color:var(--ws-pink); }
   .ws-radio-row { display:flex; flex-wrap:wrap; gap:22px; margin-top:8px; }
   .ws-radio-row label { display:flex; gap:8px; align-items:center; font-size:14px; }
   .ws-radio-row input { width:auto; margin:0; accent-color:var(--ws-pink); }
   .ws-order-table { width:100%; border-collapse:collapse; margin-top:6px; }
-  .ws-order-table th {
-    background:var(--ws-navy);
-    color:#fff;
-    text-align:left;
-    padding:12px 10px;
-    font-size:11px;
-    letter-spacing:.07em;
-    text-transform:uppercase;
-  }
+  .ws-order-table th { background:var(--ws-navy); color:#fff; text-align:left; padding:12px 10px; font-size:11px; letter-spacing:.07em; text-transform:uppercase; }
   .ws-order-table th:first-child { border-radius:9px 0 0 0; }
   .ws-order-table th:last-child { border-radius:0 9px 0 0; }
   .ws-order-table td { padding:11px 10px; border-bottom:1px solid var(--ws-line); vertical-align:middle; }
@@ -119,19 +103,8 @@
   .ws-order-table input[type=number] { max-width:95px; margin:0; }
   .ws-product-name { font-weight:600; color:var(--ws-ink); }
   .ws-color { color:var(--hoh-ink-soft); font-size:13px; }
-  .ws-price { white-space:nowrap; color:var(--ws-navy); font-weight:600; }
-  .ws-summary {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-    margin-top:18px;
-  }
-  .ws-summary-box {
-    background:var(--ws-cream);
-    border:1px solid var(--ws-line);
-    border-radius:10px;
-    padding:14px 16px;
-  }
+  .ws-summary { margin-top:18px; max-width:280px; }
+  .ws-summary-box { background:var(--ws-cream); border:1px solid var(--ws-line); border-radius:10px; padding:14px 16px; }
   .ws-summary-box span { display:block; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--hoh-ink-soft); margin-bottom:4px; }
   .ws-summary-box strong { font-family:var(--font-display); color:var(--ws-navy); font-size:24px; font-weight:500; }
   .ws-minimum-message { margin-top:12px; font-size:12.5px; min-height:18px; }
@@ -143,41 +116,28 @@
   @media (max-width:760px) {
     .ws-intro-grid { grid-template-columns:1fr 1fr; }
     .ws-form-card { padding:27px 20px; }
-    .ws-order-table th:nth-child(2), .ws-order-table td:nth-child(2) { display:none; }
-    .ws-summary { grid-template-columns:1fr; }
   }
 </style>
 </head>
 <body>
 <header>
-  <div class="announcement-bar">
-    <div class="announcement-track container" data-announcement-track></div>
-  </div>
-
+  <div class="announcement-bar"><div class="announcement-track container" data-announcement-track></div></div>
   <div class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="brand-logo" aria-label="House of Hendler — home">
-        <img src="assets/img/logo.png" alt="House of Hendler logo" width="140" height="164">
-      </a>
-
+      <a href="index.html" class="brand-logo" aria-label="House of Hendler — home"><img src="assets/img/logo.png" alt="House of Hendler logo" width="140" height="164"></a>
       <nav class="main-nav" aria-label="Primary">
         <a href="shop.html">SHOP</a>
         <a href="our-story.html">OUR STORY</a>
         <a href="wholesale.html" aria-current="page">WHOLESALE</a>
         <a href="contact.html">CONTACT</a>
       </nav>
-
       <div class="header-icons">
         <a href="#" data-instagram-link target="_blank" rel="noopener" aria-label="House of Hendler on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
         <button type="button" class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
       </div>
     </div>
-
     <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile">
-      <a href="shop.html">SHOP</a>
-      <a href="our-story.html">OUR STORY</a>
-      <a href="wholesale.html" aria-current="page">WHOLESALE</a>
-      <a href="contact.html">CONTACT</a>
+      <a href="shop.html">SHOP</a><a href="our-story.html">OUR STORY</a><a href="wholesale.html" aria-current="page">WHOLESALE</a><a href="contact.html">CONTACT</a>
     </nav>
   </div>
 </header>
@@ -194,9 +154,9 @@
 <section class="section bg-white">
   <div class="container">
     <div class="ws-shell">
-      <div class="ws-intro-grid" aria-label="Wholesale terms">
-        <div class="ws-intro-item"><strong>$14</strong><span>Wholesale each</span></div>
-        <div class="ws-intro-item"><strong>$28</strong><span>Suggested retail</span></div>
+      <div class="ws-intro-grid" aria-label="Wholesale program">
+        <div class="ws-intro-item"><strong>Trade Only</strong><span>Retail businesses</span></div>
+        <div class="ws-intro-item"><strong>Retail Ready</strong><span>Individually packaged</span></div>
         <div class="ws-intro-item"><strong>18</strong><span>Opening minimum</span></div>
         <div class="ws-intro-item"><strong>12</strong><span>Reorder minimum</span></div>
       </div>
@@ -221,34 +181,16 @@
           <fieldset class="ws-fieldset">
             <legend class="ws-legend">1. Shop Details</legend>
             <div class="field-row">
-              <div class="field">
-                <label for="ws-shop">Shop / Business Name <span class="ws-required">*</span></label>
-                <input type="text" id="ws-shop" name="Shop / Business Name" autocomplete="organization" required>
-              </div>
-              <div class="field">
-                <label for="ws-contact">Buyer / Contact <span class="ws-required">*</span></label>
-                <input type="text" id="ws-contact" name="Buyer / Contact" autocomplete="name" required>
-              </div>
+              <div class="field"><label for="ws-shop">Shop / Business Name <span class="ws-required">*</span></label><input type="text" id="ws-shop" name="Shop / Business Name" autocomplete="organization" required></div>
+              <div class="field"><label for="ws-contact">Buyer / Contact <span class="ws-required">*</span></label><input type="text" id="ws-contact" name="Buyer / Contact" autocomplete="name" required></div>
             </div>
             <div class="field-row">
-              <div class="field">
-                <label for="ws-email">Email <span class="ws-required">*</span></label>
-                <input type="email" id="ws-email" name="email" autocomplete="email" required>
-              </div>
-              <div class="field">
-                <label for="ws-phone">Phone <span class="ws-required">*</span></label>
-                <input type="tel" id="ws-phone" name="Phone" autocomplete="tel" required>
-              </div>
+              <div class="field"><label for="ws-email">Email <span class="ws-required">*</span></label><input type="email" id="ws-email" name="email" autocomplete="email" required></div>
+              <div class="field"><label for="ws-phone">Phone <span class="ws-required">*</span></label><input type="tel" id="ws-phone" name="Phone" autocomplete="tel" required></div>
             </div>
             <div class="field-row">
-              <div class="field">
-                <label for="ws-website">Website</label>
-                <input type="text" id="ws-website" name="Website">
-              </div>
-              <div class="field">
-                <label for="ws-instagram">Instagram</label>
-                <input type="text" id="ws-instagram" name="Instagram" placeholder="@shophandle">
-              </div>
+              <div class="field"><label for="ws-website">Website</label><input type="text" id="ws-website" name="Website"></div>
+              <div class="field"><label for="ws-instagram">Instagram</label><input type="text" id="ws-instagram" name="Instagram" placeholder="@shophandle"></div>
             </div>
             <div class="field">
               <label>Order Type <span class="ws-required">*</span></label>
@@ -261,23 +203,10 @@
 
           <fieldset class="ws-fieldset">
             <legend class="ws-legend">2. Shipping + Resale</legend>
-            <div class="field">
-              <label for="ws-address">Shipping / Shop Address <span class="ws-required">*</span></label>
-              <textarea id="ws-address" name="Shipping / Shop Address" autocomplete="street-address" required></textarea>
-            </div>
+            <div class="field"><label for="ws-address">Shipping / Shop Address <span class="ws-required">*</span></label><textarea id="ws-address" name="Shipping / Shop Address" autocomplete="street-address" required></textarea></div>
             <div class="field-row">
-              <div class="field">
-                <label for="ws-resale">Resale / Sales Tax ID <span class="ws-required">*</span></label>
-                <input type="text" id="ws-resale" name="Resale / Sales Tax ID" required>
-              </div>
-              <div class="field">
-                <label for="ws-fulfillment">Fulfillment Preference</label>
-                <select id="ws-fulfillment" name="Fulfillment Preference">
-                  <option value="Ship">Ship</option>
-                  <option value="Local Delivery">Local Delivery</option>
-                  <option value="Pickup">Pickup</option>
-                </select>
-              </div>
+              <div class="field"><label for="ws-resale">Resale / Sales Tax ID <span class="ws-required">*</span></label><input type="text" id="ws-resale" name="Resale / Sales Tax ID" required></div>
+              <div class="field"><label for="ws-fulfillment">Fulfillment Preference</label><select id="ws-fulfillment" name="Fulfillment Preference"><option value="Ship">Ship</option><option value="Local Delivery">Local Delivery</option><option value="Pickup">Pickup</option></select></div>
             </div>
             <div class="field">
               <label for="ws-certificate">Resale Certificate <span class="ws-required">*</span></label>
@@ -288,61 +217,30 @@
 
           <fieldset class="ws-fieldset">
             <legend class="ws-legend">3. Order Request</legend>
-            <p class="ws-help" style="margin:-8px 0 14px;">Enter quantities only. Wholesale is $14 each. Shipping or delivery is calculated separately and added to your final invoice.</p>
-
+            <p class="ws-help" style="margin:-8px 0 14px;">Enter quantities only. Current trade pricing and shipping or delivery will be reflected on your final invoice.</p>
             <div style="overflow-x:auto;">
               <table class="ws-order-table">
-                <thead>
-                  <tr>
-                    <th>Design / Item</th>
-                    <th>Color</th>
-                    <th>Wholesale</th>
-                    <th>Qty</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>Design / Item</th><th>Color</th><th>Qty</th></tr></thead>
                 <tbody>
-                  <tr>
-                    <td class="ws-product-name">Bunny Needle Minder</td>
-                    <td class="ws-color">Palm Green</td>
-                    <td class="ws-price">$14.00</td>
-                    <td><input type="number" min="0" step="1" inputmode="numeric" name="Palm Green Quantity" id="qty-green" value="0" aria-label="Palm Green quantity"></td>
-                  </tr>
-                  <tr>
-                    <td class="ws-product-name">Bunny Needle Minder</td>
-                    <td class="ws-color">Petal Pink</td>
-                    <td class="ws-price">$14.00</td>
-                    <td><input type="number" min="0" step="1" inputmode="numeric" name="Petal Pink Quantity" id="qty-pink" value="0" aria-label="Petal Pink quantity"></td>
-                  </tr>
-                  <tr>
-                    <td class="ws-product-name">Bunny Needle Minder</td>
-                    <td class="ws-color">Royal Blue</td>
-                    <td class="ws-price">$14.00</td>
-                    <td><input type="number" min="0" step="1" inputmode="numeric" name="Royal Blue Quantity" id="qty-blue" value="0" aria-label="Royal Blue quantity"></td>
-                  </tr>
+                  <tr><td class="ws-product-name">Bunny Needle Minder</td><td class="ws-color">Palm Green</td><td><input type="number" min="0" step="1" inputmode="numeric" name="Palm Green Quantity" id="qty-green" value="0" aria-label="Palm Green quantity"></td></tr>
+                  <tr><td class="ws-product-name">Bunny Needle Minder</td><td class="ws-color">Petal Pink</td><td><input type="number" min="0" step="1" inputmode="numeric" name="Petal Pink Quantity" id="qty-pink" value="0" aria-label="Petal Pink quantity"></td></tr>
+                  <tr><td class="ws-product-name">Bunny Needle Minder</td><td class="ws-color">Royal Blue</td><td><input type="number" min="0" step="1" inputmode="numeric" name="Royal Blue Quantity" id="qty-blue" value="0" aria-label="Royal Blue quantity"></td></tr>
                 </tbody>
               </table>
             </div>
-
-            <div class="ws-summary">
-              <div class="ws-summary-box"><span>Total Pieces</span><strong id="total-pieces-display">0</strong></div>
-              <div class="ws-summary-box"><span>Merchandise Subtotal</span><strong id="subtotal-display">$0.00</strong></div>
-            </div>
+            <div class="ws-summary"><div class="ws-summary-box"><span>Total Pieces</span><strong id="total-pieces-display">0</strong></div></div>
             <input type="hidden" id="total-pieces" name="Total Pieces" value="0">
-            <input type="hidden" id="merchandise-subtotal" name="Merchandise Subtotal" value="$0.00">
             <div id="minimum-message" class="ws-minimum-message"></div>
           </fieldset>
 
           <fieldset class="ws-fieldset">
             <legend class="ws-legend">4. Order Notes</legend>
-            <div class="field">
-              <label for="ws-notes">Anything we should know?</label>
-              <textarea id="ws-notes" name="Order Notes" placeholder="Delivery notes, special instructions, or anything else you would like us to know."></textarea>
-            </div>
+            <div class="field"><label for="ws-notes">Anything we should know?</label><textarea id="ws-notes" name="Order Notes" placeholder="Delivery notes, special instructions, or anything else you would like us to know."></textarea></div>
           </fieldset>
 
           <fieldset class="ws-fieldset">
             <legend class="ws-legend">5. Confirmation</legend>
-            <label class="ws-choice"><input type="checkbox" name="Shipping Terms Acknowledged" value="Yes" required> <span>I understand that shipping or delivery is calculated separately and added to the final invoice. <span class="ws-required">*</span></span></label>
+            <label class="ws-choice"><input type="checkbox" name="Shipping Terms Acknowledged" value="Yes" required> <span>I understand that current trade pricing, shipping or delivery, and the final total will be confirmed on the invoice. <span class="ws-required">*</span></span></label>
             <label class="ws-choice" style="margin-top:13px;"><input type="checkbox" name="Email List Opt-In" value="Yes"> <span>Keep me updated on new House of Hendler releases and wholesale availability.</span></label>
           </fieldset>
 
@@ -357,8 +255,8 @@
 <section class="section-tight" style="background:var(--ws-cream);">
   <div class="container" style="text-align:center; max-width:660px;">
     <span class="eyebrow" style="color:var(--ws-pink);">Wholesale at a glance</span>
-    <h2 style="font-size:24px; margin-top:8px; color:var(--ws-navy);">$14 wholesale · $28 suggested retail</h2>
-    <p style="color:var(--hoh-ink-soft);">Opening orders: 18 pieces minimum. Reorders: 12 pieces minimum. Mix + match across Palm Green, Petal Pink and Royal Blue.</p>
+    <h2 style="font-size:24px; margin-top:8px; color:var(--ws-navy);">Trade pricing is kept private.</h2>
+    <p style="color:var(--hoh-ink-soft);">Opening orders: 18 pieces minimum. Reorders: 12 pieces minimum. Mix + match across Palm Green, Petal Pink and Royal Blue. Final pricing is confirmed on your invoice.</p>
   </div>
 </section>
 </main>
@@ -375,17 +273,12 @@
         </div>
         <a href="#" data-contact-email class="footer-email"></a>
       </div>
-
       <div class="footer-col"><h4>Shop</h4><ul><li><a href="shop.html">Palm Bunny Collection</a></li><li><a href="shop.html">All Products</a></li></ul></div>
       <div class="footer-col"><h4>Our Story</h4><ul><li><a href="our-story.html">Our Story</a></li></ul></div>
       <div class="footer-col"><h4>Wholesale</h4><ul><li><a href="wholesale.html">Wholesale Order Request</a></li><li><a href="wholesale.html">Wholesale Terms</a></li></ul></div>
       <div class="footer-col"><h4>Customer Care</h4><ul><li><a href="shipping-returns.html">Shipping &amp; Returns</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
     </div>
-
-    <div class="footer-bottom">
-      <span>&copy; <span data-current-year></span> House of Hendler. All rights reserved.</span>
-      <div class="legal-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="contact.html">Contact Us</a></div>
-    </div>
+    <div class="footer-bottom"><span>&copy; <span data-current-year></span> House of Hendler. All rights reserved.</span><div class="legal-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="contact.html">Contact Us</a></div></div>
   </div>
 </footer>
 
@@ -393,16 +286,9 @@
 <script src="assets/js/main.js"></script>
 <script>
 (function(){
-  const price = 14;
-  const qtyInputs = [
-    document.getElementById('qty-green'),
-    document.getElementById('qty-pink'),
-    document.getElementById('qty-blue')
-  ];
+  const qtyInputs = [document.getElementById('qty-green'), document.getElementById('qty-pink'), document.getElementById('qty-blue')];
   const totalDisplay = document.getElementById('total-pieces-display');
-  const subtotalDisplay = document.getElementById('subtotal-display');
   const totalField = document.getElementById('total-pieces');
-  const subtotalField = document.getElementById('merchandise-subtotal');
   const minimumMessage = document.getElementById('minimum-message');
   const form = document.getElementById('wholesale-order-form');
 
@@ -411,19 +297,13 @@
     if (!selected) return null;
     return selected.dataset.orderType === 'reorder' ? 12 : 18;
   }
-
   function totalPieces(){
-    return qtyInputs.reduce((sum, input) => sum + Math.max(0, parseInt(input.value || '0', 10) || 0), 0);
+    return qtyInputs.reduce((sum,input) => sum + Math.max(0, parseInt(input.value || '0',10) || 0), 0);
   }
-
   function updateSummary(){
     const total = totalPieces();
-    const subtotal = total * price;
     totalDisplay.textContent = total;
-    subtotalDisplay.textContent = '$' + subtotal.toFixed(2);
     totalField.value = String(total);
-    subtotalField.value = '$' + subtotal.toFixed(2);
-
     const minimum = selectedMinimum();
     minimumMessage.className = 'ws-minimum-message';
     if (!minimum) {
@@ -434,14 +314,13 @@
       minimumMessage.textContent = 'Minimum met — ' + total + ' pieces selected.';
       minimumMessage.classList.add('ok');
     } else {
-      minimumMessage.textContent = 'Please add ' + (minimum - total) + ' more piece' + ((minimum - total) === 1 ? '' : 's') + ' to meet the ' + minimum + '-piece minimum.';
+      const remaining = minimum - total;
+      minimumMessage.textContent = 'Please add ' + remaining + ' more piece' + (remaining === 1 ? '' : 's') + ' to meet the ' + minimum + '-piece minimum.';
       minimumMessage.classList.add('warn');
     }
   }
-
   qtyInputs.forEach(input => input.addEventListener('input', updateSummary));
   document.querySelectorAll('input[name="Order Type"]').forEach(input => input.addEventListener('change', updateSummary));
-
   form.addEventListener('submit', function(event){
     updateSummary();
     const minimum = selectedMinimum();
@@ -449,13 +328,10 @@
     if (!minimum || total < minimum) {
       event.preventDefault();
       minimumMessage.scrollIntoView({behavior:'smooth', block:'center'});
-      if (!minimum) {
-        minimumMessage.textContent = 'Please select Opening Order or Reorder before submitting.';
-      }
+      if (!minimum) minimumMessage.textContent = 'Please select Opening Order or Reorder before submitting.';
       minimumMessage.className = 'ws-minimum-message warn';
     }
   });
-
   updateSummary();
 })();
 </script>
