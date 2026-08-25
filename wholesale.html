@@ -27,7 +27,15 @@
   .ws-banner { background:var(--ws-navy); border-bottom:none; }
   .ws-banner .eyebrow { color:var(--ws-gold); }
   .ws-banner h1 { color:#fff; }
-  .ws-banner p { color:rgba(255,255,255,.84); max-width:720px; }
+  .ws-banner p {
+    color:rgba(255,255,255,.88);
+    max-width:720px;
+    font-family:var(--font-display);
+    font-size:20px;
+    font-weight:400;
+    line-height:1.55;
+    letter-spacing:.005em;
+  }
   .ws-shell { max-width:900px; margin:0 auto; }
   .ws-intro-grid {
     display:grid;
@@ -116,6 +124,7 @@
   @media (max-width:760px) {
     .ws-intro-grid { grid-template-columns:1fr 1fr; }
     .ws-form-card { padding:27px 20px; }
+    .ws-banner p { font-size:18px; }
   }
 </style>
 </head>
@@ -206,7 +215,7 @@
             <div class="field"><label for="ws-address">Shipping / Shop Address <span class="ws-required">*</span></label><textarea id="ws-address" name="Shipping / Shop Address" autocomplete="street-address" required></textarea></div>
             <div class="field-row">
               <div class="field"><label for="ws-resale">Resale / Sales Tax ID <span class="ws-required">*</span></label><input type="text" id="ws-resale" name="Resale / Sales Tax ID" required></div>
-              <div class="field"><label for="ws-fulfillment">Fulfillment Preference</label><select id="ws-fulfillment" name="Fulfillment Preference"><option value="Ship">Ship</option><option value="Local Delivery">Local Delivery</option><option value="Pickup">Pickup</option></select></div>
+              <div class="field"><label for="ws-fulfillment">Fulfillment Preference</label><select id="ws-fulfillment" name="Fulfillment Preference"><option value="Ship">Ship</option><option value="Local Delivery">Local Delivery</option></select></div>
             </div>
             <div class="field">
               <label for="ws-certificate">Resale Certificate <span class="ws-required">*</span></label>
