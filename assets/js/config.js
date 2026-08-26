@@ -11,7 +11,7 @@ window.SITE_CONFIG = {
   // Announcement bar (top of every page)
   announcement: [
     "The Palm Bunny Collection Is Here",
-    "Free Shipping On Orders $75+",
+    "TIMELESS PIECES, THOUGHTFULLY COLLECTED.",
     "Designed In Philadelphia",
   ],
 
