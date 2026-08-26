@@ -16,7 +16,7 @@ window.SITE_CONFIG = {
   ],
 
   // Main shop link (Etsy storefront) — used for the hero CTA
-  etsyShopUrl: "https://www.etsy.com/shop/HouseOfHendler",
+  etsyShopUrl: "shop.html",
 
   // Social + contact
   instagramHandle: "@houseofhendler",
@@ -33,7 +33,7 @@ window.SITE_CONFIG = {
       price: "$28.00",
       image: "assets/img/product-pink.png",
       alt: "Palm Bunny Pink enamel needle minder with pink fishnet pattern and gold trim, shown on marble",
-      etsyUrl: "https://www.etsy.com/shop/HouseOfHendler",
+      etsyUrl: "https://buy.stripe.com/dRm6oI5Lz6d5dTVefugMw05",
     },
     {
       id: "green",
@@ -41,7 +41,7 @@ window.SITE_CONFIG = {
       price: "$28.00",
       image: "assets/img/product-green.png",
       alt: "Palm Bunny Green enamel needle minder with green fishnet pattern and gold trim, shown on marble",
-      etsyUrl: "https://www.etsy.com/shop/HouseOfHendler",
+      etsyUrl: "https://buy.stripe.com/28E00k6PDgRJ3fhgnCgMw07",
     },
     {
       id: "blue",
@@ -49,7 +49,7 @@ window.SITE_CONFIG = {
       price: "$28.00",
       image: "assets/img/product-blue.png",
       alt: "Palm Bunny Blue enamel needle minder with navy fishnet pattern and gold trim, shown on marble",
-      etsyUrl: "https://www.etsy.com/shop/HouseOfHendler",
+      etsyUrl: "https://buy.stripe.com/aFafZi3DrdFxcPR5IYgMw06",
     },
   ],
 
