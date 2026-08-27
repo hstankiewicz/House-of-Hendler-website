@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     document.querySelectorAll("[data-instagram-link]").forEach((instagramLink) => {
+      if (!instagramLink.parentElement.matches(".header-icons, .footer-social")) return;
       let insertionPoint = instagramLink;
       additionalSocialLinks.forEach((social) => {
         if (!social.url || instagramLink.parentElement.querySelector(`[data-${social.key}-link]`)) return;
