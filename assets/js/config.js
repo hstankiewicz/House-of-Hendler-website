@@ -21,6 +21,8 @@ window.SITE_CONFIG = {
   // Social + contact
   instagramHandle: "@houseofhendler",
   instagramUrl: "https://www.instagram.com/houseofhendler",
+  facebookUrl: "https://www.facebook.com/share/1K8g4kLBx9/?mibextid=wwXIfr",
+  tiktokUrl: "https://www.tiktok.com/@houseofhendler?_r=1&_t=ZP-99DlEBdQIIx",
   contactEmail: "heather@houseofhendler.com",
   wholesaleNotificationEmail: "heather@houseofhendler.com",
 
