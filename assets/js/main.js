@@ -58,6 +58,40 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.SITE_CONFIG) el.textContent = SITE_CONFIG.instagramHandle;
   });
 
+  /* ---------- Facebook + TikTok links ---------- */
+  if (window.SITE_CONFIG) {
+    const additionalSocialLinks = [
+      {
+        key: "facebook",
+        label: "House of Hendler on Facebook",
+        url: SITE_CONFIG.facebookUrl,
+        icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.3v3h2.8v8h3.4Z"/></svg>',
+      },
+      {
+        key: "tiktok",
+        label: "House of Hendler on TikTok",
+        url: SITE_CONFIG.tiktokUrl,
+        icon: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.5 3.4 3.4 3.6v3.1c-1.4 0-2.6-.4-3.5-1.1v6.2a6.1 6.1 0 1 1-5.2-6v3.2a3 3 0 1 0 2.1 2.8V3h3.2Z"/></svg>',
+      },
+    ];
+
+    document.querySelectorAll("[data-instagram-link]").forEach((instagramLink) => {
+      let insertionPoint = instagramLink;
+      additionalSocialLinks.forEach((social) => {
+        if (!social.url || instagramLink.parentElement.querySelector(`[data-${social.key}-link]`)) return;
+        const link = document.createElement("a");
+        link.href = social.url;
+        link.target = "_blank";
+        link.rel = "noopener";
+        link.setAttribute(`data-${social.key}-link`, "");
+        link.setAttribute("aria-label", social.label);
+        link.innerHTML = social.icon;
+        insertionPoint.insertAdjacentElement("afterend", link);
+        insertionPoint = link;
+      });
+    });
+  }
+
   /* ---------- Contact email (visible text + mailto href) ---------- */
   document.querySelectorAll("[data-contact-email]").forEach((el) => {
     if (!window.SITE_CONFIG) return;
