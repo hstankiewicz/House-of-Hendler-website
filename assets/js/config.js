@@ -57,7 +57,7 @@ window.SITE_CONFIG = {
       id: "trio",
       name: "The Palm Bunny Trio",
       price: "$80",
-      image: "assets/img/palm-bunny-trio.jpg",
+      image: "assets/img/palm-bunny-trio.png",
       alt: "The Palm Bunny Trio in Petal Pink, Palm Green, and Royal Blue",
       description: "All three signature Palm Bunnies, collected together. Includes Palm Green, Petal Pink, and Royal Blue. Each individually packaged.",
       exclusiveLine: "Available exclusively at House of Hendler.",
