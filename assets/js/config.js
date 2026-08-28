@@ -53,6 +53,16 @@ window.SITE_CONFIG = {
       alt: "Palm Bunny Blue enamel needle minder with navy fishnet pattern and gold trim, shown on marble",
       etsyUrl: "https://buy.stripe.com/aFafZi3DrdFxcPR5IYgMw06",
     },
+    {
+      id: "trio",
+      name: "The Palm Bunny Trio",
+      price: "$80",
+      image: "assets/img/palm-bunny-trio.jpg",
+      alt: "The Palm Bunny Trio in Petal Pink, Palm Green, and Royal Blue",
+      description: "All three signature Palm Bunnies, collected together. Includes Palm Green, Petal Pink, and Royal Blue. Each individually packaged.",
+      exclusiveLine: "Available exclusively at House of Hendler.",
+      etsyUrl: "https://buy.stripe.com/cNieVe8XLatl3fh6N2gMw08",
+    },
   ],
 
   currentYear: new Date().getFullYear(),
