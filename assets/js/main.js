@@ -130,6 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="info">
           <h3>${p.name}</h3>
           <p class="price">${p.price}</p>
+          ${p.description ? `<p style="margin:0 0 10px;">${p.description}</p>` : ""}
+          ${p.exclusiveLine ? `<p style="margin:0 0 18px; font-style:italic;">${p.exclusiveLine}</p>` : ""}
           <a class="btn btn-pink" href="${p.etsyUrl}" target="_blank" rel="noopener">Shop Now</a>
         </div>
       </article>`
