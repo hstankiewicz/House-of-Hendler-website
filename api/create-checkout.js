@@ -11,61 +11,57 @@ function json(res, status, body) {
 }
 
 async function getGroundAdvantageRate(zip, product) {
-  const token = process.env.SHIPPO_API_TOKEN;
+  const apiKey = process.env.EASYPOST_API_KEY;
   const fromZip = process.env.SHIP_FROM_ZIP;
-  if (!token || !fromZip) throw new Error("Shipping service is not configured.");
+  if (!apiKey || !fromZip) throw new Error("Shipping service is not configured.");
 
-  const shipmentResponse = await fetch("https://api.goshippo.com/shipments/", {
+  const auth = Buffer.from(`${apiKey}:`).toString("base64");
+  const shipmentResponse = await fetch("https://api.easypost.com/v2/shipments", {
     method: "POST",
     headers: {
-      Authorization: `ShippoToken ${token}`,
+      Authorization: `Basic ${auth}`,
       "Content-Type": "application/json",
-      "SHIPPO-API-VERSION": "2018-02-08",
     },
     body: JSON.stringify({
-      address_from: { country: "US", zip: fromZip },
-      address_to: { country: "US", zip },
-      parcels: [
-        {
-          length: "9",
-          width: "5",
-          height: "1",
-          distance_unit: "in",
-          weight: String(product.weightOz),
-          mass_unit: "oz",
+      shipment: {
+        from_address: { country: "US", zip: fromZip },
+        to_address: { country: "US", zip },
+        parcel: {
+          length: 9,
+          width: 5,
+          height: 1,
+          weight: product.weightOz,
         },
-      ],
-      async: false,
+      },
     }),
   });
 
+  const shipment = await shipmentResponse.json();
   if (!shipmentResponse.ok) {
-    const details = await shipmentResponse.text();
+    const details = shipment?.error?.message || JSON.stringify(shipment);
     throw new Error(`Unable to calculate shipping: ${details}`);
   }
 
-  const shipment = await shipmentResponse.json();
-  const uspsRates = (shipment.rates || []).filter((rate) =>
-    String(rate.provider || "").toUpperCase().includes("USPS")
+  const uspsRates = (shipment.rates || []).filter(
+    (rate) => String(rate.carrier || "").toUpperCase() === "USPS"
   );
   if (!uspsRates.length) throw new Error("No USPS rate is available for that ZIP code.");
 
   const ground = uspsRates.find((rate) => {
-    const token = String(rate.servicelevel?.token || "").toLowerCase();
-    const name = String(rate.servicelevel?.name || "").toLowerCase();
-    return token.includes("ground") || name.includes("ground advantage");
+    const service = String(rate.service || "").toLowerCase().replace(/[^a-z]/g, "");
+    return service.includes("groundadvantage");
   });
 
-  const selected = ground || [...uspsRates].sort((a, b) => Number(a.amount) - Number(b.amount))[0];
-  const amountCents = Math.round(Number(selected.amount) * 100);
+  const selected = ground || [...uspsRates].sort((a, b) => Number(a.rate) - Number(b.rate))[0];
+  const amountCents = Math.round(Number(selected.rate) * 100);
   if (!Number.isFinite(amountCents) || amountCents <= 0) {
     throw new Error("The shipping rate returned was invalid.");
   }
 
   return {
     amountCents,
-    displayName: selected.servicelevel?.name || "USPS Ground Advantage",
-    estimatedDays: selected.estimated_days || null,
+    displayName: selected.service === "GroundAdvantage" ? "USPS Ground Advantage" : `USPS ${selected.service}`,
+    estimatedDays: selected.delivery_days || selected.est_delivery_days || null,
   };
 }
 
@@ -100,7 +96,7 @@ async function createStripeCheckout(productId, product, shipping, origin) {
 
   params.set("metadata[product_id]", productId);
   params.set("metadata[sales_channel]", "retail_website");
-  params.set("metadata[shipping_source]", "shippo_live_rate");
+  params.set("metadata[shipping_source]", "easypost_live_rate");
 
   const stripeResponse = await fetch("https://api.stripe.com/v1/checkout/sessions", {
     method: "POST",
