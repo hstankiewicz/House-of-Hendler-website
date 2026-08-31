@@ -69,11 +69,10 @@ async function getGroundAdvantageRate(zip, product) {
   };
 }
 
-async function createStripeCheckout(productId, product, shipping) {
+async function createStripeCheckout(productId, product, shipping, origin) {
   const secret = process.env.STRIPE_SECRET_KEY;
   if (!secret) throw new Error("Stripe checkout is not configured.");
 
-  const origin = process.env.SITE_ORIGIN || "https://houseofhendler.com";
   const params = new URLSearchParams();
   params.set("mode", "payment");
   params.set("success_url", `${origin}/shop.html?order=success`);
@@ -136,8 +135,12 @@ export default async function handler(req, res) {
       return json(res, 400, { error: "Please enter a valid U.S. ZIP code." });
     }
 
+    const forwardedProto = String(req.headers["x-forwarded-proto"] || "https").split(",")[0].trim();
+    const forwardedHost = String(req.headers["x-forwarded-host"] || req.headers.host || "").split(",")[0].trim();
+    const origin = forwardedHost ? `${forwardedProto}://${forwardedHost}` : "https://houseofhendler.com";
+
     const shipping = await getGroundAdvantageRate(zip, product);
-    const checkoutUrl = await createStripeCheckout(productId, product, shipping);
+    const checkoutUrl = await createStripeCheckout(productId, product, shipping, origin);
     return json(res, 200, {
       url: checkoutUrl,
       shipping: {
