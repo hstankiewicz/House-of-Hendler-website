@@ -62,7 +62,7 @@
             const next=signature(valueResult.value);
             if(!next||next===lastSignature) return;
             lastSignature=next;
-            await checkout.runServerUpdate(()=>serverUpdate(valueResult.value));
+            await actions.runServerUpdate(()=>serverUpdate(valueResult.value));
           } catch(error){ shippingReady=false; document.getElementById("shipping-status").textContent="Shipping could not be calculated yet."; showError(error?.message||"Please check the address and try again."); updatePay(); }
         },450);
       });
