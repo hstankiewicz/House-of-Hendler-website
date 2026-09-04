@@ -37,7 +37,7 @@
         <div class="confirmation-row"><strong>Confirmation number</strong><span id="order-reference"></span></div>
         <div class="confirmation-row"><strong>Order total</strong><span id="order-total"></span></div>
       </div>
-      <p>You can use this confirmation number if you need to contact us about your order.</p>
+      <p id="receipt-status">A payment receipt will be sent to the email used at checkout.</p>
       <div class="confirmation-actions"><a class="btn btn-pink" href="shop.html">Continue shopping</a></div>
     </div>
     <div id="confirmation-error" hidden>
@@ -84,6 +84,12 @@
       localStorage.removeItem(CART_KEY);
       document.getElementById("order-reference").textContent = data.orderReference || "Confirmed";
       document.getElementById("order-total").textContent = money(data.amountTotal, data.currency);
+      const receiptStatus = document.getElementById("receipt-status");
+      if (data.receiptConfigured && data.receiptEmail) {
+        receiptStatus.textContent = `A payment receipt has been sent to ${data.receiptEmail}.`;
+      } else {
+        receiptStatus.textContent = "A payment receipt will be sent to the email used at checkout.";
+      }
       loading.hidden = true;
       success.hidden = false;
     } catch (error) {
