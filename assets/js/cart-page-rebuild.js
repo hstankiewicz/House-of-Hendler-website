@@ -19,6 +19,17 @@
     return Object.entries(loadCart()).map(([productId, quantity]) => ({ productId, quantity:Number(quantity), product:product(productId) })).filter((x) => x.product && x.quantity > 0);
   }
 
+  function addFromQueryOnce() {
+    const url = new URL(window.location.href);
+    const id = url.searchParams.get("add");
+    if (!id || !product(id)) return;
+    const cart = loadCart();
+    cart[id] = Math.min(99, Number(cart[id] || 0) + 1);
+    saveCart(cart);
+    url.searchParams.delete("add");
+    history.replaceState({}, "", url.pathname + (url.search ? url.search : ""));
+  }
+
   function render() {
     const list = document.getElementById("cart-items");
     const subtotalEl = document.getElementById("cart-subtotal");
@@ -61,5 +72,8 @@
     window.location.href = "checkout-dynamic.html";
   });
 
-  document.addEventListener("DOMContentLoaded", render);
+  document.addEventListener("DOMContentLoaded", () => {
+    addFromQueryOnce();
+    render();
+  });
 })();
