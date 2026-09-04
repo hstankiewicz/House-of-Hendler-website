@@ -1,3 +1,5 @@
+const crypto = require("crypto");
+
 const PRODUCTS = {
   pink: { name: "Palm Bunny Pink", unitAmount: 2800, needleMindersPerUnit: 1 },
   green: { name: "Palm Bunny Green", unitAmount: 2800, needleMindersPerUnit: 1 },
@@ -27,12 +29,8 @@ function json(res, status, body) {
 }
 
 function originFromRequest(req) {
-  if (process.env.VERCEL_ENV === "production") {
-    return "https://houseofhendler.com";
-  }
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
+  if (process.env.VERCEL_ENV === "production") return "https://houseofhendler.com";
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
   const proto = String(req.headers["x-forwarded-proto"] || "https").split(",")[0].trim() || "https";
   const host = String(req.headers["x-forwarded-host"] || req.headers.host || "").split(",")[0].trim();
   return host ? `${proto}://${host}` : "https://houseofhendler.com";
@@ -58,6 +56,12 @@ function shippingWeight(items) {
   return { count, weightOz: Math.round((2.2 + (count - 3) * 0.8) * 10) / 10 };
 }
 
+function newOrderReference() {
+  const time = Date.now().toString(36).slice(-5).toUpperCase();
+  const random = crypto.randomBytes(2).toString("hex").toUpperCase();
+  return `HOH-${time}${random}`;
+}
+
 module.exports = async function handler(req, res) {
   const corsAllowed = applyCors(req, res);
   if (req.method === "OPTIONS") {
@@ -78,10 +82,11 @@ module.exports = async function handler(req, res) {
     if (!items.length) return json(res, 400, { error: "Your cart is empty." });
 
     const { count, weightOz } = shippingWeight(items);
+    const orderReference = newOrderReference();
     const params = new URLSearchParams();
     params.set("mode", "payment");
     params.set("ui_mode", "elements");
-    params.set("return_url", `${originFromRequest(req)}/shop.html?order=success&session_id={CHECKOUT_SESSION_ID}`);
+    params.set("return_url", `${originFromRequest(req)}/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}`);
     params.set("permissions[update_shipping_details]", "server_only");
     params.set("shipping_address_collection[allowed_countries][0]", "US");
     params.set("automatic_tax[enabled]", "true");
@@ -89,6 +94,7 @@ module.exports = async function handler(req, res) {
     params.set("metadata[sales_channel]", "retail_website_rebuild");
     params.set("metadata[needle_minder_count]", String(count));
     params.set("metadata[shipping_weight_oz]", String(weightOz));
+    params.set("metadata[order_reference]", orderReference);
 
     items.forEach((item, index) => {
       params.set(`line_items[${index}][quantity]`, String(item.quantity));
@@ -112,7 +118,7 @@ module.exports = async function handler(req, res) {
       return json(res, 500, { error: session?.error?.message || "Unable to start checkout." });
     }
 
-    return json(res, 200, { clientSecret: session.client_secret, sessionId: session.id });
+    return json(res, 200, { clientSecret: session.client_secret, sessionId: session.id, orderReference });
   } catch (error) {
     console.error(error);
     return json(res, 500, { error: "Unable to start checkout." });
