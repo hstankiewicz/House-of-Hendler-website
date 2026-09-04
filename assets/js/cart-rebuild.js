@@ -41,6 +41,12 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("order") === "success") localStorage.removeItem(CART_KEY);
+    if (params.get("order") !== "success") return;
+
+    localStorage.removeItem(CART_KEY);
+    const sessionId = params.get("session_id");
+    if (sessionId) {
+      window.location.replace(`order-confirmation.html?session_id=${encodeURIComponent(sessionId)}`);
+    }
   });
 })();
