@@ -27,7 +27,7 @@ async function getGroundAdvantageRate(zip, product) {
         from_address: { country: "US", zip: fromZip },
         to_address: { country: "US", zip },
         parcel: {
-          length: 9,
+          length: 7,
           width: 5,
           height: 1,
           weight: product.weightOz,
