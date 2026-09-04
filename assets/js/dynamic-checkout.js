@@ -2,6 +2,9 @@
 (() => {
   const CART_KEY = "hoh-cart-rebuild";
   const STRIPE_PUBLISHABLE_KEY = "pk_live_51U8UJRKEDXkXigZmaUO0gBl9CBatEAQ3keZAAC5scQD8nCIzDuMUUy48By2uPzq2R0lFALO4IzV1NJsldHLtrP3g00NaUyX9Wy";
+  const API_BASE = ["houseofhendler.com", "www.houseofhendler.com"].includes(window.location.hostname)
+    ? "https://house-of-hendler-website.vercel.app"
+    : "";
   let checkout;
   let actions;
   let sessionId = "";
@@ -18,11 +21,12 @@
   function updatePay(){ const b=document.getElementById("pay-button"); if(b)b.disabled=!(shippingReady&&canConfirm&&actions); }
   function renderCart(){ const items=cartItems(); const list=document.getElementById("checkout-items"); const summary=document.getElementById("checkout-summary"); if(!items.length){ list.innerHTML='<p>Your cart is empty. <a class="checkout-link" href="shop.html">Return to the shop</a>.</p>'; summary.textContent=""; return false; } list.innerHTML=items.map((item)=>`<div class="checkout-item"><div><div class="checkout-item-name">${item.product.name}</div><div>${item.product.price} × ${item.quantity}</div></div><strong>${item.quantity}</strong></div>`).join(""); const count=minderCount(items); summary.textContent=`${count} needle minder${count===1?"":"s"} in this order.`; return true; }
   function signature(value){ const a=value?.address||{}; return [value?.name,a.line1,a.line2,a.city,a.state,a.postal_code,a.country].map((v)=>String(v||"").trim().toLowerCase()).join("|"); }
+  function api(path){ return `${API_BASE}${path}`; }
 
   async function serverUpdate(shippingDetails){
     const status=document.getElementById("shipping-status");
     shippingReady=false; updatePay(); showError(""); status.textContent="Calculating USPS shipping…";
-    const response=await fetch("/api/update-dynamic-shipping",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({checkout_session_id:sessionId,shipping_details:shippingDetails})});
+    const response=await fetch(api("/api/update-dynamic-shipping"),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({checkout_session_id:sessionId,shipping_details:shippingDetails})});
     const result=await response.json();
     if(!response.ok||result.type==="error") throw new Error(result.message||"We couldn't calculate shipping for this address.");
     shippingReady=true;
@@ -37,7 +41,7 @@
     const payload=cartItems().map(({productId,quantity})=>({productId,quantity}));
     if(!payload.length){ loading.textContent="Add an item to your cart to check out."; return; }
     try {
-      const response=await fetch("/api/create-dynamic-checkout",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:payload})});
+      const response=await fetch(api("/api/create-dynamic-checkout"),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:payload})});
       const data=await response.json();
       if(!response.ok||!data.clientSecret||!data.sessionId) throw new Error(data.error||"Unable to start checkout.");
       sessionId=data.sessionId;
