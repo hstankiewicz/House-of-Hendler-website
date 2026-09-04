@@ -26,8 +26,7 @@ window.SITE_CONFIG = {
   contactEmail: "heather@houseofhendler.com",
   wholesaleNotificationEmail: "heather@houseofhendler.com",
 
-  // Palm Bunny Collection — the three launch products.
-  // Update "etsyUrl" for each with the direct Etsy listing link.
+  // Palm Bunny Collection — preview checkout routes stay on-site.
   products: [
     {
       id: "pink",
@@ -35,7 +34,7 @@ window.SITE_CONFIG = {
       price: "$28.00",
       image: "assets/img/product-pink.png",
       alt: "Palm Bunny Pink enamel needle minder with pink fishnet pattern and gold trim, shown on marble",
-      etsyUrl: "https://buy.stripe.com/dRm6oI5Lz6d5dTVefugMw05",
+      etsyUrl: "checkout.html?product=pink",
     },
     {
       id: "green",
@@ -43,7 +42,7 @@ window.SITE_CONFIG = {
       price: "$28.00",
       image: "assets/img/product-green.png",
       alt: "Palm Bunny Green enamel needle minder with green fishnet pattern and gold trim, shown on marble",
-      etsyUrl: "https://buy.stripe.com/28E00k6PDgRJ3fhgnCgMw07",
+      etsyUrl: "checkout.html?product=green",
     },
     {
       id: "blue",
@@ -51,7 +50,7 @@ window.SITE_CONFIG = {
       price: "$28.00",
       image: "assets/img/product-blue.png",
       alt: "Palm Bunny Blue enamel needle minder with navy fishnet pattern and gold trim, shown on marble",
-      etsyUrl: "https://buy.stripe.com/aFafZi3DrdFxcPR5IYgMw06",
+      etsyUrl: "checkout.html?product=blue",
     },
     {
       id: "trio",
@@ -61,7 +60,7 @@ window.SITE_CONFIG = {
       alt: "The Palm Bunny Trio in Petal Pink, Palm Green, and Royal Blue",
       description: "All three signature Palm Bunnies, collected together. Includes Palm Green, Petal Pink, and Royal Blue. Each individually packaged.",
       exclusiveLine: "Available exclusively at House of Hendler.",
-      etsyUrl: "https://buy.stripe.com/cNieVe8XLatl3fh6N2gMw08",
+      etsyUrl: "checkout.html?product=trio",
     },
   ],
 
