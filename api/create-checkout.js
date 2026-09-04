@@ -1,8 +1,10 @@
+const BUNNY_WEIGHT_OZ = 0.8;
+
 const PRODUCTS = {
-  pink: { name: "Palm Bunny Pink", unitAmount: 2800, weightOz: 0.8 },
-  green: { name: "Palm Bunny Green", unitAmount: 2800, weightOz: 0.8 },
-  blue: { name: "Palm Bunny Blue", unitAmount: 2800, weightOz: 0.8 },
-  trio: { name: "The Palm Bunny Trio", unitAmount: 8000, weightOz: 2.2 },
+  pink: { name: "Palm Bunny Pink", unitAmount: 2800, needleMindersPerUnit: 1 },
+  green: { name: "Palm Bunny Green", unitAmount: 2800, needleMindersPerUnit: 1 },
+  blue: { name: "Palm Bunny Blue", unitAmount: 2800, needleMindersPerUnit: 1 },
+  trio: { name: "The Palm Bunny Trio", unitAmount: 8000, needleMindersPerUnit: 3 },
 };
 
 function json(res, status, body) {
@@ -10,7 +12,39 @@ function json(res, status, body) {
   res.end(JSON.stringify(body));
 }
 
-async function getGroundAdvantageRate(zip, product) {
+function normalizeCart(body) {
+  const requestedItems = Array.isArray(body.items)
+    ? body.items
+    : [{ productId: body.productId, quantity: body.quantity ?? 1 }];
+
+  const items = requestedItems.map((item) => {
+    const productId = String(item?.productId || "").toLowerCase();
+    const quantity = Number(item?.quantity ?? 1);
+    const product = PRODUCTS[productId];
+
+    if (!product) throw new Error("Unknown product.");
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > 99) {
+      throw new Error("Invalid product quantity.");
+    }
+
+    return { productId, quantity, product };
+  });
+
+  if (!items.length) throw new Error("Cart is empty.");
+  return items;
+}
+
+function calculateParcelWeightOz(items) {
+  const needleMinderCount = items.reduce(
+    (total, item) => total + item.quantity * item.product.needleMindersPerUnit,
+    0
+  );
+
+  const weightOz = Math.round(needleMinderCount * BUNNY_WEIGHT_OZ * 10) / 10;
+  return { needleMinderCount, weightOz };
+}
+
+async function getGroundAdvantageRate(zip, weightOz) {
   const apiKey = process.env.EASYPOST_API_KEY;
   const fromZip = process.env.SHIP_FROM_ZIP;
   if (!apiKey || !fromZip) throw new Error("Shipping service is not configured.");
@@ -30,7 +64,7 @@ async function getGroundAdvantageRate(zip, product) {
           length: 7,
           width: 5,
           height: 1,
-          weight: product.weightOz,
+          weight: weightOz,
         },
       },
     }),
@@ -65,7 +99,7 @@ async function getGroundAdvantageRate(zip, product) {
   };
 }
 
-async function createStripeCheckout(productId, product, shipping, origin) {
+async function createStripeCheckout(items, shipping, origin, needleMinderCount, weightOz) {
   const secret = process.env.STRIPE_SECRET_KEY;
   if (!secret) throw new Error("Stripe checkout is not configured.");
 
@@ -78,10 +112,12 @@ async function createStripeCheckout(productId, product, shipping, origin) {
   params.set("automatic_tax[enabled]", "true");
   params.set("customer_creation", "always");
 
-  params.set("line_items[0][quantity]", "1");
-  params.set("line_items[0][price_data][currency]", "usd");
-  params.set("line_items[0][price_data][unit_amount]", String(product.unitAmount));
-  params.set("line_items[0][price_data][product_data][name]", product.name);
+  items.forEach((item, index) => {
+    params.set(`line_items[${index}][quantity]`, String(item.quantity));
+    params.set(`line_items[${index}][price_data][currency]`, "usd");
+    params.set(`line_items[${index}][price_data][unit_amount]`, String(item.product.unitAmount));
+    params.set(`line_items[${index}][price_data][product_data][name]`, item.product.name);
+  });
 
   params.set("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
   params.set("shipping_options[0][shipping_rate_data][display_name]", shipping.displayName);
@@ -94,9 +130,10 @@ async function createStripeCheckout(productId, product, shipping, origin) {
     params.set("shipping_options[0][shipping_rate_data][delivery_estimate][maximum][value]", String(shipping.estimatedDays + 1));
   }
 
-  params.set("metadata[product_id]", productId);
   params.set("metadata[sales_channel]", "retail_website");
   params.set("metadata[shipping_source]", "easypost_live_rate");
+  params.set("metadata[needle_minder_count]", String(needleMinderCount));
+  params.set("metadata[shipping_weight_oz]", String(weightOz));
 
   const stripeResponse = await fetch("https://api.stripe.com/v1/checkout/sessions", {
     method: "POST",
@@ -122,30 +159,36 @@ export default async function handler(req, res) {
 
   try {
     const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
-    const productId = String(body.productId || "").toLowerCase();
     const zip = String(body.zip || "").trim();
-    const product = PRODUCTS[productId];
 
-    if (!product) return json(res, 400, { error: "Unknown product." });
     if (!/^\d{5}(-\d{4})?$/.test(zip)) {
       return json(res, 400, { error: "Please enter a valid U.S. ZIP code." });
     }
+
+    const items = normalizeCart(body);
+    const { needleMinderCount, weightOz } = calculateParcelWeightOz(items);
 
     const forwardedProto = String(req.headers["x-forwarded-proto"] || "https").split(",")[0].trim();
     const forwardedHost = String(req.headers["x-forwarded-host"] || req.headers.host || "").split(",")[0].trim();
     const origin = forwardedHost ? `${forwardedProto}://${forwardedHost}` : "https://houseofhendler.com";
 
-    const shipping = await getGroundAdvantageRate(zip, product);
-    const checkoutUrl = await createStripeCheckout(productId, product, shipping, origin);
+    const shipping = await getGroundAdvantageRate(zip, weightOz);
+    const checkoutUrl = await createStripeCheckout(items, shipping, origin, needleMinderCount, weightOz);
     return json(res, 200, {
       url: checkoutUrl,
       shipping: {
         amount: shipping.amountCents / 100,
         service: shipping.displayName,
+        weightOz,
+        needleMinderCount,
       },
     });
   } catch (error) {
     console.error(error);
-    return json(res, 500, { error: "We couldn't calculate shipping right now. Please try again." });
+    const message = error?.message || "We couldn't calculate shipping right now. Please try again.";
+    const clientError = ["Unknown product.", "Invalid product quantity.", "Cart is empty."].includes(message);
+    return json(res, clientError ? 400 : 500, {
+      error: clientError ? message : "We couldn't calculate shipping right now. Please try again.",
+    });
   }
 }
