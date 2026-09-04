@@ -1,3 +1,19 @@
+const ALLOWED_CORS_ORIGINS = new Set([
+  "https://houseofhendler.com",
+  "https://www.houseofhendler.com",
+]);
+
+function applyCors(req, res) {
+  const origin = String(req.headers.origin || "");
+  if (!origin) return true;
+  if (!ALLOWED_CORS_ORIGINS.has(origin)) return false;
+  res.setHeader("Access-Control-Allow-Origin", origin);
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Vary", "Origin");
+  return true;
+}
+
 function json(res, status, body) {
   res.status(status).setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(body));
@@ -81,6 +97,12 @@ function addShippingDetails(params, shippingDetails) {
 }
 
 module.exports = async function handler(req, res) {
+  const corsAllowed = applyCors(req, res);
+  if (req.method === "OPTIONS") {
+    if (!corsAllowed) return res.status(403).end();
+    return res.status(204).end();
+  }
+  if (!corsAllowed) return json(res, 403, { type: "error", message: "Origin not allowed" });
   if (req.method !== "POST") return json(res, 405, { type: "error", message: "Method not allowed" });
 
   try {
