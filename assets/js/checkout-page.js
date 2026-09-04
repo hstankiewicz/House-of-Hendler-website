@@ -1,6 +1,12 @@
-/* House of Hendler normal checkout page with cart quantities and live EasyPost rate. */
+/* House of Hendler checkout: customer enters full address once; EasyPost updates shipping behind the scenes. */
 (() => {
   const CART_KEY = "hoh-retail-cart";
+  let checkout = null;
+  let checkoutActions = null;
+  let shippingReady = false;
+  let canConfirm = false;
+  let lastAddressSignature = "";
+  let shippingTimer = null;
 
   function getProduct(productId) {
     if (!window.SITE_CONFIG || !Array.isArray(SITE_CONFIG.products)) return null;
@@ -37,18 +43,28 @@
     return items.reduce((total, item) => total + item.quantity * (item.productId === "trio" ? 3 : 1), 0);
   }
 
-  function render() {
+  function showError(message) {
+    const el = document.getElementById("checkout-error");
+    if (!el) return;
+    el.textContent = message;
+    el.hidden = !message;
+  }
+
+  function updatePayButton() {
+    const button = document.getElementById("pay-button");
+    if (!button) return;
+    button.disabled = !(shippingReady && canConfirm && checkoutActions);
+  }
+
+  function renderCart() {
     const container = document.getElementById("checkout-items");
     const summary = document.getElementById("checkout-summary");
-    const button = document.getElementById("checkout-button");
-    const cart = loadCart();
-    const items = cartItems(cart);
+    const items = cartItems(loadCart());
 
     if (!items.length) {
       container.innerHTML = '<p>Your cart is empty. <a class="checkout-link" href="shop.html">Return to the shop</a>.</p>';
       summary.textContent = "";
-      button.disabled = true;
-      return;
+      return false;
     }
 
     container.innerHTML = items.map((item) => `
@@ -66,7 +82,147 @@
 
     const count = minderCount(items);
     summary.textContent = `${count} needle minder${count === 1 ? "" : "s"} in this order.`;
-    button.disabled = false;
+    return true;
+  }
+
+  function addressSignature(value) {
+    const a = value?.address || {};
+    return [value?.name, a.line1, a.line2, a.city, a.state, a.postal_code, a.country].map((v) => String(v || "").trim().toLowerCase()).join("|");
+  }
+
+  async function updateShipping(shippingDetails) {
+    const status = document.getElementById("shipping-status");
+    shippingReady = false;
+    updatePayButton();
+    status.textContent = "Calculating USPS shipping…";
+    showError("");
+
+    const response = await fetch("/api/update-checkout-shipping", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        checkout_session_id: checkoutActions.getSession().id,
+        shipping_details: shippingDetails,
+      }),
+    });
+    const result = await response.json();
+    if (!response.ok || result.type === "error") {
+      throw new Error(result.message || "We couldn't calculate shipping for this address.");
+    }
+
+    shippingReady = true;
+    const amount = Number(result.shipping?.amount || 0).toFixed(2);
+    status.textContent = `${result.shipping?.service || "USPS shipping"}: $${amount}`;
+    updatePayButton();
+    return { type: "object", value: { succeeded: true } };
+  }
+
+  async function initializeCheckout() {
+    const loading = document.getElementById("checkout-loading");
+    const form = document.getElementById("checkout-form");
+    const items = cartItems(loadCart()).map(({ productId, quantity }) => ({ productId, quantity }));
+    if (!items.length) {
+      loading.textContent = "Add an item to your cart to check out.";
+      return;
+    }
+
+    try {
+      const [configResponse, sessionResponse] = await Promise.all([
+        fetch("/api/checkout-config"),
+        fetch("/api/create-elements-checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items }),
+        }),
+      ]);
+
+      const config = await configResponse.json();
+      const sessionData = await sessionResponse.json();
+      if (!configResponse.ok || !config.publishableKey) throw new Error(config.error || "Stripe checkout is not configured.");
+      if (!sessionResponse.ok || !sessionData.clientSecret) throw new Error(sessionData.error || "Unable to start checkout.");
+
+      const stripe = Stripe(config.publishableKey);
+      checkout = stripe.initCheckoutElementsSdk({
+        clientSecret: sessionData.clientSecret,
+        elementsOptions: {
+          appearance: {
+            variables: {
+              colorPrimary: "#12365f",
+              colorText: "#12365f",
+              borderRadius: "2px",
+            },
+          },
+        },
+      });
+
+      const loadResult = await checkout.loadActions();
+      if (loadResult.type !== "success") throw new Error(loadResult.error?.message || "Unable to load checkout.");
+      checkoutActions = loadResult.actions;
+
+      const contact = checkout.createContactDetailsElement();
+      contact.mount("#contact-details-element");
+
+      const shippingAddress = checkout.createShippingAddressElement();
+      shippingAddress.mount("#shipping-address-element");
+
+      const payment = checkout.createPaymentElement();
+      payment.mount("#payment-element");
+
+      checkout.on("change", (session) => {
+        canConfirm = Boolean(session.canConfirm);
+        updatePayButton();
+      });
+
+      shippingAddress.on("change", (event) => {
+        clearTimeout(shippingTimer);
+        if (!event.complete) {
+          shippingReady = false;
+          document.getElementById("shipping-status").textContent = "Shipping will calculate automatically after your address is complete.";
+          updatePayButton();
+          return;
+        }
+
+        shippingTimer = setTimeout(async () => {
+          try {
+            const valueResult = await shippingAddress.getValue();
+            if (!valueResult.complete) return;
+            const signature = addressSignature(valueResult.value);
+            if (!signature || signature === lastAddressSignature) return;
+            lastAddressSignature = signature;
+            await checkout.runServerUpdate(() => updateShipping(valueResult.value));
+          } catch (error) {
+            shippingReady = false;
+            document.getElementById("shipping-status").textContent = "Shipping could not be calculated yet.";
+            showError(error?.message || "We couldn't calculate shipping. Please check the address and try again.");
+            updatePayButton();
+          }
+        }, 450);
+      });
+
+      document.getElementById("pay-button").addEventListener("click", async () => {
+        const button = document.getElementById("pay-button");
+        button.disabled = true;
+        button.textContent = "Processing…";
+        showError("");
+        try {
+          const result = await checkoutActions.confirm();
+          if (result?.type === "error") throw new Error(result.error?.message || "Payment could not be completed.");
+        } catch (error) {
+          showError(error?.message || "Payment could not be completed. Please try again.");
+          button.textContent = "Pay securely";
+          updatePayButton();
+        }
+      });
+
+      loading.hidden = true;
+      form.hidden = false;
+      const initialSession = checkoutActions.getSession();
+      canConfirm = Boolean(initialSession.canConfirm);
+      updatePayButton();
+    } catch (error) {
+      console.error(error);
+      loading.textContent = error?.message || "Unable to load secure checkout.";
+    }
   }
 
   document.addEventListener("click", (event) => {
@@ -81,37 +237,11 @@
       else cart[productId] = current - 1;
     }
     saveCart(cart);
-    render();
+    window.location.reload();
   });
 
-  document.getElementById("shipping-form")?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const button = document.getElementById("checkout-button");
-    const error = document.getElementById("checkout-error");
-    const zip = form.zip.value.trim();
-    const items = cartItems(loadCart()).map(({ productId, quantity }) => ({ productId, quantity }));
-
-    error.hidden = true;
-    button.disabled = true;
-    button.textContent = "Calculating shipping…";
-
-    try {
-      const response = await fetch("/api/create-checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items, zip }),
-      });
-      const data = await response.json();
-      if (!response.ok || !data.url) throw new Error(data.error || "Unable to start checkout.");
-      window.location.href = data.url;
-    } catch (err) {
-      error.textContent = err.message || "We couldn't calculate shipping right now. Please try again.";
-      error.hidden = false;
-      button.disabled = false;
-      button.textContent = "Continue to secure payment";
-    }
+  document.addEventListener("DOMContentLoaded", () => {
+    if (renderCart()) initializeCheckout();
+    else document.getElementById("checkout-loading").textContent = "Add an item to your cart to check out.";
   });
-
-  document.addEventListener("DOMContentLoaded", render);
 })();
