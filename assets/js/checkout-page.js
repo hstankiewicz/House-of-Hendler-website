@@ -1,6 +1,7 @@
 /* House of Hendler checkout: customer enters full address once; EasyPost updates shipping behind the scenes. */
 (() => {
   const CART_KEY = "hoh-retail-cart";
+  const STRIPE_PUBLISHABLE_KEY = "pk_live_51U8UJRKEDXkXigZmaUO0gBl9CBatEAQ3keZAAC5scQD8nCIzDuMUUy48By2uPzq2R0lFALO4IzV1NJsldHLtrP3g00NaUyX9Wy";
   let checkout = null;
   let checkoutActions = null;
   let shippingReady = false;
@@ -127,21 +128,16 @@
     }
 
     try {
-      const [configResponse, sessionResponse] = await Promise.all([
-        fetch("/api/checkout-config"),
-        fetch("/api/create-elements-checkout", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items }),
-        }),
-      ]);
+      const sessionResponse = await fetch("/api/create-elements-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items }),
+      });
 
-      const config = await configResponse.json();
       const sessionData = await sessionResponse.json();
-      if (!configResponse.ok || !config.publishableKey) throw new Error(config.error || "Stripe checkout is not configured.");
       if (!sessionResponse.ok || !sessionData.clientSecret) throw new Error(sessionData.error || "Unable to start checkout.");
 
-      const stripe = Stripe(config.publishableKey);
+      const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
       checkout = stripe.initCheckoutElementsSdk({
         clientSecret: sessionData.clientSecret,
         elementsOptions: {
