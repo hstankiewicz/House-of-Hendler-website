@@ -1,10 +1,13 @@
-const BUNNY_WEIGHT_OZ = 0.8;
-
 const PRODUCTS = {
   pink: { name: "Palm Bunny Pink", unitAmount: 2800, needleMindersPerUnit: 1 },
   green: { name: "Palm Bunny Green", unitAmount: 2800, needleMindersPerUnit: 1 },
   blue: { name: "Palm Bunny Blue", unitAmount: 2800, needleMindersPerUnit: 1 },
   trio: { name: "The Palm Bunny Trio", unitAmount: 8000, needleMindersPerUnit: 3 },
+};
+
+const MEASURED_PARCEL_WEIGHTS_OZ = {
+  1: 0.8,
+  3: 2.2,
 };
 
 function json(res, status, body) {
@@ -17,7 +20,8 @@ function normalizeCart(body) {
     ? body.items
     : [{ productId: body.productId, quantity: body.quantity ?? 1 }];
 
-  const items = requestedItems.map((item) => {
+  const merged = new Map();
+  requestedItems.forEach((item) => {
     const productId = String(item?.productId || "").toLowerCase();
     const quantity = Number(item?.quantity ?? 1);
     const product = PRODUCTS[productId];
@@ -27,11 +31,33 @@ function normalizeCart(body) {
       throw new Error("Invalid product quantity.");
     }
 
-    return { productId, quantity, product };
+    merged.set(productId, (merged.get(productId) || 0) + quantity);
   });
+
+  const items = [...merged.entries()].map(([productId, quantity]) => ({
+    productId,
+    quantity,
+    product: PRODUCTS[productId],
+  }));
 
   if (!items.length) throw new Error("Cart is empty.");
   return items;
+}
+
+function estimateConservativeParcelWeightOz(needleMinderCount) {
+  if (MEASURED_PARCEL_WEIGHTS_OZ[needleMinderCount]) {
+    return MEASURED_PARCEL_WEIGHTS_OZ[needleMinderCount];
+  }
+
+  // Until more measured weights are available, use the known 1-bunny
+  // packaged weight (0.8 oz) conservatively for the unmeasured increment.
+  // This preserves the measured 3-bunny weight of 2.2 oz exactly.
+  if (needleMinderCount === 2) return 1.6;
+  if (needleMinderCount > 3) {
+    return Math.round((2.2 + (needleMinderCount - 3) * 0.8) * 10) / 10;
+  }
+
+  throw new Error("Cart is empty.");
 }
 
 function calculateParcelWeightOz(items) {
@@ -40,8 +66,10 @@ function calculateParcelWeightOz(items) {
     0
   );
 
-  const weightOz = Math.round(needleMinderCount * BUNNY_WEIGHT_OZ * 10) / 10;
-  return { needleMinderCount, weightOz };
+  return {
+    needleMinderCount,
+    weightOz: estimateConservativeParcelWeightOz(needleMinderCount),
+  };
 }
 
 async function getGroundAdvantageRate(zip, weightOz) {
