@@ -56,24 +56,9 @@
     render();
   });
 
-  document.getElementById("checkout-button")?.addEventListener("click", async () => {
-    const button = document.getElementById("checkout-button");
-    const error = document.getElementById("cart-error");
-    error.hidden = true;
-    button.disabled = true;
-    button.textContent = "Opening checkout…";
-    try {
-      const payload = items().map(({ productId, quantity }) => ({ productId, quantity }));
-      const response = await fetch("/api/create-basic-checkout", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({items:payload}) });
-      const data = await response.json();
-      if (!response.ok || !data.url) throw new Error(data.error || "Unable to start checkout.");
-      window.location.href = data.url;
-    } catch (err) {
-      error.textContent = err.message || "Unable to start checkout.";
-      error.hidden = false;
-      button.disabled = false;
-      button.textContent = "Checkout";
-    }
+  document.getElementById("checkout-button")?.addEventListener("click", () => {
+    if (!items().length) return;
+    window.location.href = "checkout-dynamic.html";
   });
 
   document.addEventListener("DOMContentLoaded", render);
