@@ -40,8 +40,11 @@ module.exports = async function handler(req, res) {
   if (req.method !== "POST") return json(res, 405, { error: "Method not allowed" });
 
   try {
-    const secret = process.env.STRIPE_SECRET_KEY;
-    if (!secret || !secret.startsWith("sk_")) return json(res, 500, { error: "Stripe checkout is not configured." });
+    const secret = String(process.env.STRIPE_SECRET_KEY || "").trim();
+    if (!secret || !secret.startsWith("sk_")) {
+      console.error("Stripe secret unavailable or invalid prefix", { present: Boolean(secret), prefix: secret.slice(0, 3) });
+      return json(res, 500, { error: "Stripe checkout is not configured." });
+    }
 
     const items = normalizeItems(req.body?.items);
     if (!items.length) return json(res, 400, { error: "Your cart is empty." });
