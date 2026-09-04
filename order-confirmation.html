@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed | House of Hendler</title>
+<link rel="icon" href="assets/img/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.confirmation-page{background:var(--hoh-cream);min-height:68vh;padding:64px 24px 88px}.confirmation-card{max-width:680px;margin:0 auto;background:#fff;border:1px solid var(--hoh-gold-soft);padding:52px 44px;text-align:center}.confirmation-mark{width:64px;height:64px;border:1px solid var(--hoh-gold-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:32px;color:var(--hoh-navy)}.confirmation-card h1{margin:8px 0 14px}.confirmation-card p{color:var(--hoh-ink-soft);font-size:16px}.confirmation-details{margin:30px 0;padding:22px 0;border-top:1px solid #e7e7e7;border-bottom:1px solid #e7e7e7;text-align:left}.confirmation-row{display:flex;justify-content:space-between;gap:20px;padding:7px 0}.confirmation-row strong{color:var(--hoh-navy)}.confirmation-error{color:#9f1239}.confirmation-actions{margin-top:28px}@media(max-width:640px){.confirmation-card{padding:38px 24px}.confirmation-page{padding:38px 16px 64px}.confirmation-row{display:block}.confirmation-row span{display:block;margin-top:3px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="announcement-bar"><div class="announcement-track container" data-announcement-track></div></div>
+  <div class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo" aria-label="House of Hendler — home"><img src="assets/img/logo.png" alt="House of Hendler logo" width="140" height="164"></a>
+      <nav class="main-nav" aria-label="Primary"><a href="shop.html">SHOP</a><a href="our-story.html">OUR STORY</a><a href="wholesale.html">WHOLESALE</a><a href="contact.html">CONTACT</a></nav>
+    </div>
+  </div>
+</header>
+<main class="confirmation-page">
+  <section class="confirmation-card" aria-live="polite">
+    <div id="confirmation-loading">
+      <div class="confirmation-mark">✓</div>
+      <span class="eyebrow">Order received</span>
+      <h1>Confirming your order…</h1>
+      <p>One moment while we verify your payment.</p>
+    </div>
+    <div id="confirmation-success" hidden>
+      <div class="confirmation-mark">✓</div>
+      <span class="eyebrow">Thank you</span>
+      <h1>Your order is confirmed.</h1>
+      <p>Your payment was received successfully. Keep this confirmation number for your records.</p>
+      <div class="confirmation-details">
+        <div class="confirmation-row"><strong>Confirmation number</strong><span id="order-reference"></span></div>
+        <div class="confirmation-row"><strong>Order total</strong><span id="order-total"></span></div>
+      </div>
+      <p>Keep an eye on your email for your receipt and shipping updates.</p>
+      <div class="confirmation-actions"><a class="btn btn-pink" href="shop.html">Continue shopping</a></div>
+    </div>
+    <div id="confirmation-error" hidden>
+      <span class="eyebrow">Order status</span>
+      <h1>We couldn't display your confirmation yet.</h1>
+      <p class="confirmation-error" id="confirmation-error-message">Your payment may still have succeeded. Please check your Stripe receipt email.</p>
+      <div class="confirmation-actions"><a class="btn btn-navy" href="contact.html">Contact us</a></div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-bottom"><span>&copy; <span data-current-year></span> House of Hendler. All rights reserved.</span><div class="legal-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="contact.html">Contact Us</a></div></div></div></footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(() => {
+  const CART_KEY = "hoh-cart-rebuild";
+  const API_BASE = ["houseofhendler.com", "www.houseofhendler.com"].includes(window.location.hostname)
+    ? "https://house-of-hendler-website.vercel.app"
+    : "";
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get("session_id") || "";
+  const loading = document.getElementById("confirmation-loading");
+  const success = document.getElementById("confirmation-success");
+  const errorBox = document.getElementById("confirmation-error");
+  const errorMessage = document.getElementById("confirmation-error-message");
+
+  function money(cents, currency) {
+    try { return new Intl.NumberFormat("en-US", { style: "currency", currency: currency || "USD" }).format((Number(cents) || 0) / 100); }
+    catch (_) { return `$${((Number(cents) || 0) / 100).toFixed(2)}`; }
+  }
+
+  async function verify() {
+    if (!sessionId) {
+      loading.hidden = true;
+      errorBox.hidden = false;
+      errorMessage.textContent = "No order confirmation number was provided. Please check your payment receipt email.";
+      return;
+    }
+    try {
+      const response = await fetch(`${API_BASE}/api/order-confirmation?session_id=${encodeURIComponent(sessionId)}`);
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Unable to load order confirmation.");
+      if (!data.paid) throw new Error("Your payment is still processing. Please check again shortly.");
+      localStorage.removeItem(CART_KEY);
+      document.getElementById("order-reference").textContent = data.orderReference || "Confirmed";
+      document.getElementById("order-total").textContent = money(data.amountTotal, data.currency);
+      loading.hidden = true;
+      success.hidden = false;
+    } catch (error) {
+      loading.hidden = true;
+      errorBox.hidden = false;
+      errorMessage.textContent = error?.message || "Your payment may still have succeeded. Please check your receipt email.";
+    }
+  }
+
+  verify();
+})();
+</script>
+</body>
+</html>
