@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | House of Hendler</title>
+<link rel="icon" href="assets/img/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.checkout-page{background:var(--hoh-cream);min-height:70vh;padding:56px 24px 80px}
+.checkout-shell{max-width:980px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:34px;align-items:start}
+.checkout-panel{background:#fff;border:1px solid var(--hoh-gold-soft);padding:34px}
+.checkout-panel h1,.checkout-panel h2{margin-top:0}
+.checkout-item{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid #e7e7e7}
+.checkout-item:first-child{border-top:1px solid #e7e7e7}
+.checkout-item-name{font-weight:700;color:var(--hoh-navy)}
+.checkout-qty{display:flex;align-items:center;gap:10px}
+.checkout-qty button{width:32px;height:32px;background:#fff;border:1px solid #cfd3d8;cursor:pointer;font:inherit}
+.checkout-qty span{min-width:20px;text-align:center;font-weight:700}
+.checkout-label{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px;color:var(--hoh-navy)}
+.checkout-input{width:100%;box-sizing:border-box;border:1px solid #cfd3d8;padding:14px;font:inherit;background:#fff}
+.checkout-note{font-size:13px;color:var(--hoh-ink-soft);line-height:1.5}
+.checkout-error{color:#9f1239;font-size:13px;margin-top:12px}
+.checkout-summary{font-size:14px;color:var(--hoh-ink-soft);margin:14px 0 0}
+.checkout-actions{margin-top:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.checkout-link{color:var(--hoh-navy);text-decoration:underline}
+@media(max-width:760px){.checkout-shell{grid-template-columns:1fr}.checkout-panel{padding:24px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="announcement-bar"><div class="announcement-track container" data-announcement-track></div></div>
+  <div class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo" aria-label="House of Hendler — home"><img src="assets/img/logo.png" alt="House of Hendler logo" width="140" height="164"></a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="shop.html">SHOP</a><a href="our-story.html">OUR STORY</a><a href="wholesale.html">WHOLESALE</a><a href="contact.html">CONTACT</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<main class="checkout-page">
+  <div class="checkout-shell">
+    <section class="checkout-panel">
+      <span class="eyebrow">Checkout</span>
+      <h1>Your cart</h1>
+      <div id="checkout-items"></div>
+      <p id="checkout-summary" class="checkout-summary"></p>
+      <div class="checkout-actions"><a class="checkout-link" href="shop.html">Continue shopping</a></div>
+    </section>
+
+    <section class="checkout-panel">
+      <span class="eyebrow">Shipping</span>
+      <h2>Delivery</h2>
+      <p class="checkout-note">Enter your delivery ZIP code so we can calculate the current USPS rate for this order. Your full shipping address will be entered securely on the payment page.</p>
+      <form id="shipping-form">
+        <label class="checkout-label" for="shipping-zip">Shipping ZIP code</label>
+        <input class="checkout-input" id="shipping-zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="10" placeholder="19147" required>
+        <p id="checkout-error" class="checkout-error" hidden></p>
+        <div class="checkout-actions">
+          <button class="btn btn-pink" id="checkout-button" type="submit">Continue to secure payment</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container"><div class="footer-bottom"><span>&copy; <span data-current-year></span> House of Hendler. All rights reserved.</span><div class="legal-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="contact.html">Contact Us</a></div></div></div>
+</footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/checkout-page.js"></script>
+</body>
+</html>
