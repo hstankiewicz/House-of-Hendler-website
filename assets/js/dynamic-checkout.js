@@ -73,8 +73,22 @@
 
       document.getElementById("pay-button").addEventListener("click",async()=>{
         const button=document.getElementById("pay-button"); button.disabled=true; button.textContent="Processing…"; showError("");
-        try { const result=await actions.confirm(); if(result?.type==="error") throw new Error(result.error?.message||"Payment could not be completed."); }
-        catch(error){ showError(error?.message||"Payment could not be completed. Please try again."); button.textContent="Pay securely"; updatePay(); }
+        let shippingUnmounted=false;
+        try {
+          if(!shippingReady) throw new Error("Please wait for shipping to finish calculating.");
+          shippingAddress.unmount();
+          shippingUnmounted=true;
+          const result=await actions.confirm();
+          if(result?.type==="error") throw new Error(result.error?.message||"Payment could not be completed.");
+        }
+        catch(error){
+          if(shippingUnmounted){
+            try { shippingAddress.mount("#shipping-address-element"); } catch(_) {}
+          }
+          showError(error?.message||"Payment could not be completed. Please try again.");
+          button.textContent="Pay securely";
+          updatePay();
+        }
       });
 
       loading.hidden=true; form.hidden=false; canConfirm=Boolean(actions.getSession().canConfirm); updatePay();
