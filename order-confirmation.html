@@ -37,13 +37,13 @@
         <div class="confirmation-row"><strong>Confirmation number</strong><span id="order-reference"></span></div>
         <div class="confirmation-row"><strong>Order total</strong><span id="order-total"></span></div>
       </div>
-      <p>Keep an eye on your email for your receipt and shipping updates.</p>
+      <p>You can use this confirmation number if you need to contact us about your order.</p>
       <div class="confirmation-actions"><a class="btn btn-pink" href="shop.html">Continue shopping</a></div>
     </div>
     <div id="confirmation-error" hidden>
       <span class="eyebrow">Order status</span>
       <h1>We couldn't display your confirmation yet.</h1>
-      <p class="confirmation-error" id="confirmation-error-message">Your payment may still have succeeded. Please check your Stripe receipt email.</p>
+      <p class="confirmation-error" id="confirmation-error-message">Your payment may still have succeeded. Please contact us if you need help confirming the order.</p>
       <div class="confirmation-actions"><a class="btn btn-navy" href="contact.html">Contact us</a></div>
     </div>
   </section>
@@ -73,7 +73,7 @@
     if (!sessionId) {
       loading.hidden = true;
       errorBox.hidden = false;
-      errorMessage.textContent = "No order confirmation number was provided. Please check your payment receipt email.";
+      errorMessage.textContent = "No order confirmation number was provided. Please contact us if you need help confirming the order.";
       return;
     }
     try {
@@ -89,7 +89,7 @@
     } catch (error) {
       loading.hidden = true;
       errorBox.hidden = false;
-      errorMessage.textContent = error?.message || "Your payment may still have succeeded. Please check your receipt email.";
+      errorMessage.textContent = error?.message || "Your payment may still have succeeded. Please contact us if you need help confirming the order.";
     }
   }
 
