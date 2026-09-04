@@ -1,4 +1,4 @@
-/* House of Hendler retail checkout: cart-aware live USPS rate by destination ZIP. */
+/* House of Hendler retail checkout: cart-aware live USPS rate by destination ZIP. Preview env refresh 2026-09-04. */
 (() => {
   const CART_KEY = "hoh-retail-cart";
 
