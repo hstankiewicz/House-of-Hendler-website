@@ -1,8 +1,8 @@
 const PRODUCTS = {
-  pink: { name: "Palm Bunny Pink", unitAmount: 2800, weightOz: 6 },
-  green: { name: "Palm Bunny Green", unitAmount: 2800, weightOz: 6 },
-  blue: { name: "Palm Bunny Blue", unitAmount: 2800, weightOz: 6 },
-  trio: { name: "The Palm Bunny Trio", unitAmount: 8000, weightOz: 14 },
+  pink: { name: "Palm Bunny Pink", unitAmount: 2800, weightOz: 0.8 },
+  green: { name: "Palm Bunny Green", unitAmount: 2800, weightOz: 0.8 },
+  blue: { name: "Palm Bunny Blue", unitAmount: 2800, weightOz: 0.8 },
+  trio: { name: "The Palm Bunny Trio", unitAmount: 8000, weightOz: 2.2 },
 };
 
 function json(res, status, body) {
