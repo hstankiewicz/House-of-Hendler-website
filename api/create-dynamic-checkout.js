@@ -5,23 +5,34 @@ const PRODUCTS = {
   trio: { name: "The Palm Bunny Trio", unitAmount: 8000, needleMindersPerUnit: 3 },
 };
 
+const ALLOWED_CORS_ORIGINS = new Set([
+  "https://houseofhendler.com",
+  "https://www.houseofhendler.com",
+]);
+
+function applyCors(req, res) {
+  const origin = String(req.headers.origin || "");
+  if (!origin) return true;
+  if (!ALLOWED_CORS_ORIGINS.has(origin)) return false;
+  res.setHeader("Access-Control-Allow-Origin", origin);
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Vary", "Origin");
+  return true;
+}
+
 function json(res, status, body) {
   res.status(status).setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(body));
 }
 
 function originFromRequest(req) {
-  // Prefer Vercel's own guaranteed environment info over proxy headers, which can be
-  // malformed or reordered when requests come through a custom domain (this caused
-  // Stripe's API to reject the return_url with "The string did not match the expected
-  // pattern" in production, even though the same code worked fine on *.vercel.app).
   if (process.env.VERCEL_ENV === "production") {
     return "https://houseofhendler.com";
   }
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }
-  // Last-resort fallback for local/dev use only.
   const proto = String(req.headers["x-forwarded-proto"] || "https").split(",")[0].trim() || "https";
   const host = String(req.headers["x-forwarded-host"] || req.headers.host || "").split(",")[0].trim();
   return host ? `${proto}://${host}` : "https://houseofhendler.com";
@@ -48,6 +59,12 @@ function shippingWeight(items) {
 }
 
 module.exports = async function handler(req, res) {
+  const corsAllowed = applyCors(req, res);
+  if (req.method === "OPTIONS") {
+    if (!corsAllowed) return res.status(403).end();
+    return res.status(204).end();
+  }
+  if (!corsAllowed) return json(res, 403, { error: "Origin not allowed" });
   if (req.method !== "POST") return json(res, 405, { error: "Method not allowed" });
 
   try {
