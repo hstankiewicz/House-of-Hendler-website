@@ -11,7 +11,18 @@ function json(res, status, body) {
 }
 
 function originFromRequest(req) {
-  const proto = String(req.headers["x-forwarded-proto"] || "https").split(",")[0].trim();
+  // Prefer Vercel's own guaranteed environment info over proxy headers, which can be
+  // malformed or reordered when requests come through a custom domain (this caused
+  // Stripe's API to reject the return_url with "The string did not match the expected
+  // pattern" in production, even though the same code worked fine on *.vercel.app).
+  if (process.env.VERCEL_ENV === "production") {
+    return "https://houseofhendler.com";
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  // Last-resort fallback for local/dev use only.
+  const proto = String(req.headers["x-forwarded-proto"] || "https").split(",")[0].trim() || "https";
   const host = String(req.headers["x-forwarded-host"] || req.headers.host || "").split(",")[0].trim();
   return host ? `${proto}://${host}` : "https://houseofhendler.com";
 }
