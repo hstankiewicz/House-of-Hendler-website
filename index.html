@@ -23,6 +23,7 @@
 ml('account', '2588629');
 </script>
 <!-- End MailerLite Universal -->
+<link rel="stylesheet" href="assets/css/shop-navigation.css">
 </head>
 <body>
 <header>
@@ -37,7 +38,12 @@ ml('account', '2588629');
       </a>
 
       <nav class="main-nav" aria-label="Primary">
-      <a href="shop.html">SHOP</a>
+      <div class="shop-menu" data-shop-menu>
+<button type="button" class="shop-menu-toggle" aria-expanded="false">SHOP <span aria-hidden="true">⌄</span></button>
+<div class="shop-dropdown" hidden>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Needle Minders <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="palm-bunny.html">Palm Bunnies</a><a href="parlor.html">The Parlor</a><a href="collected-wall.html">The Collected Wall — Coming Soon</a></div></div>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Thread Organization <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="stitching-accessories.html">Acrylic Thread Organizers</a></div></div>
+</div></div>
       <a href="our-story.html">OUR STORY</a>
       <a href="wholesale.html">WHOLESALE</a>
       <a href="contact.html">CONTACT</a>
@@ -50,7 +56,12 @@ ml('account', '2588629');
     </div>
 
     <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile">
-      <a href="shop.html">SHOP</a>
+      <div class="shop-menu" data-shop-menu>
+<button type="button" class="shop-menu-toggle" aria-expanded="false">SHOP <span aria-hidden="true">⌄</span></button>
+<div class="shop-dropdown" hidden>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Needle Minders <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="palm-bunny.html">Palm Bunnies</a><a href="parlor.html">The Parlor</a><a href="collected-wall.html">The Collected Wall — Coming Soon</a></div></div>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Thread Organization <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="stitching-accessories.html">Acrylic Thread Organizers</a></div></div>
+</div></div>
       <a href="our-story.html">OUR STORY</a>
       <a href="wholesale.html">WHOLESALE</a>
       <a href="contact.html">CONTACT</a>
@@ -274,5 +285,6 @@ ml('account', '2588629');
 
 <script src="assets/js/config.js?v=20261008"></script>
 <script src="assets/js/main.js?v=20261008"></script>
+<script src="assets/js/shop-navigation.js"></script>
 </body>
 </html>

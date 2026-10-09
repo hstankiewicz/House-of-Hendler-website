@@ -16,6 +16,7 @@
 
 <link rel="icon" href="assets/img/logo.png">
 <link rel="stylesheet" href="assets/css/style.css"><link rel="stylesheet" href="assets/css/shop-categories.css">
+<link rel="stylesheet" href="assets/css/shop-navigation.css">
 </head>
 <body>
 <header>
@@ -30,7 +31,12 @@
       </a>
 
       <nav class="main-nav" aria-label="Primary">
-      <a href="shop.html" aria-current="page">SHOP</a>
+      <div class="shop-menu" data-shop-menu>
+<button type="button" class="shop-menu-toggle" aria-expanded="false">SHOP <span aria-hidden="true">⌄</span></button>
+<div class="shop-dropdown" hidden>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Needle Minders <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="palm-bunny.html">Palm Bunnies</a><a href="parlor.html">The Parlor</a><a href="collected-wall.html">The Collected Wall — Coming Soon</a></div></div>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Thread Organization <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="stitching-accessories.html">Acrylic Thread Organizers</a></div></div>
+</div></div>
       <a href="our-story.html">OUR STORY</a>
       <a href="wholesale.html">WHOLESALE</a>
       <a href="contact.html">CONTACT</a>
@@ -43,7 +49,12 @@
     </div>
 
     <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile">
-      <a href="shop.html" aria-current="page">SHOP</a>
+      <div class="shop-menu" data-shop-menu>
+<button type="button" class="shop-menu-toggle" aria-expanded="false">SHOP <span aria-hidden="true">⌄</span></button>
+<div class="shop-dropdown" hidden>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Needle Minders <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="palm-bunny.html">Palm Bunnies</a><a href="parlor.html">The Parlor</a><a href="collected-wall.html">The Collected Wall — Coming Soon</a></div></div>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Thread Organization <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="stitching-accessories.html">Acrylic Thread Organizers</a></div></div>
+</div></div>
       <a href="our-story.html">OUR STORY</a>
       <a href="wholesale.html">WHOLESALE</a>
       <a href="contact.html">CONTACT</a>
@@ -51,7 +62,7 @@
   </div>
 </header>
 
-<main><nav class="shop-category-nav container" aria-label="Shop categories"><a href="shop.html">All Products</a><a href="stitching-accessories.html">Stitching Accessories</a><a href="needle-minders.html">Needle Minders</a><a href="palm-bunny.html">Palm Bunny</a><a href="parlor.html">The Parlor</a></nav><section class="section bg-white" id="palm-bunny">
+<main><section class="section bg-white" id="palm-bunny">
   <div class="container">
     <div class="section-heading">
       <span class="eyebrow">All Products</span>
@@ -92,5 +103,6 @@
 <script src="assets/js/main.js?v=20261009"></script>
 <script src="assets/js/cart-rebuild.js"></script>
 <script src="assets/js/parlor-stock.js?v=20261009"></script>
+<script src="assets/js/shop-navigation.js"></script>
 </body>
 </html>

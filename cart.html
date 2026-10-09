@@ -9,13 +9,19 @@
 <style>
 .cart-page{background:var(--hoh-cream);min-height:68vh;padding:56px 24px 80px}.cart-shell{max-width:900px;margin:0 auto}.cart-panel{background:#fff;border:1px solid var(--hoh-gold-soft);padding:34px}.cart-row{display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;padding:18px 0;border-bottom:1px solid #e7e7e7}.cart-name{font-weight:700;color:var(--hoh-navy)}.cart-price{color:var(--hoh-ink-soft)}.cart-qty{display:flex;align-items:center;gap:10px}.cart-qty button{width:34px;height:34px;border:1px solid #cfd3d8;background:#fff;cursor:pointer;font:inherit}.cart-total{font-weight:700;color:var(--hoh-navy);min-width:80px;text-align:right}.cart-footer{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:26px;flex-wrap:wrap}.cart-subtotal{font-size:18px;font-weight:700;color:var(--hoh-navy)}.cart-error{color:#9f1239;font-size:14px;margin-top:16px}.cart-note{font-size:13px;color:var(--hoh-ink-soft);margin-top:10px}@media(max-width:680px){.cart-row{grid-template-columns:1fr auto}.cart-total{grid-column:1/-1;text-align:left}.cart-panel{padding:24px}}
 </style>
+<link rel="stylesheet" href="assets/css/shop-navigation.css">
 </head>
 <body>
 <header>
   <div class="announcement-bar"><div class="announcement-track container" data-announcement-track></div></div>
   <div class="site-header"><div class="header-inner">
     <a href="index.html" class="brand-logo" aria-label="House of Hendler — home"><img src="assets/img/logo.png" alt="House of Hendler logo" width="140" height="164"></a>
-    <nav class="main-nav" aria-label="Primary"><a href="shop.html">SHOP</a><a href="our-story.html">OUR STORY</a><a href="wholesale.html">WHOLESALE</a><a href="contact.html">CONTACT</a></nav>
+    <nav class="main-nav" aria-label="Primary"><div class="shop-menu" data-shop-menu>
+<button type="button" class="shop-menu-toggle" aria-expanded="false">SHOP <span aria-hidden="true">⌄</span></button>
+<div class="shop-dropdown" hidden>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Needle Minders <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="palm-bunny.html">Palm Bunnies</a><a href="parlor.html">The Parlor</a><a href="collected-wall.html">The Collected Wall — Coming Soon</a></div></div>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Thread Organization <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="stitching-accessories.html">Acrylic Thread Organizers</a></div></div>
+</div></div><a href="our-story.html">OUR STORY</a><a href="wholesale.html">WHOLESALE</a><a href="contact.html">CONTACT</a></nav>
   </div></div>
 </header>
 <main class="cart-page">
@@ -36,5 +42,6 @@
 <script src="assets/js/config.js?v=20261009"></script>
 <script src="assets/js/main.js?v=20261009"></script>
 <script src="assets/js/cart-page-rebuild.js?v=20261009"></script>
+<script src="assets/js/shop-navigation.js"></script>
 </body>
 </html>

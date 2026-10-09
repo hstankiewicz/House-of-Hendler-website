@@ -39,6 +39,7 @@ def head(title, description, canonical_path):
 
 <link rel="icon" href="assets/img/logo.png">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/shop-navigation.css">
 </head>
 <body>
 '''
@@ -47,6 +48,8 @@ def head(title, description, canonical_path):
 def header(active):
     def nav_link(label, href):
         current = ' aria-current="page"' if href == active else ""
+        if label == 'SHOP':
+            return '<div class="shop-menu" data-shop-menu>\n<button type="button" class="shop-menu-toggle" aria-expanded="false">SHOP <span aria-hidden="true">⌄</span></button>\n<div class="shop-dropdown" hidden>\n<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Needle Minders <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="palm-bunny.html">Palm Bunnies</a><a href="parlor.html">The Parlor</a><a href="collected-wall.html">The Collected Wall — Coming Soon</a></div></div>\n<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Thread Organization <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="stitching-accessories.html">Acrylic Thread Organizers</a></div></div>\n</div></div>'
         return f'<a href="{href}"{current}>{label}</a>'
 
     nav_links = "\n      ".join(nav_link(l, h) for l, h in NAV_ITEMS)
@@ -139,6 +142,7 @@ def footer():
 
 <script src="assets/js/config.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/shop-navigation.js"></script>
 </body>
 </html>
 '''

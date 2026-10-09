@@ -7,6 +7,7 @@
 <meta name="description" content="Your House of Hendler wholesale pre-order request has been received.">
 <link rel="icon" href="assets/img/logo.png">
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/shop-navigation.css">
 </head>
 <body>
 <header>
@@ -15,7 +16,12 @@
     <div class="header-inner">
       <a href="index.html" class="brand-logo" aria-label="House of Hendler — home"><img src="assets/img/logo.png" alt="House of Hendler logo" width="140" height="164"></a>
       <nav class="main-nav" aria-label="Primary">
-        <a href="shop.html">SHOP</a>
+        <div class="shop-menu" data-shop-menu>
+<button type="button" class="shop-menu-toggle" aria-expanded="false">SHOP <span aria-hidden="true">⌄</span></button>
+<div class="shop-dropdown" hidden>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Needle Minders <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="palm-bunny.html">Palm Bunnies</a><a href="parlor.html">The Parlor</a><a href="collected-wall.html">The Collected Wall — Coming Soon</a></div></div>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Thread Organization <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="stitching-accessories.html">Acrylic Thread Organizers</a></div></div>
+</div></div>
         <a href="our-story.html">OUR STORY</a>
         <a href="wholesale.html" aria-current="page">WHOLESALE</a>
         <a href="contact.html">CONTACT</a>
@@ -26,7 +32,12 @@
       </div>
     </div>
     <nav class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Mobile">
-      <a href="shop.html">SHOP</a><a href="our-story.html">OUR STORY</a><a href="wholesale.html" aria-current="page">WHOLESALE</a><a href="contact.html">CONTACT</a>
+      <div class="shop-menu" data-shop-menu>
+<button type="button" class="shop-menu-toggle" aria-expanded="false">SHOP <span aria-hidden="true">⌄</span></button>
+<div class="shop-dropdown" hidden>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Needle Minders <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="palm-bunny.html">Palm Bunnies</a><a href="parlor.html">The Parlor</a><a href="collected-wall.html">The Collected Wall — Coming Soon</a></div></div>
+<div class="shop-submenu"><button type="button" class="shop-category-toggle" aria-expanded="false">Thread Organization <span aria-hidden="true">›</span></button><div class="shop-collections" hidden><a href="stitching-accessories.html">Acrylic Thread Organizers</a></div></div>
+</div></div><a href="our-story.html">OUR STORY</a><a href="wholesale.html" aria-current="page">WHOLESALE</a><a href="contact.html">CONTACT</a>
     </nav>
   </div>
 </header>
@@ -66,5 +77,6 @@
 
 <script src="assets/js/config.js?v=20261008"></script>
 <script src="assets/js/main.js?v=20261008"></script>
+<script src="assets/js/shop-navigation.js"></script>
 </body>
 </html>
