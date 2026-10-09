@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     image.src = product.image; image.alt = product.name;
     button.href = `cart.html?add=${encodeURIComponent(id)}`;
     const available = stock?.[id]?.available;
-    card.querySelector('[data-parlor-availability]').textContent = typeof available === 'number' ? (available > 0 ? `${available} available.` : 'Sold out.') : '';
+    card.querySelector('[data-parlor-availability]').textContent = available === 0 ? 'Sold out.' : '';
     button.textContent = available === 0 ? 'Sold Out' : 'Add to Cart';
     if (available === 0) { button.removeAttribute('href'); button.setAttribute('aria-disabled','true'); }
     else button.removeAttribute('aria-disabled');
