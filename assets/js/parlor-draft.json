@@ -1,6 +1,6 @@
 {
   "collection": "The Parlor",
-  "status": "Preorder date confirmed; awaiting photo matches, final names and preorder quantity limits",
+  "status": "Preorder date and 50-unit quantity per design confirmed; awaiting final photo/name confirmation and finished preview approval",
   "products": [
     {
       "id": "parlor-lantern-1",
@@ -8,10 +8,11 @@
       "description": "Inspired by traditional chinoiserie lighting, this lantern needle minder brings a thoughtfully collected accent to your canvas. A finishing detail for the stitcher who enjoys furnishing every corner of a project.",
       "unitAmount": 2800,
       "image": null,
-      "inventoryQuantity": null,
+      "inventoryQuantity": 50,
       "availability": "preorder",
       "estimatedShipDate": "2026-11-30",
-      "approved": false
+      "approved": false,
+      "preorderLimit": 50
     },
     {
       "id": "parlor-lantern-2",
@@ -19,10 +20,11 @@
       "description": "Inspired by traditional chinoiserie lighting, this lantern needle minder brings a thoughtfully collected accent to your canvas. A finishing detail for the stitcher who enjoys furnishing every corner of a project.",
       "unitAmount": 2800,
       "image": null,
-      "inventoryQuantity": null,
+      "inventoryQuantity": 50,
       "availability": "preorder",
       "estimatedShipDate": "2026-11-30",
-      "approved": false
+      "approved": false,
+      "preorderLimit": 50
     },
     {
       "id": "parlor-lantern-3",
@@ -30,10 +32,11 @@
       "description": "Inspired by traditional chinoiserie lighting, this lantern needle minder brings a thoughtfully collected accent to your canvas. A finishing detail for the stitcher who enjoys furnishing every corner of a project.",
       "unitAmount": 2800,
       "image": null,
-      "inventoryQuantity": null,
+      "inventoryQuantity": 50,
       "availability": "preorder",
       "estimatedShipDate": "2026-11-30",
-      "approved": false
+      "approved": false,
+      "preorderLimit": 50
     },
     {
       "id": "parlor-pagoda-frame-1",
@@ -41,10 +44,11 @@
       "description": "A pagoda-inspired frame for your canvas, with a silhouette rooted in traditional chinoiserie design. A collected accent that makes your stitching tools part of the room.",
       "unitAmount": 2800,
       "image": null,
-      "inventoryQuantity": null,
+      "inventoryQuantity": 50,
       "availability": "preorder",
       "estimatedShipDate": "2026-11-30",
-      "approved": false
+      "approved": false,
+      "preorderLimit": 50
     },
     {
       "id": "parlor-pagoda-frame-2",
@@ -52,10 +56,11 @@
       "description": "A pagoda-inspired frame for your canvas, with a silhouette rooted in traditional chinoiserie design. A collected accent that makes your stitching tools part of the room.",
       "unitAmount": 2800,
       "image": null,
-      "inventoryQuantity": null,
+      "inventoryQuantity": 50,
       "availability": "preorder",
       "estimatedShipDate": "2026-11-30",
-      "approved": false
+      "approved": false,
+      "preorderLimit": 50
     },
     {
       "id": "parlor-pagoda-frame-3",
@@ -63,10 +68,11 @@
       "description": "A pagoda-inspired frame for your canvas, with a silhouette rooted in traditional chinoiserie design. A collected accent that makes your stitching tools part of the room.",
       "unitAmount": 2800,
       "image": null,
-      "inventoryQuantity": null,
+      "inventoryQuantity": 50,
       "availability": "preorder",
       "estimatedShipDate": "2026-11-30",
-      "approved": false
+      "approved": false,
+      "preorderLimit": 50
     },
     {
       "id": "parlor-bamboo-chair",
@@ -74,10 +80,11 @@
       "description": "Pull up a chair. This bamboo chair needle minder brings a familiar furnishing from a beautifully collected room to your canvas, with a nod to timeless chinoiserie interiors.",
       "unitAmount": 2800,
       "image": null,
-      "inventoryQuantity": null,
+      "inventoryQuantity": 50,
       "availability": "preorder",
       "estimatedShipDate": "2026-11-30",
-      "approved": false
+      "approved": false,
+      "preorderLimit": 50
     },
     {
       "id": "parlor-curio-cabinet",
@@ -85,10 +92,11 @@
       "description": "Inspired by the cabinets that hold our favorite collected pieces, this curio cabinet needle minder gives your canvas a furnishing of its own. A traditional accent, thoughtfully placed.",
       "unitAmount": 2800,
       "image": null,
-      "inventoryQuantity": null,
+      "inventoryQuantity": 50,
       "availability": "preorder",
       "estimatedShipDate": "2026-11-30",
-      "approved": false
+      "approved": false,
+      "preorderLimit": 50
     },
     {
       "id": "parlor-accent-lamp",
@@ -96,10 +104,11 @@
       "description": "Every collected room deserves a well-placed lamp. This accent lamp needle minder brings that finishing touch to your canvas, inspired by timeless furnishings and considered details.",
       "unitAmount": 2800,
       "image": null,
-      "inventoryQuantity": null,
+      "inventoryQuantity": 50,
       "availability": "preorder",
       "estimatedShipDate": "2026-11-30",
-      "approved": false
+      "approved": false,
+      "preorderLimit": 50
     }
   ]
 }
