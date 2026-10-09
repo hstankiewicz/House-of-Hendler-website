@@ -6,7 +6,7 @@ const ALLOWED_CORS_ORIGINS = new Set([
 function applyCors(req, res) {
   const origin = String(req.headers.origin || "");
   if (!origin) return true;
-  if (!ALLOWED_CORS_ORIGINS.has(origin)) return false;
+  if (!ALLOWED_CORS_ORIGINS.has(origin) && !(process.env.VERCEL_ENV === "preview" && origin === `https://${process.env.VERCEL_URL}`)) return false;
   res.setHeader("Access-Control-Allow-Origin", origin);
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");

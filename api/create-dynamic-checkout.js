@@ -1,6 +1,15 @@
 const crypto = require("crypto");
 
 const PRODUCTS = {
+  "parlor-lantern-green": { name: "The Parlor — Lantern — Green", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
+  "parlor-lantern-navy": { name: "The Parlor — Lantern — Navy", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
+  "parlor-lantern-pink": { name: "The Parlor — Lantern — Pink", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
+  "parlor-pagoda-frame-green": { name: "The Parlor — Pagoda Frame — Green", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
+  "parlor-pagoda-frame-navy": { name: "The Parlor — Pagoda Frame — Navy", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
+  "parlor-pagoda-frame-pink": { name: "The Parlor — Pagoda Frame — Pink", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
+  "parlor-bamboo-chair": { name: "The Parlor — Bamboo Chair", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
+  "parlor-curio-cabinet": { name: "The Parlor — Curio Cabinet", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
+  "parlor-accent-lamp": { name: "The Parlor — Accent Lamp", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
   pink: { name: "Palm Bunny Pink", unitAmount: 2800, needleMindersPerUnit: 1 },
   green: { name: "Palm Bunny Green", unitAmount: 2800, needleMindersPerUnit: 1 },
   blue: { name: "Palm Bunny Blue", unitAmount: 2800, needleMindersPerUnit: 1 },
@@ -17,7 +26,7 @@ const ALLOWED_CORS_ORIGINS = new Set([
 function applyCors(req, res) {
   const origin = String(req.headers.origin || "");
   if (!origin) return true;
-  if (!ALLOWED_CORS_ORIGINS.has(origin)) return false;
+  if (!ALLOWED_CORS_ORIGINS.has(origin) && !(process.env.VERCEL_ENV === "preview" && origin === `https://${process.env.VERCEL_URL}`)) return false;
   res.setHeader("Access-Control-Allow-Origin", origin);
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -83,6 +92,14 @@ module.exports = async function handler(req, res) {
     const items = normalizeItems(req.body?.items);
     if (!items.length) return json(res, 400, { error: "Your cart is empty." });
 
+    const parlorItems = items.filter(item => item.product.preorder);
+    if (parlorItems.length) {
+      const { inventory } = require("../lib/parlor-inventory");
+      const stock = await inventory(secret);
+      for (const item of parlorItems) {
+        if (item.quantity > stock[item.productId].available) return json(res, 409, { error: `${item.product.name}: only ${stock[item.productId].available} preorder units are available.` });
+      }
+    }
     const { count, weightOz } = shippingWeight(items);
     const orderReference = newOrderReference();
     const params = new URLSearchParams();
@@ -98,11 +115,17 @@ module.exports = async function handler(req, res) {
     params.set("metadata[shipping_weight_oz]", String(weightOz));
     params.set("metadata[order_reference]", orderReference);
 
+    if (parlorItems.length) {
+      params.set("expires_at", String(Math.floor(Date.now() / 1000) + 1800));
+      params.set("metadata[parlor_items]", JSON.stringify(parlorItems.map(({productId, quantity}) => ({productId, quantity}))));
+      params.set("metadata[preorder_ship_date]", "2026-11-30");
+      params.set("custom_text[submit][message]", "The Parlor items are preorders. Estimated ship date: November 30, 2026.");
+    }
     items.forEach((item, index) => {
       params.set(`line_items[${index}][quantity]`, String(item.quantity));
       params.set(`line_items[${index}][price_data][currency]`, "usd");
       params.set(`line_items[${index}][price_data][unit_amount]`, String(item.product.unitAmount));
-      params.set(`line_items[${index}][price_data][product_data][name]`, item.product.name);
+      params.set(`line_items[${index}][price_data][product_data][name]`, item.product.name + (item.product.preorder ? " — Preorder, ships November 30, 2026" : ""));
     });
 
     const stripeResponse = await fetch("https://api.stripe.com/v1/checkout/sessions", {
