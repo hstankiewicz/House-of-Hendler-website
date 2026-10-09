@@ -1,71 +1,71 @@
 {
   "collection": "The Parlor",
-  "status": "awaiting photo, variant-name and inventory confirmation",
+  "status": "Preorder date confirmed; awaiting photo matches, final names and preorder quantity limits",
   "products": [
     {
       "id": "parlor-lantern-1",
-      "name": "Lantern \u2014 Design 1",
+      "name": "Lantern — Design 1",
       "description": "Inspired by traditional chinoiserie lighting, this lantern needle minder brings a thoughtfully collected accent to your canvas. A finishing detail for the stitcher who enjoys furnishing every corner of a project.",
       "unitAmount": 2800,
       "image": null,
       "inventoryQuantity": null,
-      "availability": null,
-      "estimatedShipDate": null,
+      "availability": "preorder",
+      "estimatedShipDate": "2026-11-30",
       "approved": false
     },
     {
       "id": "parlor-lantern-2",
-      "name": "Lantern \u2014 Design 2",
+      "name": "Lantern — Design 2",
       "description": "Inspired by traditional chinoiserie lighting, this lantern needle minder brings a thoughtfully collected accent to your canvas. A finishing detail for the stitcher who enjoys furnishing every corner of a project.",
       "unitAmount": 2800,
       "image": null,
       "inventoryQuantity": null,
-      "availability": null,
-      "estimatedShipDate": null,
+      "availability": "preorder",
+      "estimatedShipDate": "2026-11-30",
       "approved": false
     },
     {
       "id": "parlor-lantern-3",
-      "name": "Lantern \u2014 Design 3",
+      "name": "Lantern — Design 3",
       "description": "Inspired by traditional chinoiserie lighting, this lantern needle minder brings a thoughtfully collected accent to your canvas. A finishing detail for the stitcher who enjoys furnishing every corner of a project.",
       "unitAmount": 2800,
       "image": null,
       "inventoryQuantity": null,
-      "availability": null,
-      "estimatedShipDate": null,
+      "availability": "preorder",
+      "estimatedShipDate": "2026-11-30",
       "approved": false
     },
     {
       "id": "parlor-pagoda-frame-1",
-      "name": "Pagoda Frame \u2014 Design 1",
+      "name": "Pagoda Frame — Design 1",
       "description": "A pagoda-inspired frame for your canvas, with a silhouette rooted in traditional chinoiserie design. A collected accent that makes your stitching tools part of the room.",
       "unitAmount": 2800,
       "image": null,
       "inventoryQuantity": null,
-      "availability": null,
-      "estimatedShipDate": null,
+      "availability": "preorder",
+      "estimatedShipDate": "2026-11-30",
       "approved": false
     },
     {
       "id": "parlor-pagoda-frame-2",
-      "name": "Pagoda Frame \u2014 Design 2",
+      "name": "Pagoda Frame — Design 2",
       "description": "A pagoda-inspired frame for your canvas, with a silhouette rooted in traditional chinoiserie design. A collected accent that makes your stitching tools part of the room.",
       "unitAmount": 2800,
       "image": null,
       "inventoryQuantity": null,
-      "availability": null,
-      "estimatedShipDate": null,
+      "availability": "preorder",
+      "estimatedShipDate": "2026-11-30",
       "approved": false
     },
     {
       "id": "parlor-pagoda-frame-3",
-      "name": "Pagoda Frame \u2014 Design 3",
+      "name": "Pagoda Frame — Design 3",
       "description": "A pagoda-inspired frame for your canvas, with a silhouette rooted in traditional chinoiserie design. A collected accent that makes your stitching tools part of the room.",
       "unitAmount": 2800,
       "image": null,
       "inventoryQuantity": null,
-      "availability": null,
-      "estimatedShipDate": null,
+      "availability": "preorder",
+      "estimatedShipDate": "2026-11-30",
       "approved": false
     },
     {
@@ -75,8 +75,8 @@
       "unitAmount": 2800,
       "image": null,
       "inventoryQuantity": null,
-      "availability": null,
-      "estimatedShipDate": null,
+      "availability": "preorder",
+      "estimatedShipDate": "2026-11-30",
       "approved": false
     },
     {
@@ -86,8 +86,8 @@
       "unitAmount": 2800,
       "image": null,
       "inventoryQuantity": null,
-      "availability": null,
-      "estimatedShipDate": null,
+      "availability": "preorder",
+      "estimatedShipDate": "2026-11-30",
       "approved": false
     },
     {
@@ -97,8 +97,8 @@
       "unitAmount": 2800,
       "image": null,
       "inventoryQuantity": null,
-      "availability": null,
-      "estimatedShipDate": null,
+      "availability": "preorder",
+      "estimatedShipDate": "2026-11-30",
       "approved": false
     }
   ]
