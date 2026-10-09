@@ -65,7 +65,7 @@ window.SITE_CONFIG = {
       id: "tortoise-blonde",
       name: "Tortoise Scallop Thread Organizer — Blonde Tortoise",
       price: "$28.00",
-      image: "assets/img/tortoise-blonde.jpg",
+      image: "assets/img/tortoise-blonde.png",
       alt: "House of Hendler Blonde Tortoise scalloped acrylic thread organizer styled with colorful embroidery threads",
       etsyUrl: "cart.html?add=tortoise-blonde",
       collection: "stitching-accessories",
