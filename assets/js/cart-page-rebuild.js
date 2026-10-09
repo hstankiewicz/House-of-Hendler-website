@@ -48,7 +48,7 @@
       const unit = Number(String(item.product.price).replace(/[^0-9.]/g, ""));
       const line = unit * item.quantity;
       subtotal += line;
-      return `<div class="cart-row"><div><div class="cart-name">${item.product.name}</div><div class="cart-price">${item.product.price} each</div>${item.product.availability === "preorder" ? `<div>Preorder — Estimated ship date: November 30, 2026.</div>` : ""}</div><div class="cart-qty"><button type="button" data-action="minus" data-id="${item.productId}">−</button><strong>${item.quantity}</strong><button type="button" data-action="plus" data-id="${item.productId}">+</button></div><div class="cart-total">${money(line)}</div></div>`;
+      return `<div class="cart-row"><div><div class="cart-name">${item.product.name}</div><div class="cart-price">${item.product.price} each</div></div><div class="cart-qty"><button type="button" data-action="minus" data-id="${item.productId}">−</button><strong>${item.quantity}</strong><button type="button" data-action="plus" data-id="${item.productId}">+</button></div><div class="cart-total">${money(line)}</div></div>`;
     }).join("");
     subtotalEl.textContent = `Subtotal ${money(subtotal)}`;
     button.disabled = false;

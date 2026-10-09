@@ -1,15 +1,15 @@
 const crypto = require("crypto");
 
 const PRODUCTS = {
-  "parlor-lantern-green": { name: "The Parlor — Lantern — Green", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
-  "parlor-lantern-navy": { name: "The Parlor — Lantern — Navy", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
-  "parlor-lantern-pink": { name: "The Parlor — Lantern — Pink", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
-  "parlor-pagoda-frame-green": { name: "The Parlor — Pagoda Frame — Green", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
-  "parlor-pagoda-frame-navy": { name: "The Parlor — Pagoda Frame — Navy", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
-  "parlor-pagoda-frame-pink": { name: "The Parlor — Pagoda Frame — Pink", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
-  "parlor-bamboo-chair": { name: "The Parlor — Bamboo Chair", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
-  "parlor-curio-cabinet": { name: "The Parlor — Curio Cabinet", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
-  "parlor-accent-lamp": { name: "The Parlor — Accent Lamp", unitAmount: 2800, needleMindersPerUnit: 1, preorder: true },
+  "parlor-lantern-green": { name: "The Parlor — Chinoiserie Lantern — Green", unitAmount: 2800, needleMindersPerUnit: 1, limitedInventory: true },
+  "parlor-lantern-navy": { name: "The Parlor — Chinoiserie Lantern — Navy", unitAmount: 2800, needleMindersPerUnit: 1, limitedInventory: true },
+  "parlor-lantern-pink": { name: "The Parlor — Chinoiserie Lantern — Pink", unitAmount: 2800, needleMindersPerUnit: 1, limitedInventory: true },
+  "parlor-pagoda-frame-green": { name: "The Parlor — Pagoda Frame — Green", unitAmount: 2800, needleMindersPerUnit: 1, limitedInventory: true },
+  "parlor-pagoda-frame-navy": { name: "The Parlor — Pagoda Frame — Navy", unitAmount: 2800, needleMindersPerUnit: 1, limitedInventory: true },
+  "parlor-pagoda-frame-pink": { name: "The Parlor — Pagoda Frame — Pink", unitAmount: 2800, needleMindersPerUnit: 1, limitedInventory: true },
+  "parlor-bamboo-chair": { name: "The Parlor — Bamboo Chair", unitAmount: 2800, needleMindersPerUnit: 1, limitedInventory: true },
+  "parlor-curio-cabinet": { name: "The Parlor — Curio Cabinet", unitAmount: 2800, needleMindersPerUnit: 1, limitedInventory: true },
+  "parlor-accent-lamp": { name: "The Parlor — Accent Lamp", unitAmount: 2800, needleMindersPerUnit: 1, limitedInventory: true },
   pink: { name: "Palm Bunny Pink", unitAmount: 2800, needleMindersPerUnit: 1 },
   green: { name: "Palm Bunny Green", unitAmount: 2800, needleMindersPerUnit: 1 },
   blue: { name: "Palm Bunny Blue", unitAmount: 2800, needleMindersPerUnit: 1 },
@@ -92,14 +92,7 @@ module.exports = async function handler(req, res) {
     const items = normalizeItems(req.body?.items);
     if (!items.length) return json(res, 400, { error: "Your cart is empty." });
 
-    const parlorItems = items.filter(item => item.product.preorder);
-    if (parlorItems.length) {
-      const { inventory } = require("../lib/parlor-inventory");
-      const stock = await inventory(secret);
-      for (const item of parlorItems) {
-        if (item.quantity > stock[item.productId].available) return json(res, 409, { error: `${item.product.name}: only ${stock[item.productId].available} preorder units are available.` });
-      }
-    }
+    const parlorItems = items.filter(item => item.product.limitedInventory);
     const { count, weightOz } = shippingWeight(items);
     const orderReference = newOrderReference();
     const params = new URLSearchParams();
@@ -118,20 +111,29 @@ module.exports = async function handler(req, res) {
     if (parlorItems.length) {
       params.set("expires_at", String(Math.floor(Date.now() / 1000) + 1800));
       params.set("metadata[parlor_items]", JSON.stringify(parlorItems.map(({productId, quantity}) => ({productId, quantity}))));
-      params.set("metadata[preorder_ship_date]", "2026-11-30");
+
     }
     items.forEach((item, index) => {
       params.set(`line_items[${index}][quantity]`, String(item.quantity));
       params.set(`line_items[${index}][price_data][currency]`, "usd");
       params.set(`line_items[${index}][price_data][unit_amount]`, String(item.product.unitAmount));
-      params.set(`line_items[${index}][price_data][product_data][name]`, item.product.name + (item.product.preorder ? " — Preorder, ships November 30, 2026" : ""));
+      params.set(`line_items[${index}][price_data][product_data][name]`, item.product.name);
     });
 
+    // Reserve all selected website variants atomically before contacting Stripe.
+    const inventoryStore = require("../lib/parlor-inventory");
+    const reservationId = parlorItems.length ? crypto.randomUUID() : null;
+    if (reservationId) {
+      try { await inventoryStore.reconcile(secret); await inventoryStore.reserve(reservationId, parlorItems); }
+      catch (error) { return json(res, error.code === "OUT_OF_STOCK" ? 409 : 503, { error: error.code === "OUT_OF_STOCK" ? "A selected Parlor item has insufficient stock. Please update your cart." : "Stock reservations are temporarily unavailable. Please try again later." }); }
+      params.set("metadata[parlor_reservation_id]", reservationId);
+    }
     const stripeResponse = await fetch("https://api.stripe.com/v1/checkout/sessions", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${secret}`,
         "Content-Type": "application/x-www-form-urlencoded",
+        ...(reservationId ? { "Idempotency-Key": `parlor-${reservationId}` } : {}),
       },
       body: params,
     });
@@ -142,6 +144,7 @@ module.exports = async function handler(req, res) {
       return json(res, 500, { error: session?.error?.message || "Unable to start checkout." });
     }
 
+    if (reservationId) await inventoryStore.attach(reservationId, session.id);
     return json(res, 200, { clientSecret: session.client_secret, sessionId: session.id, orderReference });
   } catch (error) {
     console.error(error);

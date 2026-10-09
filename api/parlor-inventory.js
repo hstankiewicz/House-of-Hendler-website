@@ -8,7 +8,7 @@ module.exports = async function handler(req, res) {
   if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
   try {
     const secret = process.env.STRIPE_SECRET_KEY;
-    if (!secret?.startsWith("sk_")) throw new Error("Preorder availability is unavailable.");
-    return res.status(200).json({ products: await inventory(secret), estimatedShipDate: "2026-11-30" });
-  } catch (error) { return res.status(503).json({ error: "We could not check preorder availability. Please try again." }); }
+    if (!secret?.startsWith("sk_")) throw new Error("Inventory is unavailable.");
+    return res.status(200).json({ products: await inventory(secret) });
+  } catch (error) { return res.status(503).json({ error: "We could not check inventory. Please try again." }); }
 };

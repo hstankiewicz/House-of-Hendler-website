@@ -1,15 +1,27 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const labels = [...document.querySelectorAll("[data-parlor-stock]")];
-  if (!labels.length) return;
-  const base = ["houseofhendler.com", "www.houseofhendler.com"].includes(location.hostname) ? "https://house-of-hendler-website.vercel.app" : "";
+document.addEventListener('DOMContentLoaded', async () => {
+  const cards = [...document.querySelectorAll('[data-parlor-card]')];
+  if (!cards.length) return;
+  let stock = null;
+  function update(card) {
+    const selector = card.querySelector('[data-parlor-color]');
+    const id = selector ? selector.value : card.dataset.productId;
+    card.dataset.productId = id;
+    const product = window.SITE_CONFIG.products.find(product => product.id === id);
+    const image = card.querySelector('img'), button = card.querySelector('[data-parlor-buy]');
+    image.src = product.image; image.alt = product.name;
+    button.href = `cart.html?add=${encodeURIComponent(id)}`;
+    const available = stock?.[id]?.available;
+    card.querySelector('[data-parlor-availability]').textContent = typeof available === 'number' ? (available > 0 ? `${available} available.` : 'Sold out.') : '';
+    button.textContent = available === 0 ? 'Sold Out' : 'Add to Cart';
+    if (available === 0) { button.removeAttribute('href'); button.setAttribute('aria-disabled','true'); }
+    else button.removeAttribute('aria-disabled');
+  }
+  cards.forEach(card => { card.querySelector('select')?.addEventListener('change', () => update(card)); update(card); });
+  const base = ['houseofhendler.com','www.houseofhendler.com'].includes(location.hostname) ? 'https://house-of-hendler-website.vercel.app' : '';
   try {
     const response = await fetch(`${base}/api/parlor-inventory`);
-    if (!response.ok) throw new Error("Availability unavailable");
-    const data = await response.json();
-    for (const label of labels) {
-      const id = label.dataset.parlorStock; const stock = data.products[id]; if (!stock) continue;
-      label.textContent = stock.available > 0 ? `${stock.available} available for preorder.` : "Currently sold out or reserved in checkout.";
-      if (!stock.available) for (const link of document.querySelectorAll(`[data-parlor-buy="${id}"]`)) { link.setAttribute("aria-disabled", "true"); link.removeAttribute("href"); link.textContent = "Unavailable"; }
-    }
-  } catch (_) { labels.forEach(label => { label.textContent = "Availability confirmed at checkout."; }); }
+    if (!response.ok) throw new Error('Unavailable');
+    stock = (await response.json()).products;
+    cards.forEach(update);
+  } catch (_) { /* Checkout refuses purchases if the reservation service is unavailable. */ }
 });
