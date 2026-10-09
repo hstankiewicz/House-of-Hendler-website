@@ -5,6 +5,8 @@ const PRODUCTS = {
   green: { name: "Palm Bunny Green", unitAmount: 2800, needleMindersPerUnit: 1 },
   blue: { name: "Palm Bunny Blue", unitAmount: 2800, needleMindersPerUnit: 1 },
   trio: { name: "The Palm Bunny Trio", unitAmount: 8000, needleMindersPerUnit: 3 },
+  "tortoise-blonde": { name: "Tortoise Scallop Thread Organizer — Blonde Tortoise", unitAmount: 2800, needleMindersPerUnit: 1 },
+  "tortoise-classic": { name: "Tortoise Scallop Thread Organizer — Classic Tortoise", unitAmount: 2800, needleMindersPerUnit: 1 },
 };
 
 const ALLOWED_CORS_ORIGINS = new Set([

@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-product-grid]").forEach((grid) => {
     if (!window.SITE_CONFIG) return;
     grid.innerHTML = SITE_CONFIG.products
+      .filter((p) => !p.collection)
       .map(
         (p) => `
       <article class="product-card">
