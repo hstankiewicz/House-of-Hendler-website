@@ -8,5 +8,5 @@
 .shop-menu button:hover,.shop-menu a:hover{background:var(--hoh-pink-light,var(--hoh-white))}
 .shop-menu button:focus-visible,.shop-menu a:focus-visible{outline:2px solid var(--hoh-navy);outline-offset:2px}
 .shop-menu [hidden]{display:none!important}
-@media(max-width:900px){.mobile-nav .shop-menu{width:100%}.mobile-nav .shop-menu-toggle{width:100%;padding:10px 0}.mobile-nav .shop-dropdown,.mobile-nav .shop-collections{position:static;box-shadow:none;min-width:0;border:0;padding:0 0 0 16px}.mobile-nav .shop-category-toggle{padding:12px 0}.mobile-nav .shop-collections a{padding:12px 0}}
-@media(min-width:901px) and (max-width:1100px){.shop-collections{left:0;top:100%}}
+@media(max-width:980px){.mobile-nav .shop-menu{width:100%}.mobile-nav .shop-menu-toggle{width:100%;padding:10px 0}.mobile-nav .shop-dropdown,.mobile-nav .shop-collections{position:static;box-shadow:none;min-width:0;border:0;padding:0 0 0 16px}.mobile-nav .shop-category-toggle{padding:12px 0}.mobile-nav .shop-collections a{padding:12px 0}}
+@media(min-width:981px) and (max-width:1100px){.shop-collections{left:0;top:100%}}
