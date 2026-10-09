@@ -119,7 +119,6 @@ module.exports = async function handler(req, res) {
       params.set("expires_at", String(Math.floor(Date.now() / 1000) + 1800));
       params.set("metadata[parlor_items]", JSON.stringify(parlorItems.map(({productId, quantity}) => ({productId, quantity}))));
       params.set("metadata[preorder_ship_date]", "2026-11-30");
-      params.set("custom_text[submit][message]", "The Parlor items are preorders. Estimated ship date: November 30, 2026.");
     }
     items.forEach((item, index) => {
       params.set(`line_items[${index}][quantity]`, String(item.quantity));
