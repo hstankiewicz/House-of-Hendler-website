@@ -8,7 +8,7 @@
   const closeAll = () => document.querySelectorAll('[data-shop-menu]').forEach(menu => setOpen(menu.firstElementChild, menu.lastElementChild, false));
   document.querySelectorAll('[data-shop-menu], .shop-submenu').forEach(group => {
     const button = group.firstElementChild, panel = button.nextElementSibling;
-    button.addEventListener('click', () => setOpen(button, panel, panel.hidden));
+    button.addEventListener('click', event => setOpen(button, panel, event.pointerType === 'mouse' && finePointer.matches ? true : panel.hidden));
     group.addEventListener('pointerenter', () => { if (finePointer.matches) setOpen(button, panel, true); });
     group.addEventListener('pointerleave', () => { if (finePointer.matches && !group.contains(document.activeElement)) setOpen(button, panel, false); });
     group.addEventListener('focusout', event => { if (!group.contains(event.relatedTarget)) setOpen(button, panel, false); });
