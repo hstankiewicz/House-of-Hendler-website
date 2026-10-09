@@ -1,0 +1,105 @@
+{
+  "collection": "The Parlor",
+  "status": "awaiting photo, variant-name and inventory confirmation",
+  "products": [
+    {
+      "id": "parlor-lantern-1",
+      "name": "Lantern \u2014 Design 1",
+      "description": "Inspired by traditional chinoiserie lighting, this lantern needle minder brings a thoughtfully collected accent to your canvas. A finishing detail for the stitcher who enjoys furnishing every corner of a project.",
+      "unitAmount": 2800,
+      "image": null,
+      "inventoryQuantity": null,
+      "availability": null,
+      "estimatedShipDate": null,
+      "approved": false
+    },
+    {
+      "id": "parlor-lantern-2",
+      "name": "Lantern \u2014 Design 2",
+      "description": "Inspired by traditional chinoiserie lighting, this lantern needle minder brings a thoughtfully collected accent to your canvas. A finishing detail for the stitcher who enjoys furnishing every corner of a project.",
+      "unitAmount": 2800,
+      "image": null,
+      "inventoryQuantity": null,
+      "availability": null,
+      "estimatedShipDate": null,
+      "approved": false
+    },
+    {
+      "id": "parlor-lantern-3",
+      "name": "Lantern \u2014 Design 3",
+      "description": "Inspired by traditional chinoiserie lighting, this lantern needle minder brings a thoughtfully collected accent to your canvas. A finishing detail for the stitcher who enjoys furnishing every corner of a project.",
+      "unitAmount": 2800,
+      "image": null,
+      "inventoryQuantity": null,
+      "availability": null,
+      "estimatedShipDate": null,
+      "approved": false
+    },
+    {
+      "id": "parlor-pagoda-frame-1",
+      "name": "Pagoda Frame \u2014 Design 1",
+      "description": "A pagoda-inspired frame for your canvas, with a silhouette rooted in traditional chinoiserie design. A collected accent that makes your stitching tools part of the room.",
+      "unitAmount": 2800,
+      "image": null,
+      "inventoryQuantity": null,
+      "availability": null,
+      "estimatedShipDate": null,
+      "approved": false
+    },
+    {
+      "id": "parlor-pagoda-frame-2",
+      "name": "Pagoda Frame \u2014 Design 2",
+      "description": "A pagoda-inspired frame for your canvas, with a silhouette rooted in traditional chinoiserie design. A collected accent that makes your stitching tools part of the room.",
+      "unitAmount": 2800,
+      "image": null,
+      "inventoryQuantity": null,
+      "availability": null,
+      "estimatedShipDate": null,
+      "approved": false
+    },
+    {
+      "id": "parlor-pagoda-frame-3",
+      "name": "Pagoda Frame \u2014 Design 3",
+      "description": "A pagoda-inspired frame for your canvas, with a silhouette rooted in traditional chinoiserie design. A collected accent that makes your stitching tools part of the room.",
+      "unitAmount": 2800,
+      "image": null,
+      "inventoryQuantity": null,
+      "availability": null,
+      "estimatedShipDate": null,
+      "approved": false
+    },
+    {
+      "id": "parlor-bamboo-chair",
+      "name": "Bamboo Chair",
+      "description": "Pull up a chair. This bamboo chair needle minder brings a familiar furnishing from a beautifully collected room to your canvas, with a nod to timeless chinoiserie interiors.",
+      "unitAmount": 2800,
+      "image": null,
+      "inventoryQuantity": null,
+      "availability": null,
+      "estimatedShipDate": null,
+      "approved": false
+    },
+    {
+      "id": "parlor-curio-cabinet",
+      "name": "Curio Cabinet",
+      "description": "Inspired by the cabinets that hold our favorite collected pieces, this curio cabinet needle minder gives your canvas a furnishing of its own. A traditional accent, thoughtfully placed.",
+      "unitAmount": 2800,
+      "image": null,
+      "inventoryQuantity": null,
+      "availability": null,
+      "estimatedShipDate": null,
+      "approved": false
+    },
+    {
+      "id": "parlor-accent-lamp",
+      "name": "Accent Lamp",
+      "description": "Every collected room deserves a well-placed lamp. This accent lamp needle minder brings that finishing touch to your canvas, inspired by timeless furnishings and considered details.",
+      "unitAmount": 2800,
+      "image": null,
+      "inventoryQuantity": null,
+      "availability": null,
+      "estimatedShipDate": null,
+      "approved": false
+    }
+  ]
+}

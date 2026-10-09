@@ -1,0 +1,5 @@
+.shop-category-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px;padding:24px 16px;border-bottom:1px solid var(--hoh-line)}
+.shop-category-nav a{color:var(--hoh-navy);font-size:14px;text-decoration:underline;text-underline-offset:5px}
+.parlor-intro{max-width:760px;margin:0 auto;text-align:center}.parlor-intro p{margin:18px auto}.parlor-draft-note{padding:12px 18px;background:var(--hoh-cream);border:1px solid var(--hoh-line);font-size:14px;text-align:center;margin:24px auto;max-width:760px}
+.parlor-products .info p{font-size:15px}.parlor-products .product-card{display:flex;flex-direction:column}.parlor-products .info{flex:1}.parlor-products button:disabled{opacity:.6;cursor:default}
+@media(max-width:600px){.shop-category-nav{gap:14px 18px}.parlor-products{grid-template-columns:1fr}}
